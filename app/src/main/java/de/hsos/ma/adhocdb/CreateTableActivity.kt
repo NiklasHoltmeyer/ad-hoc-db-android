@@ -1,6 +1,10 @@
 package de.hsos.ma.adhocdb
 
+import Controller.TableDao
+import DB.TablesDatabase
 import android.app.Activity
+import android.content.Intent
+import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -9,11 +13,12 @@ import android.widget.NumberPicker.OnValueChangeListener
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
+import de.hsos.ma.adhocdb.entities.TableEntity
 import de.hsos.ma.adhocdb.ui.createtable.CreateTableFragment
+import java.util.function.Consumer
 
 
 class CreateTableActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.create_table_activity)
@@ -31,12 +36,6 @@ class CreateTableActivity : AppCompatActivity() {
         //set back button
         actionbar.setDisplayHomeAsUpEnabled(true)
         actionbar.setDisplayHomeAsUpEnabled(true)
-/*
-        var np  : NumberPicker = findViewById(R.id.numberPicker)
-        np.minValue = 2
-        np.maxValue = 20
-
-        np.setOnValueChangedListener(onValueChangeListener);*/
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -74,11 +73,30 @@ class CreateTableActivity : AppCompatActivity() {
             Toast.makeText(applicationContext,"Missing Table Column Count",Toast.LENGTH_SHORT).show()
         }else{
             var tableCount : Int = _tableColumnCount.toString().toInt()
-            Log.e("ERROR", "Table-Name: $_tableName")
-            Log.e("ERROR", "Table-Descr: $_tableDescription")
-            Log.e("ERROR", "Table-Colm: $tableCount")
-        }
+            var entity = TableEntity(_tableName.toString(), _tableDescription.toString(), "todo")
+            saveTable(entity)
 
-        Log.e("ERROR", "HIHI")
+            Toast.makeText(applicationContext,"Saving",Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun saveTable(table : TableEntity){ //TODO callback function
+        class SaveClass : AsyncTask<Void, Void, Void>(){
+            override fun doInBackground(vararg p0: Void?): Void? {
+                var db = TablesDatabase(applicationContext).tableDao()
+                db?.insert(table)
+                return null
+            }
+
+            override fun onPostExecute(result: Void?) {
+                onSuccessCallback()
+            }
+        }
+        SaveClass().execute()
+    }
+
+    private fun onSuccessCallback(){
+        var intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
 }
