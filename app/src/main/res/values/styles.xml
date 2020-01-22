@@ -1,11 +1,82 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/colorHeaderBackground</item>
+        <item name="colorPrimaryDark">@color/colorTest3</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="color">@color/colorWhite</item>
+        <item name="colorSecondary">#FF0000</item>
+        <item name="android:colorBackground">@color/colorBackground</item>
+        <item name="colorError">@color/colorError</item>
+        <item name="colorPrimaryVariant">@color/colorAccent</item>
+        <item name="colorSecondaryVariant">@color/colorTest</item>
+        <item name="colorSurface">#313131</item>
+        <item name="colorOnPrimary">#00BCD4</item>
+        <item name="colorOnSecondary">#00BCD4</item>
+        <item name="colorOnBackground">#673AB7</item>
+        <item name="colorOnError">#2196F3</item>
+        <item name="colorOnSurface">@color/colorWhiteSecondary</item> <!-- placeholder farbe -->
+        <item name="scrimBackground">#E607FF</item>
+
+
+        <item name="android:editTextColor">@color/colorWhite</item>
+        <item name="android:textColorPrimary">@color/colorWhite</item>
+        <item name="android:textColorSecondary">@color/colorWhite</item>
+        <item name="android:textColorTertiary">@color/colorWhite</item>
+        <item name="android:textColorPrimaryInverse">@color/colorWhite</item>
+        <item name="android:textColorSecondaryInverse">@color/colorWhite</item>
+        <item name="android:textColorTertiaryInverse">@color/colorWhite</item>
+    </style>
+
+    <style name="MyTheme" parent="@android:style/Theme.Holo.Light">
+        <item name="android:actionBarStyle">@style/MyTheme.ActionBarStyle</item>
+    </style>
+
+    <style name="MyTheme.ActionBarStyle" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:titleTextStyle">@style/MyTheme.ActionBar.TitleTextStyle</item>
+    </style>
+
+    <style name="MyTheme.ActionBar.TitleTextStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <style name="Theme.MyApp" parent="Theme.AppCompat">
+
+        <!-- Original AppCompat attributes. -->
+        <item name="colorPrimary">@color/colorTest4</item>
+        <item name="colorSecondary">@color/colorTest5</item>
+        <item name="android:colorBackground">@color/colorBackground</item>
+        <item name="colorError">@color/colorError</item>
+
+        <!-- New MaterialComponents attributes. -->
+        <item name="colorPrimaryVariant">@color/colorAccent</item>
+        <item name="colorSecondaryVariant">@color/colorTest</item>
+        <item name="colorSurface">#313131</item>
+        <item name="colorOnPrimary">#9C27B0</item>
+        <item name="colorOnSecondary">#00BCD4</item>
+        <item name="colorOnBackground">#673AB7</item>
+        <item name="colorOnError">#2196F3</item>
+        <item name="colorOnSurface">#E91E63</item>
+        <item name="scrimBackground">#FFC107</item>
+        <item name="textAppearanceHeadline1">@style/TextAppearance.MaterialComponents.Headline1</item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.MaterialComponents.Headline2</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.MaterialComponents.Headline3</item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.MaterialComponents.Headline4</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.MaterialComponents.Headline5</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.MaterialComponents.Headline6</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.MaterialComponents.Subtitle1</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.MaterialComponents.Subtitle2</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.MaterialComponents.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.MaterialComponents.Body2</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.MaterialComponents.Caption</item>
+        <item name="textAppearanceButton">@style/TextAppearance.MaterialComponents.Button</item>
+        <item name="textAppearanceOverline">@style/TextAppearance.MaterialComponents.Overline</item>
+
     </style>
 
 </resources>

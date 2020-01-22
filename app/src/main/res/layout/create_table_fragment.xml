@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/createtable"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.createtable.CreateTableFragment">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:hint="Table Name"
+        app:placeholderText="HOLDERHOLDERHOLDER"
+        android:layout_margin="20dp"
+        app:boxStrokeColor="@color/colorAccent"
+        android:inputType="text"
+        app:endIconMode="custom"
+        app:endIconDrawable="@drawable/ic_label_black_24dp"
+        app:endIconContentDescription="TEXTTEXTEXTR">
+
+
+    tools:ignore="MissingConstraints">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textInputName"
+            android:inputType="text"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
