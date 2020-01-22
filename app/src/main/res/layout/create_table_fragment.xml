@@ -1,32 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/createtable"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.createtable.CreateTableFragment">
+    android:layout_height="match_parent">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:hint="Table Name"
-        app:placeholderText="HOLDERHOLDERHOLDER"
-        android:layout_margin="20dp"
-        app:boxStrokeColor="@color/colorAccent"
-        android:inputType="text"
-        app:endIconMode="custom"
-        app:endIconDrawable="@drawable/ic_label_black_24dp"
-        app:endIconContentDescription="TEXTTEXTEXTR">
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-
-    tools:ignore="MissingConstraints">
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutTableName"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textInputName"
-            android:inputType="text"/>
+            android:layout_margin="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="10dp"
+            android:hint="@string/create_table_name"
+            android:inputType="text"
+            app:boxStrokeColor="@color/colorAccent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:placeholderText="@string/create_table_table_name_placeholder"
+            app:startIconTintMode="src_in">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textInputName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:text="" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutDescription"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:hint="@string/create_table_description_hint"
+            android:inputType="text"
+            app:boxStrokeColor="@color/colorAccent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:placeholderText="@string/create_table_table_description_placeholder"
+            app:startIconTintMode="src_in">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textInputDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:text="" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutColumns"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:hint="@string/create_table_columns_hint"
+            android:inputType="numberSigned"
+            app:boxStrokeColor="@color/colorAccent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:placeholderText="@string/create_table_table_description_placeholder"
+            app:startIconTintMode="src_in">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textInputColumns"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberSigned"
+                android:text="" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+            android:gravity="start" android:orientation="horizontal" android:padding="20dp">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/material_button132"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".33"
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            app:icon="@drawable/ic_add_circle_black_24dp"
+            app:iconTint="@color/colorOnAccent"
+            android:textColor="@color/colorOnAccent"
+            android:layout_margin="6dp"
+            android:onClick="saveButtonOnClick"
+            android:text="@string/create_table_button_save"/>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/material_button12"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".33"
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            app:icon="@drawable/ic_remove_circle_black_24dp"
+            app:iconTint="@color/colorOnButtonSecondary"
+            android:textColor="@color/colorOnButtonSecondary"
+            android:layout_margin="6dp"
+            android:onClick="clearButtonOnClick"
+            android:background="@color/colorButtonSecondary"
+            app:backgroundTint="@color/colorOnAccent"
+            android:text="@string/create_table_button_clear"/>
+    </LinearLayout>
+
+
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

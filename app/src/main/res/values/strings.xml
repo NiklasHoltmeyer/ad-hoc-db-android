@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">ad hoc Database</string>
+    <string name="create_table_name">Table Name</string>
+    <string name="create_table_table_name_placeholder">Table Name</string>
+    <string name="create_table_description_hint">Table Description</string>
+    <string name="create_table_table_description_placeholder">Description</string>
+    <string name="colums">Colums</string>
+    <string name="create_table_columns_hint">Table Column-Count</string>
+    <string name="create_table_button_save">Save</string>
+    <string name="create_table_button_clear">Clear</string>
 </resources>

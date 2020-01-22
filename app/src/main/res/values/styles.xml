@@ -20,7 +20,7 @@
         <item name="colorOnSecondary">#00BCD4</item>
         <item name="colorOnBackground">#673AB7</item>
         <item name="colorOnError">#2196F3</item>
-        <item name="colorOnSurface">@color/colorWhiteSecondary</item> <!-- placeholder farbe -->
+        <item name="colorOnSurface">@color/onSurface</item> <!-- placeholder farbe -->
         <item name="scrimBackground">#E607FF</item>
 
 

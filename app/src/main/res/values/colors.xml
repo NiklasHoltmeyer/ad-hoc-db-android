@@ -7,11 +7,18 @@
     <color name="colorWhite">#eeeeee</color>
     <color name="colorWhiteSecondary">#D0D0D0</color>
     <color name="colorBlack">#111111</color>
-
-    <color name="colorBackground">#393e46</color>
+    <color name="onSurface">@color/colorWhite</color>
+    <color name="colorBackground">@color/colorPrimaryDark</color>
     <color name="colorError">#F44336</color>
 
+    <color name="colorOnAccent">@color/colorWhite</color>
+
     <color name="colorHeaderBackground">@color/colorAccent</color>
+
+    <color name="colorOnButtonSecondary">@color/colorBlack</color>
+
+    <color name="colorButtonPrimary">@color/colorAccent</color>
+    <color name="colorButtonSecondary">@color/colorPrimary</color>
 
 
 
