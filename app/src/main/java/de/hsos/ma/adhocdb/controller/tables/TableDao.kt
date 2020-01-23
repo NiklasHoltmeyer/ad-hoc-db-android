@@ -1,4 +1,4 @@
-package Controller
+package de.hsos.ma.adhocdb.controller.tables
 
 import androidx.room.*
 import androidx.sqlite.db.SupportSQLiteQuery

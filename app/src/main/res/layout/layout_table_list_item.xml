@@ -44,7 +44,7 @@
                         android:ellipsize="end"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:text="Table Title Dummy"
+                        android:text="@string/table_title_dummy"
                         android:textColor="#000"
                         android:textSize="19sp" />
 
@@ -56,7 +56,7 @@
                         android:ellipsize="end"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:text="Dr Peppers"
+                        android:text="@string/table_description_dummy"
                         android:textColor="@color/colorButtonSecondary"
                         android:textSize="15sp" />
                 </LinearLayout>
@@ -69,7 +69,7 @@
                     android:layout_margin="0dp"
                     android:layout_weight=".15"
                     android:adjustViewBounds="true"
-                    android:paddingRight="20dp"
+                    android:paddingEnd="20dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_add_circle_black_24dp"
                     app:layout_constraintLeft_toLeftOf="parent"

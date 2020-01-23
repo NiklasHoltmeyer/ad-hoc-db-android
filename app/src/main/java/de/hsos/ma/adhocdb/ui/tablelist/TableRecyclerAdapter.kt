@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import de.hsos.ma.adhocdb.R
 import de.hsos.ma.adhocdb.ui.settings.TableViewHolder
-import todoordnenrecycler.TableEntity
+import de.hsos.ma.adhocdb.entities.TableEntity
 
 class TableRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var items: List<TableEntity> = ArrayList()
@@ -24,7 +24,7 @@ class TableRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         when (holder) {
 
             is TableViewHolder -> {
-                holder.bind(items.get(position))
+                holder.bind(items[position])
             }
 
         }

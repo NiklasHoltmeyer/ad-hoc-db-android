@@ -6,13 +6,13 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import de.hsos.ma.adhocdb.R
 import kotlinx.android.synthetic.main.layout_table_list_item.view.*
-import todoordnenrecycler.TableEntity
+import de.hsos.ma.adhocdb.entities.TableEntity
 
 class TableViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    val blog_image = itemView.table_image
-    val blog_title = itemView.table_title
-    val blog_author = itemView.table_description
+    private val tableImage = itemView.table_image
+    private val tableTitle = itemView.table_title
+    private val tableDescription = itemView.table_description
 
     fun bind(tableEntity: TableEntity) {
 
@@ -23,8 +23,8 @@ class TableViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(item
         Glide.with(itemView.context)
             .applyDefaultRequestOptions(requestOptions)
             .load(tableEntity.image)
-            .into(blog_image)
-        blog_title.setText(tableEntity.name)
-        blog_author.setText(tableEntity.description)
+            .into(tableImage)
+        tableTitle.text = tableEntity.name
+        tableDescription.text = tableEntity.description
     }
 }

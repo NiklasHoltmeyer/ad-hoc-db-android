@@ -4,8 +4,10 @@
     <string name="create_table_table_name_placeholder">Table Name</string>
     <string name="create_table_description_hint">Table Description</string>
     <string name="create_table_table_description_placeholder">Description</string>
-    <string name="colums">Colums</string>
+    <string name="Columns">Columns</string>
     <string name="create_table_columns_hint">Table Column-Count</string>
     <string name="create_table_button_save">Save</string>
     <string name="create_table_button_clear">Clear</string>
+    <string name="table_title_dummy">Table Title Dummy</string>
+    <string name="table_description_dummy">Dr Peppers</string>
 </resources>

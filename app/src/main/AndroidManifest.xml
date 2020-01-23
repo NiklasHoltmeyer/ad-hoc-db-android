@@ -12,9 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".layout_table_list_item"></activity>
+        <activity android:name=".ui.tablelist.LayoutTableListItem"/>
         <activity
-            android:name=".CreateTableActivity"
+            android:name=".ui.createtable.CreateTableActivity"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

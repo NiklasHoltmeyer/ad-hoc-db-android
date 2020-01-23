@@ -1,6 +1,5 @@
 package de.hsos.ma.adhocdb
 
-import DB.TablesDatabase
 import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
@@ -9,6 +8,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import de.hsos.ma.adhocdb.entities.TableEntity
+import de.hsos.ma.adhocdb.framework.persistence.database.TablesDatabase
 import de.hsos.ma.adhocdb.ui.createtable.CreateTableActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import de.hsos.ma.adhocdb.ui.tablelist.TableRecyclerAdapter
@@ -21,14 +21,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        loadTables()
+        //loadTables()
 
         initRecyclerView()
         addDataSet()
     }
 
     fun addButtonOnClick (view: View){
-        var intent = Intent(this, CreateTableActivity::class.java)
+        val intent = Intent(this, CreateTableActivity::class.java)
         startActivity(intent)
     }
 
@@ -40,15 +40,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadTables(){ //TODO callback function
         class SaveClass : AsyncTask<Void, Void, Void>(){
-            var  entites : List<TableEntity> = emptyList()
+            var  entities : List<TableEntity> = emptyList()
             override fun doInBackground(vararg p0: Void?): Void? {
-                var db = TablesDatabase(applicationContext).tableDao()
-                entites = db?.getAll()
+                val db = TablesDatabase(applicationContext).tableDao()
+                entities = db.getAll()
                 return null
             }
 
             override fun onPostExecute(result: Void?) {
-                onTablesLoadCallBack(entites)
+                onTablesLoadCallBack(entities)
             }
         }
         SaveClass().execute()
