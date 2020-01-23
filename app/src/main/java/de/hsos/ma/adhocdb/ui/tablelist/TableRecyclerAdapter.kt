@@ -7,9 +7,7 @@ import de.hsos.ma.adhocdb.R
 import de.hsos.ma.adhocdb.ui.settings.TableViewHolder
 import de.hsos.ma.adhocdb.entities.TableEntity
 
-class TableRecyclerAdapter(var onClick: OnTableClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private var items: List<TableEntity> = ArrayList()
-
+class TableRecyclerAdapter(var onClick: OnTableClickListener, var items: List<TableEntity>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return TableViewHolder(
             LayoutInflater.from(parent.context).inflate(
@@ -32,9 +30,5 @@ class TableRecyclerAdapter(var onClick: OnTableClickListener) : RecyclerView.Ada
 
     override fun getItemCount(): Int {
         return items.size
-    }
-
-    fun submitList(tables: List<TableEntity>) {
-        items = tables
     }
 }
