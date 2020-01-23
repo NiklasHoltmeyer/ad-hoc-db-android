@@ -1,4 +1,6 @@
-package todoordnenrecycler
+package de.hsos.ma.adhocdb.framework.persistence.tables
+
+import todoordnenrecycler.TableEntity
 
 class DataSource {
 
@@ -11,7 +13,7 @@ class DataSource {
                     "Congratulations!",
                     "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
                     "https://raw.githubusercontent.com/mitchtabian/Blog-Images/master/digital_ocean.png"
-                    )
+                )
             )
             list.add(
                 TableEntity(

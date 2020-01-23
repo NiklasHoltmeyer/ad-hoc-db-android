@@ -1,4 +1,4 @@
-package todoordnenrecycler
+package de.hsos.ma.adhocdb.ui.tablelist
 
 import android.graphics.Rect
 import android.view.View

@@ -11,12 +11,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import de.hsos.ma.adhocdb.entities.TableEntity
 import de.hsos.ma.adhocdb.ui.createtable.CreateTableActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import todoordnenrecycler.BlogRecyclerAdapter
-import todoordnenrecycler.DataSource
-import todoordnenrecycler.TopSpacingItemDecoration
+import de.hsos.ma.adhocdb.ui.tablelist.TableRecyclerAdapter
+import de.hsos.ma.adhocdb.framework.persistence.tables.DataSource
+import de.hsos.ma.adhocdb.ui.tablelist.TopSpacingItemDecoration
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var blogAdapter: BlogRecyclerAdapter
+    private lateinit var tableAdapter: TableRecyclerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,16 +56,17 @@ class MainActivity : AppCompatActivity() {
 
     private fun addDataSet(){ // TODO
         val data = DataSource.createDataSet()
-        blogAdapter.submitList(data)
+        tableAdapter.submitList(data)
     }
 
     private fun initRecyclerView(){ //TODO
         recycler_view.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
-            val topSpacingDecorator = TopSpacingItemDecoration(30)
+            val topSpacingDecorator =
+                TopSpacingItemDecoration(30)
             addItemDecoration(topSpacingDecorator)
-            blogAdapter = BlogRecyclerAdapter()
-            adapter = blogAdapter
+            tableAdapter = TableRecyclerAdapter()
+            adapter = tableAdapter
         }
     }
 }
