@@ -7,13 +7,23 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import de.hsos.ma.adhocdb.entities.TableEntity
+import kotlinx.android.synthetic.main.activity_main.*
+import todoordnenrecycler.BlogRecyclerAdapter
+import todoordnenrecycler.DataSource
+import todoordnenrecycler.TopSpacingItemDecoration
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var blogAdapter: BlogRecyclerAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         loadTables()
+
+        initRecyclerView()
+        addDataSet()
     }
 
     fun addButtonOnClick (view: View){
@@ -41,5 +51,20 @@ class MainActivity : AppCompatActivity() {
             }
         }
         SaveClass().execute()
+    }
+
+    private fun addDataSet(){ // TODO
+        val data = DataSource.createDataSet()
+        blogAdapter.submitList(data)
+    }
+
+    private fun initRecyclerView(){ //TODO
+        recycler_view.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            val topSpacingDecorator = TopSpacingItemDecoration(30)
+            addItemDecoration(topSpacingDecorator)
+            blogAdapter = BlogRecyclerAdapter()
+            adapter = blogAdapter
+        }
     }
 }
