@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "tables")
 data class TableEntity(
-    val name : String,
+    val name : String, //TODO umbenennen
     val description : String,
     val image : String
 ){

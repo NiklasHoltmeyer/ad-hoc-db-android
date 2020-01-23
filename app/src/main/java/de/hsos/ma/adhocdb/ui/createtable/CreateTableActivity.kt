@@ -1,21 +1,17 @@
-package de.hsos.ma.adhocdb
+package de.hsos.ma.adhocdb.ui.createtable
 
-import Controller.TableDao
 import DB.TablesDatabase
-import android.app.Activity
 import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import android.widget.NumberPicker.OnValueChangeListener
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
+import de.hsos.ma.adhocdb.MainActivity
+import de.hsos.ma.adhocdb.R
 import de.hsos.ma.adhocdb.entities.TableEntity
-import de.hsos.ma.adhocdb.ui.createtable.CreateTableFragment
-import java.util.function.Consumer
 
 
 class CreateTableActivity : AppCompatActivity() {

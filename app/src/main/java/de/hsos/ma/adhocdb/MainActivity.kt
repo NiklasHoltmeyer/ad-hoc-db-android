@@ -9,6 +9,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import de.hsos.ma.adhocdb.entities.TableEntity
+import de.hsos.ma.adhocdb.ui.createtable.CreateTableActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import todoordnenrecycler.BlogRecyclerAdapter
 import todoordnenrecycler.DataSource

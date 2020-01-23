@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".layout_blog_list_item"></activity>
+        <activity android:name=".layout_table_list_item"></activity>
         <activity
             android:name=".CreateTableActivity"
             android:parentActivityName=".MainActivity" />
