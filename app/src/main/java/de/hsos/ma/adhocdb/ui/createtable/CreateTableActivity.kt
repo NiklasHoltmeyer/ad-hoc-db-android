@@ -8,7 +8,7 @@ import android.widget.NumberPicker.OnValueChangeListener
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
-import de.hsos.ma.adhocdb.MainActivity
+import de.hsos.ma.adhocdb.ui.homescreen.MainActivity
 import de.hsos.ma.adhocdb.R
 import de.hsos.ma.adhocdb.entities.TableEntity
 import de.hsos.ma.adhocdb.framework.persistence.database.TablesDatabase

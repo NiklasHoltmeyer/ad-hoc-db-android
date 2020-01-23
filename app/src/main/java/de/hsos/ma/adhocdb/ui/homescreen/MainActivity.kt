@@ -1,4 +1,4 @@
-package de.hsos.ma.adhocdb
+package de.hsos.ma.adhocdb.ui.homescreen
 
 import android.content.Intent
 import android.os.AsyncTask
@@ -8,12 +8,14 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import de.hsos.ma.adhocdb.R
 import de.hsos.ma.adhocdb.entities.TableEntity
 import de.hsos.ma.adhocdb.framework.persistence.database.TablesDatabase
 import de.hsos.ma.adhocdb.ui.createtable.CreateTableActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import de.hsos.ma.adhocdb.ui.tablelist.TableRecyclerAdapter
 import de.hsos.ma.adhocdb.framework.persistence.tables.DataSource
+import de.hsos.ma.adhocdb.ui.CONSTS
 import de.hsos.ma.adhocdb.ui.TableShow.TableShowActivity
 import de.hsos.ma.adhocdb.ui.tablelist.OnTableClickListener
 import de.hsos.ma.adhocdb.ui.tablelist.TopSpacingItemDecoration
@@ -57,9 +59,9 @@ class MainActivity : AppCompatActivity(), OnTableClickListener {
         SaveClass().execute()
     }
 
-    private fun addDataSet(){ // TODO
-        val data = DataSource.createDataSet()
-        tableAdapter.submitList(data)
+    private fun addDataSet(){
+        tables = DataSource.createMockDataSet()
+        tableAdapter.submitList(tables)
     }
 
     private fun initRecyclerView(){ //TODO
@@ -74,9 +76,16 @@ class MainActivity : AppCompatActivity(), OnTableClickListener {
     }
 
     override fun onItemClick(item: TableEntity, pos: Int) {
-        Toast.makeText(this, item.name, Toast.LENGTH_SHORT).show() //TODO intent laden
+        if(tables.size <= pos){
+            Toast.makeText(this, "Tables.Size < Pos", Toast.LENGTH_SHORT).show() //TODO richtige fehlermeldung
+            return
+        }
         val intent = Intent(this, TableShowActivity::class.java)
-        //intent.putExtra("", tables)
-
+        val item = tables[pos]
+        intent.putExtra(CONSTS.itemId, item.id)
+        intent.putExtra(CONSTS.itemName, item.name)
+        intent.putExtra(CONSTS.itemImage, item.image)
+        intent.putExtra(CONSTS.itemDescription, item.description)
+        startActivity(intent)
     }
 }

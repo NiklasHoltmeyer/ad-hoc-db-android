@@ -6,7 +6,7 @@ class DataSource {
 
     companion object {
 
-        fun createDataSet(): ArrayList<TableEntity> {
+        fun createMockDataSet(): ArrayList<TableEntity> {
             val list = ArrayList<TableEntity>()
             list.add(
                 TableEntity(
