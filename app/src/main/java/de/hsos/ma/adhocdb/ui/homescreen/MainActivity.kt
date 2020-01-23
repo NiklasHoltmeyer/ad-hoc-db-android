@@ -28,9 +28,7 @@ class MainActivity : BaseCoroutine(R.layout.activity_main), OnTableClickListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         initRecyclerView()
-        addDataSet()
     }
 
     fun addButtonOnClick (view: View){
@@ -38,23 +36,19 @@ class MainActivity : BaseCoroutine(R.layout.activity_main), OnTableClickListener
         startActivity(intent)
     }
 
-    private fun addDataSet(){
+    private fun initRecyclerView(){
         Log.e("error", "addDataSet")
         launch{
             tables = DataSource.getDataSet(true, applicationContext)
             Log.e("error", "Table-Size: " + tables.size)
-            tableAdapter.submitList(tables)
-        }
-    }
-
-    private fun initRecyclerView(){ //TODO
-        recycler_view.apply {
-            layoutManager = LinearLayoutManager(this@MainActivity)
-            val topSpacingDecorator =
-                TopSpacingItemDecoration(30)
-            addItemDecoration(topSpacingDecorator)
-            tableAdapter = TableRecyclerAdapter(this@MainActivity)
-            adapter = tableAdapter
+            recycler_view.apply {
+                layoutManager = LinearLayoutManager(this@MainActivity)
+                val topSpacingDecorator =
+                    TopSpacingItemDecoration(30)
+                addItemDecoration(topSpacingDecorator)
+                tableAdapter = TableRecyclerAdapter(this@MainActivity, tables)
+                adapter = tableAdapter
+            }
         }
     }
 
