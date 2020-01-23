@@ -1,12 +1,16 @@
 package de.hsos.ma.adhocdb.ui.TableShow
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintSet
 import de.hsos.ma.adhocdb.R
 import de.hsos.ma.adhocdb.ui.CONSTS
+import de.hsos.ma.adhocdb.ui.custom.compound.table.row.CellView
+
 
 class TableShowActivity : AppCompatActivity() {
     var  actionbar : ActionBar? = null
@@ -23,6 +27,33 @@ class TableShowActivity : AppCompatActivity() {
             actionbar!!.setDisplayHomeAsUpEnabled(true)
             actionbar!!.setDisplayHomeAsUpEnabled(true)
         }
+
+        loadData()
+    }
+
+    private fun loadData() {
+        val linearLayout = findViewById<LinearLayout>(R.id.linearLayout)
+
+        for(x in 0 .. 5){
+            val _linearLayout = LinearLayout(this)
+
+            _linearLayout.apply {
+                orientation = LinearLayout.VERTICAL
+                layoutParams.height = LinearLayout.LayoutParams.MATCH_PARENT
+                layoutParams.width = LinearLayout.LayoutParams.MATCH_PARENT
+            }
+
+            linearLayout.addView(_linearLayout)
+
+            for(y in 0 .. 5){
+                val cell = CellView(this)
+                _linearLayout.addView(cell)
+            }
+        }
+
+
+
+
     }
 
     private fun loadIntentExtras() {
@@ -60,3 +91,4 @@ class TableShowActivity : AppCompatActivity() {
         if(actionbar != null) actionbar!!.title = "tableName"
     }
 }
+

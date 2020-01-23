@@ -49,9 +49,9 @@ class CellView : ConstraintLayout {
                 pos_y = styledattrs.getInteger(R.styleable.CellView_pos_y, -1)
             }
             var styleables: Array<Int> = arrayOf(R.styleable.CellView_divierBottom, R.styleable.CellView_divierTop, R.styleable.CellView_divierLeft, R.styleable.CellView_divierRight)
-            //var viewIds: Array<Int>    = arrayOf(R.id.dividerBottom, R.id.dividerTop, R.id.dividerLeft, R.id.dividerRight)
+            var viewIds: Array<Int>    = arrayOf(R.id.dividerBottom, R.id.dividerTop, R.id.dividerLeft, R.id.dividerRight)
 
-            //initDivider(styleables, viewIds, styledattrs)
+            initDivider(styleables, viewIds, styledattrs)
 
 
             if(value != null && unit != null){

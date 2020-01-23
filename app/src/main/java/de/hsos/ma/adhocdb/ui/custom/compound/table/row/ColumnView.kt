@@ -8,7 +8,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import de.hsos.ma.adhocdb.R
 import kotlinx.android.synthetic.main.view_table_cell.view.*
 
-class RowView : ConstraintLayout{
+class ColumnView : ConstraintLayout{
     constructor(context: Context) : super(context) {
         init(context, null)
     }
