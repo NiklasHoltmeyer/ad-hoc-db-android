@@ -71,4 +71,8 @@ class MainActivity : BaseCoroutine(R.layout.activity_main), OnTableClickListener
         intent.putExtra(CONSTS.itemDescription, item.description)
         startActivity(intent)
     }
+
+    fun addButtonDebugTestOnClick(view: View) {
+
+    }
 }
