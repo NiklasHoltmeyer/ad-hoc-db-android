@@ -7,18 +7,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import de.hsos.ma.adhocdb.R
-import kotlinx.android.synthetic.main.layout_blog_list_item.view.*
+import kotlinx.android.synthetic.main.layout_table_list_item.view.*
 
 class BlogRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()
 {
 
     private val TAG: String = "AppDebug"
 
-    private var items: List<BlogPost> = ArrayList()
+    private var items: List<TableEntity> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return BlogViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.layout_blog_list_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.layout_table_list_item, parent, false)
         )
     }
 
@@ -36,7 +36,7 @@ class BlogRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()
         return items.size
     }
 
-    fun submitList(blogList: List<BlogPost>){
+    fun submitList(blogList: List<TableEntity>){
         items = blogList
     }
 
@@ -45,11 +45,11 @@ class BlogRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()
         itemView: View
     ): RecyclerView.ViewHolder(itemView){
 
-        val blog_image = itemView.blog_image
-        val blog_title = itemView.blog_title
-        val blog_author = itemView.blog_author
+        val blog_image = itemView.table_image
+        val blog_title = itemView.table_title
+        val blog_author = itemView.table_description
 
-        fun bind(blogPost: BlogPost){
+        fun bind(tableEntity: TableEntity){
 
             val requestOptions = RequestOptions()
                 .placeholder(R.drawable.ic_launcher_background)
@@ -57,10 +57,10 @@ class BlogRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()
 
             Glide.with(itemView.context)
                 .applyDefaultRequestOptions(requestOptions)
-                .load(blogPost.image)
+                .load(tableEntity.image)
                 .into(blog_image)
-            blog_title.setText(blogPost.title)
-            blog_author.setText(blogPost.username)
+            blog_title.setText(tableEntity.name)
+            blog_author.setText(tableEntity.description)
         }
     }
 
