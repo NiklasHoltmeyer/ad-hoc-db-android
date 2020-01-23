@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CellView">
+        <attr name="value" format="string" />
+        <attr name="unit" format="string" />
+        <attr name="pos_x" format="integer" />
+        <attr name="pos_y" format="integer" />
+        <attr name="divierTop" format="boolean" />
+        <attr name="divierBottom" format="boolean" />
+        <attr name="divierLeft" format="boolean" />
+        <attr name="divierRight" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="ColumnView">
+        <attr name="firstCol" format="boolean" />
+        <attr name="lastCol" format="boolean" />
+    </declare-styleable>
+</resources>
