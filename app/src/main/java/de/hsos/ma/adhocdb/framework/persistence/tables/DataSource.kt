@@ -1,10 +1,27 @@
 package de.hsos.ma.adhocdb.framework.persistence.tables
 
+import android.content.Context
 import de.hsos.ma.adhocdb.entities.TableEntity
+import de.hsos.ma.adhocdb.framework.persistence.database.TablesDatabase
 
-class DataSource {
-
+class DataSource{
     companion object {
+        suspend fun getDataSet(useMockIfDatabaseEmpty : Boolean, context : Context) : List<TableEntity> {
+            val db = TablesDatabase(context).tableDao()
+            var list = db.getAll()
+            if(list.isEmpty() && useMockIfDatabaseEmpty){
+                fillDB(context)
+                list = db.getAll()
+            }
+            return list
+        }
+
+        private suspend fun fillDB(context : Context){
+            val db = TablesDatabase(context).tableDao()
+            createMockDataSet().forEach {
+                db.insert(it)
+            }
+        }
 
         fun createMockDataSet(): ArrayList<TableEntity> {
             val list = ArrayList<TableEntity>()

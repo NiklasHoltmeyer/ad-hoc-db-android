@@ -15,19 +15,19 @@ import de.hsos.ma.adhocdb.ui.createtable.CreateTableActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import de.hsos.ma.adhocdb.ui.tablelist.TableRecyclerAdapter
 import de.hsos.ma.adhocdb.framework.persistence.tables.DataSource
+import de.hsos.ma.adhocdb.ui.BaseCoroutine
 import de.hsos.ma.adhocdb.ui.CONSTS
 import de.hsos.ma.adhocdb.ui.TableShow.TableShowActivity
 import de.hsos.ma.adhocdb.ui.tablelist.OnTableClickListener
 import de.hsos.ma.adhocdb.ui.tablelist.TopSpacingItemDecoration
+import kotlinx.coroutines.launch
 
-class MainActivity : AppCompatActivity(), OnTableClickListener {
+class MainActivity : BaseCoroutine(R.layout.activity_main), OnTableClickListener {
     private lateinit var tableAdapter: TableRecyclerAdapter
     var  tables : List<TableEntity> = emptyList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        //loadTables()
 
         initRecyclerView()
         addDataSet()
@@ -38,30 +38,13 @@ class MainActivity : AppCompatActivity(), OnTableClickListener {
         startActivity(intent)
     }
 
-    private fun onTablesLoadCallBack(tables : List<TableEntity>){
-        for (table in tables) {
-            Log.e("Error", table.name)
-        }
-    }
-
-    private fun loadTables(){ //TODO callback function
-        class SaveClass : AsyncTask<Void, Void, Void>(){
-            override fun doInBackground(vararg p0: Void?): Void? {
-                val db = TablesDatabase(applicationContext).tableDao()
-                tables = db.getAll()
-                return null
-            }
-
-            override fun onPostExecute(result: Void?) {
-                onTablesLoadCallBack(tables)
-            }
-        }
-        SaveClass().execute()
-    }
-
     private fun addDataSet(){
-        tables = DataSource.createMockDataSet()
-        tableAdapter.submitList(tables)
+        Log.e("error", "addDataSet")
+        launch{
+            tables = DataSource.getDataSet(true, applicationContext)
+            Log.e("error", "Table-Size: " + tables.size)
+            tableAdapter.submitList(tables)
+        }
     }
 
     private fun initRecyclerView(){ //TODO

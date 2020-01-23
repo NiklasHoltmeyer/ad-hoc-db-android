@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import de.hsos.ma.adhocdb.controller.tables.TableDao
 import de.hsos.ma.adhocdb.entities.TableEntity
 
-@Database(entities = [TableEntity::class], version = 2)
+@Database(entities = [TableEntity::class], version = 1)
 abstract class TablesDatabase : RoomDatabase(){
     abstract fun tableDao(): TableDao
 
@@ -22,6 +22,6 @@ abstract class TablesDatabase : RoomDatabase(){
         }
 
 
-        private fun buildDataBase(context: Context) =  Room.databaseBuilder(context.applicationContext, TablesDatabase::class.java, "tables.db").build()
+        private fun buildDataBase(context: Context) =  Room.databaseBuilder(context.applicationContext, TablesDatabase::class.java, "tablesx1.db").build()
     }
 }

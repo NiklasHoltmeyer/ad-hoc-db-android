@@ -12,12 +12,14 @@ import de.hsos.ma.adhocdb.ui.homescreen.MainActivity
 import de.hsos.ma.adhocdb.R
 import de.hsos.ma.adhocdb.entities.TableEntity
 import de.hsos.ma.adhocdb.framework.persistence.database.TablesDatabase
+import de.hsos.ma.adhocdb.ui.BaseCoroutine
+import kotlinx.coroutines.launch
 
 
-class CreateTableActivity : AppCompatActivity() {
+class CreateTableActivity : BaseCoroutine(R.layout.create_table_activity) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.create_table_activity)
+
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
@@ -77,18 +79,10 @@ class CreateTableActivity : AppCompatActivity() {
     }
 
     private fun saveTable(table : TableEntity){ //TODO callback function
-        class SaveClass : AsyncTask<Void, Void, Void>(){
-            override fun doInBackground(vararg p0: Void?): Void? {
-                val db = TablesDatabase(applicationContext).tableDao()
-                db.insert(table)
-                return null
-            }
-
-            override fun onPostExecute(result: Void?) {
-                onSuccessCallback()
-            }
+        launch{
+            TablesDatabase(applicationContext).tableDao().insert(table)
+            onSuccessCallback()
         }
-        SaveClass().execute()
     }
 
     private fun onSuccessCallback(){
