@@ -7,7 +7,7 @@ import de.hsos.ma.adhocdb.R
 import de.hsos.ma.adhocdb.ui.settings.TableViewHolder
 import de.hsos.ma.adhocdb.entities.TableEntity
 
-class TableRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class TableRecyclerAdapter(var onClick: OnTableClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var items: List<TableEntity> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -24,7 +24,7 @@ class TableRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         when (holder) {
 
             is TableViewHolder -> {
-                holder.bind(items[position])
+                holder.bind(items[position], onClick)
             }
 
         }
