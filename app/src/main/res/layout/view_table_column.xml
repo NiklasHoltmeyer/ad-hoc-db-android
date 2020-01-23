@@ -26,7 +26,8 @@
             app:pos_x="0"
             app:pos_y="0"
             app:unit="Unit"
-            app:value="Value" />
+            app:value="Value"
+            />
 
         <de.hsos.ma.adhocdb.ui.custom.compound.table.row.CellView
             android:id="@+id/cellView2"
