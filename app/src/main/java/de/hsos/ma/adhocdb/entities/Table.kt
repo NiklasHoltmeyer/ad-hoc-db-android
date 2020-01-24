@@ -4,10 +4,12 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "tables")
-data class TableEntity(
+data class Table(
     val name : String,
     val description : String,
-    val image : String
+    val image : String,
+    val colNames : List<String>,
+    val rows : List<Row> = emptyList()
 ){
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0

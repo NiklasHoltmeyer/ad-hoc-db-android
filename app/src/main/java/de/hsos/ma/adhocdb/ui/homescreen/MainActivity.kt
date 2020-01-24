@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import de.hsos.ma.adhocdb.ui.createtable.CreateTableActivity
 import de.hsos.ma.adhocdb.R
-import de.hsos.ma.adhocdb.entities.TableEntity
+import de.hsos.ma.adhocdb.entities.Table
 import de.hsos.ma.adhocdb.framework.persistence.tables.DataSource
 import de.hsos.ma.adhocdb.ui.BaseCoroutine
 import de.hsos.ma.adhocdb.ui.CONSTS
@@ -21,7 +21,7 @@ import kotlinx.coroutines.launch
 
 class MainActivity : BaseCoroutine(R.layout.activity_main, "Home Screen"), OnTableClickListener {
     private lateinit var tableAdapter: TableRecyclerAdapter
-    var  tables : List<TableEntity> = emptyList()
+    var  tables : List<Table> = emptyList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +51,7 @@ class MainActivity : BaseCoroutine(R.layout.activity_main, "Home Screen"), OnTab
         }
     }
 
-    override fun onItemClick(item: TableEntity, pos: Int) {
+    override fun onItemClick(item: Table, pos: Int) {
         if(tables.size <= pos){
             Toast.makeText(this, "Tables.Size < Pos", Toast.LENGTH_SHORT).show() //TODO richtige fehlermeldung
             return

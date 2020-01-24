@@ -9,16 +9,18 @@ import android.view.View
 import android.widget.Toast
 import com.google.android.material.textfield.TextInputEditText
 import de.hsos.ma.adhocdb.R
-import de.hsos.ma.adhocdb.entities.TableEntity
+import de.hsos.ma.adhocdb.entities.Table
 import de.hsos.ma.adhocdb.framework.persistence.database.TablesDatabase
 import de.hsos.ma.adhocdb.ui.BaseCoroutine
 import de.hsos.ma.adhocdb.ui.CONSTS
-import de.hsos.ma.adhocdb.ui.TableShow.TableShowActivity
-import de.hsos.ma.adhocdb.ui.homescreen.MainActivity
 import kotlinx.coroutines.launch
 
 class CreateTableActivity : BaseCoroutine(R.layout.activity_create_table, "Create Table", true) {
     var columnCount = -1
+    var tableName = ""
+    var tableDescription = ""
+    var imageURL = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initColumnInput()
@@ -46,24 +48,23 @@ class CreateTableActivity : BaseCoroutine(R.layout.activity_create_table, "Creat
             Toast.makeText(applicationContext,"Missing Table Column Count",Toast.LENGTH_SHORT).show()
         }else{
             columnCount = tableColumnCount.toString().toInt()
-            val entity = TableEntity(tableName.toString(), tableDescription.toString(), "todo")
-            saveTable(entity)
+            this.tableName = tableName.toString()
+            this.tableDescription = tableDescription.toString()
+            this.imageURL = "TODO"
 
-            Toast.makeText(applicationContext,"Saving",Toast.LENGTH_SHORT).show()
+            onSuccessCallback()
         }
     }
 
-    private fun saveTable(table : TableEntity){ //TODO callback function
-        launch{
-            val id = TablesDatabase(applicationContext).tableDao().insert(table)
-            onSuccessCallback(0) //TODO ^ muss wert returnen
-        }
-    }
 
-    private fun onSuccessCallback(id : Long){
+
+    private fun onSuccessCallback(){
         val intent = Intent(this, CreateTableColumnNamesActivity::class.java)
-        intent.putExtra(CONSTS.itemId, id)
         intent.putExtra(CONSTS.columnCount, columnCount)
+
+        intent.putExtra(CONSTS.tableName, tableName)
+        intent.putExtra(CONSTS.tableDescription, tableDescription)
+        intent.putExtra(CONSTS.imageURL, imageURL)
         startActivity(intent)
     }
 

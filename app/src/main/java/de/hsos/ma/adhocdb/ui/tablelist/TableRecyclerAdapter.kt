@@ -5,9 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import de.hsos.ma.adhocdb.R
 import de.hsos.ma.adhocdb.ui.settings.TableViewHolder
-import de.hsos.ma.adhocdb.entities.TableEntity
+import de.hsos.ma.adhocdb.entities.Table
 
-class TableRecyclerAdapter(var onClick: OnTableClickListener, var items: List<TableEntity>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class TableRecyclerAdapter(var onClick: OnTableClickListener, var items: List<Table>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return TableViewHolder(
             LayoutInflater.from(parent.context).inflate(

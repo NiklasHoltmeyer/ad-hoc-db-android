@@ -7,4 +7,8 @@ public class CONSTS {
     public static String itemDescription = "item.description";
 
     public static String columnCount = "columnCount";
+
+    public static String tableName = "tableName";
+    public static String tableDescription = "tableDescription";
+    public static String imageURL = "imageURL";
 }
