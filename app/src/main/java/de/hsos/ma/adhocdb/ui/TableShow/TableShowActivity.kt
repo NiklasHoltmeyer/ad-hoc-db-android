@@ -10,7 +10,7 @@ import de.hsos.ma.adhocdb.ui.custom.compound.table.row.CellView
 
 
 class TableShowActivity : AppCompatActivity() {
-    var  actionbar : ActionBar? = null
+    private var  actionbar : ActionBar? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_table_show) //TODO falsche klasse
@@ -28,7 +28,7 @@ class TableShowActivity : AppCompatActivity() {
         loadTable()
     }
 
-    fun loadTable(){
+    private fun loadTable(){
         val container = findViewById<LinearLayout>(R.id.linearLayout)
 
         val rowLength = 20

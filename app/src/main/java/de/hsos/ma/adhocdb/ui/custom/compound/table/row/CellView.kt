@@ -1,5 +1,6 @@
 package de.hsos.ma.adhocdb.ui.custom.compound.table.row
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
@@ -12,14 +13,14 @@ import com.google.android.material.card.MaterialCardView
 import de.hsos.ma.adhocdb.R
 
 class CellView : ConstraintLayout {
-    var value: String? = null
-    var unit: String? = null
-    var pos_x: Int? = null
-    var pos_y: Int? = null
-    var dividerRight: Boolean = false
-    var dividerLeft: Boolean = false
-    var dividerTop: Boolean = false
-    var dividerBottom: Boolean = false
+    private var value: String? = null
+    private var unit: String? = null
+    private var posX: Int? = null
+    private var posY: Int? = null
+    private var dividerRight: Boolean = false
+    private var dividerLeft: Boolean = false
+    private var dividerTop: Boolean = false
+    private var dividerBottom: Boolean = false
 
     constructor(context: Context) : super(context) {
         init(context, null)
@@ -42,8 +43,8 @@ class CellView : ConstraintLayout {
     ) : super(context) {
         this.value = value
         this.unit = unit
-        this.pos_x = pos_x
-        this.pos_y = pos_y
+        this.posX = pos_x
+        this.posY = pos_y
         this.dividerRight = dividerRight
         this.dividerLeft = dividerLeft
         this.dividerTop = dividerTop
@@ -62,6 +63,7 @@ class CellView : ConstraintLayout {
         initCell()
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initCell() {
         if (value != null && unit != null) {
             val textView = findViewById<TextView>(R.id.cellview_text)
@@ -69,16 +71,16 @@ class CellView : ConstraintLayout {
             else textView.text = "$value $unit"
         }
 
-        var card: MaterialCardView = findViewById<MaterialCardView>(R.id.cellview_card_view)
-        if (pos_x != null && pos_y != null && pos_x!! >= 0 && pos_y!! >= 0) {
-            val r = ((pos_x!!) * 15) % 255
-            val g = ((pos_y!!) * 15) % 255
-            val b = (pos_x!! * pos_y!! * 15) % 255
+        val card: MaterialCardView = findViewById(R.id.cellview_card_view)
+        if (posX != null && posY != null && posX!! >= 0 && posY!! >= 0) {
+            val r = ((posX!!) * 15) % 255
+            val g = ((posY!!) * 15) % 255
+            val b = (posX!! * posY!! * 15) % 255
             card.setCardBackgroundColor(Color.rgb(r, g, b))
         }
 
         card.setOnLongClickListener {
-            onLongClickCallBack(pos_x, pos_y)
+            onLongClickCallBack(posX, posY)
         }
     }
 
@@ -99,10 +101,10 @@ class CellView : ConstraintLayout {
             value = styleAttributes.getString(R.styleable.CellView_value)
         }
         if (styleAttributes.hasValue(R.styleable.CellView_pos_x)) {
-            pos_x = styleAttributes.getInteger(R.styleable.CellView_pos_x, -1)
+            posX = styleAttributes.getInteger(R.styleable.CellView_pos_x, -1)
         }
         if (styleAttributes.hasValue(R.styleable.CellView_pos_y)) {
-            pos_y = styleAttributes.getInteger(R.styleable.CellView_pos_y, -1)
+            posY = styleAttributes.getInteger(R.styleable.CellView_pos_y, -1)
         }
 
         dividerRight = dividerRight || (styleAttributes.hasValue(R.styleable.CellView_divierRight) && styleAttributes.getBoolean(R.styleable.CellView_divierRight,false))

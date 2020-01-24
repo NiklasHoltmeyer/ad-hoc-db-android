@@ -7,7 +7,7 @@ import de.hsos.ma.adhocdb.R
 import de.hsos.ma.adhocdb.ui.settings.TableViewHolder
 import de.hsos.ma.adhocdb.entities.Table
 
-class TableRecyclerAdapter(var onClick: OnTableClickListener, var items: List<Table>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class TableRecyclerAdapter(private var onClick: OnTableClickListener, private var items: List<Table>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return TableViewHolder(
             LayoutInflater.from(parent.context).inflate(

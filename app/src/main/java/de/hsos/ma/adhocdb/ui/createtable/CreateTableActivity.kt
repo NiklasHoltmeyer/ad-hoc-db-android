@@ -7,19 +7,17 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.afollestad.materialdialogs.MaterialDialog
 import com.google.android.material.textfield.TextInputEditText
 import de.hsos.ma.adhocdb.R
-import de.hsos.ma.adhocdb.entities.Table
-import de.hsos.ma.adhocdb.framework.persistence.database.TablesDatabase
 import de.hsos.ma.adhocdb.ui.BaseCoroutine
 import de.hsos.ma.adhocdb.ui.CONSTS
-import kotlinx.coroutines.launch
 
 class CreateTableActivity : BaseCoroutine(R.layout.activity_create_table, "Create Table", true) {
-    var columnCount = -1
-    var tableName = ""
-    var tableDescription = ""
-    var imageURL = ""
+    private var columnCount = -1
+    private var tableName = ""
+    private var tableDescription = ""
+    private var imageURL = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,14 +25,28 @@ class CreateTableActivity : BaseCoroutine(R.layout.activity_create_table, "Creat
     }
 
     fun clearButtonOnClick(view: View) {
-        //TODO erst fragen ob sicher
-        Toast.makeText(applicationContext,"CLEAR",Toast.LENGTH_SHORT).show()
+        MaterialDialog(this).show {
+            cancelOnTouchOutside(false)
+            title(R.string.create_table_dialog_header)
+            message(R.string.create_table_dialog_body)
+            positiveButton(R.string.dialog_aggree){
+                clearInput()
+            }
+
+            negativeButton(R.string.dialog_disaggree){
+                //callBackFunction
+            }
+        }
+    }
+
+    private fun clearInput(){
         val clearAbl = arrayOf(findViewById<TextInputEditText>(R.id.textInputName).text,
             findViewById<TextInputEditText>(R.id.textInputDescription).text,
             findViewById<TextInputEditText>(R.id.textInputColumns).text)
 
         clearAbl.forEach { it?.clear() }
     }
+
     fun saveButtonOnClick(view: View) {
         val tableName = findViewById<TextInputEditText>(R.id.textInputName).text
         val tableDescription = findViewById<TextInputEditText>(R.id.textInputDescription).text
@@ -68,8 +80,8 @@ class CreateTableActivity : BaseCoroutine(R.layout.activity_create_table, "Creat
         startActivity(intent)
     }
 
-    fun initColumnInput() {
-        var textInputColumns = findViewById<TextInputEditText>(R.id.textInputColumns)
+    private fun initColumnInput() {
+        val textInputColumns = findViewById<TextInputEditText>(R.id.textInputColumns)
         textInputColumns!!.addTextChangedListener(object : TextWatcher{
             override fun afterTextChanged(p0: Editable?) {
                 Log.e("Error", "AFTER")

@@ -19,4 +19,7 @@
 
     <string name="dialog_aggree">Aggree</string>
     <string name="dialog_disaggree">Disaggree</string>
+    <string name="table_cell_text_placeholder">--PLACEHOLDER--</string>
+    <string name="table_list_image_description">Table Image</string>
+    <string name="submit">Submit</string>
 </resources>

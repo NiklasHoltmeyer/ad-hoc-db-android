@@ -29,6 +29,7 @@
         android:scaleY="3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_add_circle_black_24dp" />
+        app:srcCompat="@drawable/ic_add_circle_black_24dp"
+        android:contentDescription="@string/table_list_image_description" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

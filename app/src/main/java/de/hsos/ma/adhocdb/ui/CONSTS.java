@@ -1,14 +1,14 @@
 package de.hsos.ma.adhocdb.ui;
 
 public class CONSTS {
-    public static String itemId = "item.id";
-    public static String itemName = "item.name";
-    public static String itemImage = "item.image";
-    public static String itemDescription = "item.description";
+    public static final String itemId = "item.id";
+    public static final String itemName = "item.name";
+    public static final String itemImage = "item.image";
+    public static final String itemDescription = "item.description";
 
-    public static String columnCount = "columnCount";
+    public static final String columnCount = "columnCount";
 
-    public static String tableName = "tableName";
-    public static String tableDescription = "tableDescription";
-    public static String imageURL = "imageURL";
+    public static final String tableName = "tableName";
+    public static final String tableDescription = "tableDescription";
+    public static final String imageURL = "imageURL";
 }

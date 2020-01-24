@@ -2,27 +2,27 @@ package de.hsos.ma.adhocdb.ui.createtable
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.constraintlayout.widget.ConstraintLayout
+import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import de.hsos.ma.adhocdb.R
 import de.hsos.ma.adhocdb.entities.Table
-import de.hsos.ma.adhocdb.framework.persistence.database.TablesDatabase
 import de.hsos.ma.adhocdb.ui.BaseCoroutine
 import de.hsos.ma.adhocdb.ui.CONSTS
 import de.hsos.ma.adhocdb.ui.homescreen.MainActivity
 import kotlinx.coroutines.launch
 
 class CreateTableColumnNamesActivity : BaseCoroutine(R.layout.activity_create_table, "Set Column Names", true) {
-    var columnCount : Int = 5//-1
-    var tableName = ""
-    var tableDescription = ""
-    var imageURL = ""
+    private var columnCount : Int = 5//-1
+    private var tableName = ""
+    private var tableDescription = ""
+    private var imageURL = ""
+    private var textViews : ArrayList<TextInputEditText> = ArrayList<TextInputEditText>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,38 +36,26 @@ class CreateTableColumnNamesActivity : BaseCoroutine(R.layout.activity_create_ta
         if(columnCount >= 0){
             initLayout()
         }else{
-            Toast.makeText(this, "Error, Please go back", Toast.LENGTH_LONG)
+            Toast.makeText(this, "Error, Please go back", Toast.LENGTH_LONG).show()
         }
     }
 
     private fun initLayout() {
         val container = findViewById<LinearLayout>(R.id.columnNameInputContainer)
+        val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
-        val inflater = applicationContext
-            .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val view = inflater.inflate(R.layout.view_input, LinearLayout(this))
-        container.addView(view)
+        for(i in 1 .. 5){
+            val view = inflater.inflate(R.layout.view_input, LinearLayout(this))
+            val textInputLayout = view.findViewById<TextInputLayout>(R.id.textInputLayoutTableName)
+            val textView = view.findViewById<TextInputEditText>(R.id.textInputName)
 
+            textInputLayout.placeholderText = "Column $i"
+            textInputLayout.hint = textInputLayout.placeholderText
 
-        /*
+            textViews.add(textView)
 
-        var param = LinearLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT,
-            ConstraintLayout.LayoutParams.WRAP_CONTENT)
-        param.marginEnd = calcDps(10f)
-        param.marginStart = calcDps(10f)
-
-
-        for(i in 1 .. columnCount){
-            //com.google.android.material.textfield
-            var textLayout = TextInputLayout(this)
-            textLayout.apply{
-                layoutParams = param
-            }
-
-
-
+            container.addView(view)
         }
-        */
     }
 
     fun createTable(colNames : List<String>) : Table?{
@@ -75,14 +63,14 @@ class CreateTableColumnNamesActivity : BaseCoroutine(R.layout.activity_create_ta
             tableDescription == null || tableDescription.isEmpty() ||
             imageURL == null || imageURL.isEmpty() ||
             colNames == null || colNames.isEmpty()){
-            Toast.makeText(this, "[ERROR] Data-Null or Empty", Toast.LENGTH_LONG)
+            Toast.makeText(this, "[ERROR] Data-Null or Empty", Toast.LENGTH_LONG).show()
             return null
         }
 
         return Table(tableName, tableDescription, imageURL, colNames)
     }
 
-    fun loadIntents(){
+    private fun loadIntents(){
         Log.e("ERROR", "LOAD")
         if(intent.hasExtra(CONSTS.tableName)){
             tableName = intent.getStringExtra(CONSTS.tableName)
@@ -114,13 +102,30 @@ class CreateTableColumnNamesActivity : BaseCoroutine(R.layout.activity_create_ta
 
      private fun saveTable(table : Table){ //TODO callback function
         launch{
-            TablesDatabase(applicationContext).tableDao().insert(table)
+            //TablesDatabase(applicationContext).tableDao().insert(table) //TODO
             onSuccessCallback()
         }
     }
 
     private fun onSuccessCallback(){
         val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent);
+        startActivity(intent)
+    }
+
+    fun saveTableColNames(view: View) {
+        Log.e("ERROR", "saveTableColNames")
+        for(textView in this.textViews){
+            if(textView.text == null || textView!!.text!!.isEmpty()){
+                Toast.makeText(this, "Please Fill each Col. Name", Toast.LENGTH_SHORT).show()
+                return
+            }
+        }
+
+        Log.e("ERROR", "Counter: ${this.textViews.size}")
+
+        for((i, textView) in this.textViews.withIndex()){
+            Log.e("ERROR", "I: " + (i + 1))
+            Log.e("ERROR", textView.text.toString())
+        }
     }
 }

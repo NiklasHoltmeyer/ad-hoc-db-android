@@ -21,7 +21,7 @@ import kotlinx.coroutines.launch
 
 class MainActivity : BaseCoroutine(R.layout.activity_main, "Home Screen"), OnTableClickListener {
     private lateinit var tableAdapter: TableRecyclerAdapter
-    var  tables : List<Table> = emptyList()
+    private var  tables : List<Table> = emptyList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -7,7 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlin.coroutines.CoroutineContext
 
-abstract class BaseCoroutine (val layoutRes: Int, val pageTitle : String = "", val showBackButton : Boolean = false) : CoroutineScope, AppCompatActivity() {
+abstract class BaseCoroutine (private val layoutRes: Int, private val pageTitle : String = "", private val showBackButton : Boolean = false) : CoroutineScope, AppCompatActivity() {
     private lateinit var job : Job
 
     override val coroutineContext: CoroutineContext

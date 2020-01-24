@@ -33,7 +33,4 @@ class TableViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(item
         }
     }
 
-    fun initialize(item: Table, action: OnTableClickListener){
-
-    }
 }
