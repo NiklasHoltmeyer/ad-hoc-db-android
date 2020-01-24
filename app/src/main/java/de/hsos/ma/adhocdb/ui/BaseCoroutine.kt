@@ -7,7 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlin.coroutines.CoroutineContext
 
-abstract class BaseCoroutine (val layoutRes: Int) : CoroutineScope, AppCompatActivity() {
+abstract class BaseCoroutine (val layoutRes: Int, val pageTitle : String = "", val showBackButton : Boolean = false) : CoroutineScope, AppCompatActivity() {
     private lateinit var job : Job
 
     override val coroutineContext: CoroutineContext
@@ -17,6 +17,18 @@ abstract class BaseCoroutine (val layoutRes: Int) : CoroutineScope, AppCompatAct
         super.onCreate(savedInstanceState)
         setContentView(layoutRes)
         job = Job()
+
+        initActionBar()
+    }
+
+    private fun initActionBar() {
+        //actionbar
+        val actionbar = supportActionBar
+        //set actionbar title
+        actionbar!!.title = pageTitle
+        //set back button
+        actionbar.setDisplayHomeAsUpEnabled(showBackButton)
+        actionbar.setDisplayHomeAsUpEnabled(showBackButton)
     }
 
     override fun onDestroy() {

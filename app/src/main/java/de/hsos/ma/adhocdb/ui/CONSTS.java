@@ -5,4 +5,6 @@ public class CONSTS {
     public static String itemName = "item.name";
     public static String itemImage = "item.image";
     public static String itemDescription = "item.description";
+
+    public static String columnCount = "columnCount";
 }

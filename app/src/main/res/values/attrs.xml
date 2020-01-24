@@ -11,8 +11,10 @@
         <attr name="divierRight" format="boolean" />
     </declare-styleable>
 
-    <declare-styleable name="ColumnView">
+    <declare-styleable name="ColumnCreateView">
         <attr name="firstCol" format="boolean" />
         <attr name="lastCol" format="boolean" />
+        <attr name="label" format="string" />
     </declare-styleable>
+
 </resources>
