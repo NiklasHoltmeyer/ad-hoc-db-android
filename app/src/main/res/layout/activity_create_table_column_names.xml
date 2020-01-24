@@ -34,15 +34,19 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="55dp"
                 android:gravity="center"
                 android:onClick="saveTableColNames"
                 android:text="@string/submit"
-                android:textColor="@color/colorWhite"
-                android:layout_margin="20dp"/>
+                android:layout_margin="20dp"
+                android:textColor="@color/colorOnButtonSecondary"
+                app:backgroundTint="@color/colorButtonPrimary"
+                app:icon="@drawable/ic_playlist_add_check_black_24dp"
+                app:iconTint="@color/colorOnButtonSecondary"
+                />
         </LinearLayout>
     </ScrollView>
 

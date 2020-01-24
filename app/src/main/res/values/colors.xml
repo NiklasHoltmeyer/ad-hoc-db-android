@@ -12,7 +12,7 @@
     <color name="colorError">#F44336</color>
 
     <color name="colorText">@color/colorBlack</color>
-    <color name="colorOnAccent">@color/colorBlack</color>
+    <color name="colorOnAccent">@color/colorWhite</color>
 
     <color name="colorHeaderBackground">@color/colorWhite</color>
 

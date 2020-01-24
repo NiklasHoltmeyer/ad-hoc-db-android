@@ -114,7 +114,9 @@
                 android:text="@string/create_table_button_save"
                 android:textColor="@color/colorOnAccent"
                 app:icon="@drawable/ic_add_circle_black_24dp"
-                app:iconTint="@color/colorOnAccent" />
+                app:iconTint="@color/colorOnAccent"
+                android:gravity="center"
+                />
 
 
             <com.google.android.material.button.MaterialButton
@@ -128,9 +130,11 @@
                 android:onClick="clearButtonOnClick"
                 android:text="@string/create_table_button_clear"
                 android:textColor="@color/colorOnButtonSecondary"
-                app:backgroundTint="@color/colorOnAccent"
+                app:backgroundTint="@color/colorButtonSecondary"
                 app:icon="@drawable/ic_remove_circle_black_24dp"
-                app:iconTint="@color/colorOnButtonSecondary" />
+                app:iconTint="@color/colorOnButtonSecondary"
+                android:gravity="center"
+                />
         </LinearLayout>
     </LinearLayout>
 
