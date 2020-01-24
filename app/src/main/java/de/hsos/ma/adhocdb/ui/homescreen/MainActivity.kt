@@ -39,15 +39,17 @@ class MainActivity : BaseCoroutine(R.layout.activity_main), OnTableClickListener
     private fun initRecyclerView(){
         Log.e("error", "addDataSet")
         launch{
-            tables = DataSource.getDataSet(true, applicationContext)
-            Log.e("error", "Table-Size: " + tables.size)
-            recycler_view.apply {
-                layoutManager = LinearLayoutManager(this@MainActivity)
-                val topSpacingDecorator =
-                    TopSpacingItemDecoration(30)
-                addItemDecoration(topSpacingDecorator)
-                tableAdapter = TableRecyclerAdapter(this@MainActivity, tables)
-                adapter = tableAdapter
+            applicationContext?.let{
+                tables = DataSource.getDataSet(true, applicationContext)
+                Log.e("error", "Table-Size: " + tables.size)
+                recycler_view.apply {
+                    layoutManager = LinearLayoutManager(this@MainActivity)
+                    val topSpacingDecorator =
+                        TopSpacingItemDecoration(30)
+                    addItemDecoration(topSpacingDecorator)
+                    tableAdapter = TableRecyclerAdapter(this@MainActivity, tables)
+                    adapter = tableAdapter
+                }
             }
         }
     }

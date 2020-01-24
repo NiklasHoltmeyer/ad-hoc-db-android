@@ -2,13 +2,10 @@ package de.hsos.ma.adhocdb.ui.TableShow
 
 import android.os.Bundle
 import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintSet
+import androidx.constraintlayout.widget.ConstraintLayout
 import de.hsos.ma.adhocdb.R
-import de.hsos.ma.adhocdb.ui.CONSTS
 import de.hsos.ma.adhocdb.ui.custom.compound.table.row.CellView
 
 
@@ -16,7 +13,7 @@ class TableShowActivity : AppCompatActivity() {
     var  actionbar : ActionBar? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_table_show)
+        setContentView(R.layout.activity_table_show) //TODO falsche klasse
         loadIntentExtras()
 
         actionbar = supportActionBar
@@ -28,35 +25,67 @@ class TableShowActivity : AppCompatActivity() {
             actionbar!!.setDisplayHomeAsUpEnabled(true)
         }
 
-        loadData()
+        loadTable()
     }
 
-    private fun loadData() {
-        val linearLayout = findViewById<LinearLayout>(R.id.linearLayout)
+    fun loadTable(){
+        val container = findViewById<LinearLayout>(R.id.linearLayout)
 
-        for(x in 0 .. 5){
-            val _linearLayout = LinearLayout(this)
+        val rowLength = 20
+        val colLength = 5
+        val cellLayoutParams = ConstraintLayout.LayoutParams(
+            ConstraintLayout.LayoutParams.WRAP_CONTENT,
+            ConstraintLayout.LayoutParams.WRAP_CONTENT
+        )
 
-            _linearLayout.apply {
+        val columnLayoutParams = ConstraintLayout.LayoutParams(
+            ConstraintLayout.LayoutParams.WRAP_CONTENT,
+            ConstraintLayout.LayoutParams.WRAP_CONTENT
+        )
+
+        columnLayoutParams.width = calcDps(150f)
+
+        for(column in 0 .. colLength){
+            //Column Layout
+            val columnLayout = LinearLayout(this)
+            columnLayout.apply {
                 orientation = LinearLayout.VERTICAL
-                layoutParams.height = LinearLayout.LayoutParams.MATCH_PARENT
-                layoutParams.width = LinearLayout.LayoutParams.MATCH_PARENT
+                layoutParams = columnLayoutParams
             }
 
-            linearLayout.addView(_linearLayout)
+            for(row in 0 .. rowLength){
+                //CELL
+                val value = "$column, $row"
+                val unit = ""
+                val cell = CellView(
+                    context = this,
+                    value = value,
+                    unit = unit,
+                    pos_x = column,
+                    pos_y = row,
+                    dividerRight = (column < 1),
+                    dividerLeft = false,
+                    dividerTop = false,
+                    dividerBottom = (row < 1)
+                )
 
-            for(y in 0 .. 5){
-                val cell = CellView(this)
-                _linearLayout.addView(cell)
+                cell.layoutParams = cellLayoutParams
+                columnLayout.addView(cell)
             }
+
+            container.addView(columnLayout)
         }
+    }
 
-
-
-
+    private inline fun calcDps(dps : Float) : Int{
+        //Quelle: https://stackoverflow.com/a/5255256/5026265
+        val scale = applicationContext.resources.displayMetrics.density
+        return (dps * scale + 0.5f).toInt()
     }
 
     private fun loadIntentExtras() {
+        return //todo
+        /*
         val intent = intent
         if(!intent.hasExtra(CONSTS.itemId)){
             Toast.makeText(this, "Couldnt Retriev Table", Toast.LENGTH_SHORT).show()
@@ -89,6 +118,7 @@ class TableShowActivity : AppCompatActivity() {
         tableTitleTextView.text = tableName
         tableDescriptionTextView.text = tableDescription
         if(actionbar != null) actionbar!!.title = "tableName"
+        */
     }
 }
 

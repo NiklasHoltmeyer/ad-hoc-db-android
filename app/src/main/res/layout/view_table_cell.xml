@@ -36,11 +36,24 @@
                     android:text="100,00€" />
 
                 <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorWhite" />
+
+                <View
                     android:id="@+id/dividerLeft"
                     android:layout_width="2dp"
                     android:layout_height="match_parent"
                     android:background="@color/colorWhite"
                     android:visibility="invisible" />
+
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end"
+                    android:background="@color/colorWhite"/>
+
 
                 <View
                     android:id="@+id/dividerRight"
@@ -52,6 +65,12 @@
 
             </com.google.android.material.card.MaterialCardView>
             <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorWhite"
+                android:foregroundGravity="right"
+                />
+            <View
                 android:id="@+id/dividerBottom"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
@@ -59,9 +78,16 @@
                 android:background="@color/colorWhite"
                 android:foregroundGravity="right"
                 />
+
         </LinearLayout>
 
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorWhite"
+        android:foregroundGravity="right" />
 
     <View
         android:id="@+id/dividerTop"

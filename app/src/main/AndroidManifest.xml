@@ -14,11 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".ui.homescreen.TestTableActivity">
-            <intent-filter>
+        <activity android:name=".ui.homescreen.TestTableActivity"
+            android:parentActivityName=".ui.homescreen.MainActivity">
+            <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
         <activity
             android:name=".ui.TableShow.TableShowActivity"
@@ -28,11 +29,10 @@
             android:name=".ui.createtable.CreateTableActivity"
             android:parentActivityName=".ui.homescreen.MainActivity" />
         <activity android:name=".ui.homescreen.MainActivity">
-            <!--<intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
         </activity>
     </application>
-
 </manifest>
