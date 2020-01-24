@@ -10,4 +10,11 @@
     <string name="create_table_button_clear">Clear</string>
     <string name="table_title_dummy">Table Title Dummy</string>
     <string name="table_description_dummy">Dr Peppers</string>
+
+
+    <string name="create_table_dialog_header">CREATE TABLE HEADER DIALOG</string>
+    <string name="create_table_dialog_body">BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY </string>
+
+    <string name="dialog_aggree">Aggree</string>
+    <string name="dialog_disaggree">Disaggree</string>
 </resources>

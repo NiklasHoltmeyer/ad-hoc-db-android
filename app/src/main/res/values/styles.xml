@@ -1,7 +1,20 @@
 <resources>
 
+    <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:colorAccent">#0000FF</item>
+    </style>
+
+    <style name="AppTheme.Custom" parent="Theme.AppCompat">
+    </style>
+
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
+        <!-- DIALOG -->
+        <item name="md_color_title">@color/colorPrimary</item>
+        <item name="md_color_content">@color/colorPrimaryDark</item>
+        <item name="md_color_button_text">@color/colorAccent</item>
+
+
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorHeaderBackground</item>
         <item name="colorPrimaryDark">@color/colorTest3</item>
@@ -46,6 +59,10 @@
     </style>
 
     <style name="Theme.MyApp" parent="Theme.AppCompat">
+        <!-- DIALOG -->
+        <item name="md_color_title">@color/colorPrimary</item>
+        <item name="md_color_content">@color/colorPrimaryDark</item>
+        <item name="md_color_button_text">@color/colorAccent</item>
 
         <!-- Original AppCompat attributes. -->
         <item name="colorPrimary">@color/colorTest4</item>
