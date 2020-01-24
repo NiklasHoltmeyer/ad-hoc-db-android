@@ -1,15 +1,28 @@
 <resources>
 
+    <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:colorAccent">#0000FF</item>
+    </style>
+
+    <style name="AppTheme.Custom" parent="Theme.AppCompat">
+    </style>
+
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
+        <!-- DIALOG -->
+        <item name="md_color_title">@color/colorPrimary</item>
+        <item name="md_color_content">@color/colorPrimaryDark</item>
+        <item name="md_color_button_text">@color/colorAccent</item>
+
+
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorHeaderBackground</item>
+        <item name="colorPrimary">@color/colorTest2</item>
         <item name="colorPrimaryDark">@color/colorTest3</item>
         <item name="colorAccent">@color/colorAccent</item>
 
 
-        <item name="android:textColor">@color/colorWhite</item>
-        <item name="color">@color/colorWhite</item>
+        <item name="android:textColor">@color/colorText</item>
+        <item name="color">@color/colorTest4</item>
         <item name="colorSecondary">#FF0000</item>
         <item name="android:colorBackground">@color/colorBackground</item>
         <item name="colorError">@color/colorError</item>
@@ -24,13 +37,13 @@
         <item name="scrimBackground">#E607FF</item>
 
 
-        <item name="android:editTextColor">@color/colorWhite</item>
-        <item name="android:textColorPrimary">@color/colorWhite</item>
-        <item name="android:textColorSecondary">@color/colorWhite</item>
-        <item name="android:textColorTertiary">@color/colorWhite</item>
-        <item name="android:textColorPrimaryInverse">@color/colorWhite</item>
-        <item name="android:textColorSecondaryInverse">@color/colorWhite</item>
-        <item name="android:textColorTertiaryInverse">@color/colorWhite</item>
+        <item name="android:editTextColor">@color/colorText</item>
+        <item name="android:textColorPrimary">@color/colorText</item>
+        <item name="android:textColorSecondary">@color/colorText</item>
+        <item name="android:textColorTertiary">@color/colorText</item>
+        <item name="android:textColorPrimaryInverse">@color/colorText</item>
+        <item name="android:textColorSecondaryInverse">@color/colorText</item>
+        <item name="android:textColorTertiaryInverse">@color/colorText</item>
     </style>
 
     <style name="MyTheme" parent="@android:style/Theme.Holo.Light">
@@ -42,10 +55,14 @@
     </style>
 
     <style name="MyTheme.ActionBar.TitleTextStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
-        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textColor">@color/colorText</item>
     </style>
 
     <style name="Theme.MyApp" parent="Theme.AppCompat">
+        <!-- DIALOG -->
+        <item name="md_color_title">@color/colorPrimary</item>
+        <item name="md_color_content">@color/colorPrimaryDark</item>
+        <item name="md_color_button_text">@color/colorAccent</item>
 
         <!-- Original AppCompat attributes. -->
         <item name="colorPrimary">@color/colorTest4</item>
