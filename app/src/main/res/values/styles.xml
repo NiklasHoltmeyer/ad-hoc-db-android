@@ -1,14 +1,16 @@
 <resources>
-
     <style name="ActionBarTheme" parent="@style/Widget.AppCompat.ActionBar">
-        <item name="android:textColor">@color/colorText</item>
-        <item name="android:textColorPrimary">@color/colorText</item>
-        <item name="android:actionMenuTextAppearance">@color/colorWhite</item>
+        <item name="android:textColor">@color/colorMenuText</item>
+        <item name="android:textColorPrimary">@color/colorMenuText</item>
+        <item name="android:actionMenuTextAppearance">@color/colorMenuText</item>
+        <item name="android:editTextColor">@color/colorMenuText</item>
 
-        <item name="android:background">@color/colorAccent</item>
         <item name="popupTheme">@style/ActionBarPopupTheme</item>
         <!-- backward compatibility -->
         <item name="background">@color/colorAccent</item>
+
+        <item name="colorPrimary">@color/colorAccent</item>// for toolbar background
+        <item name="colorControlNormal">@color/colorMenuText</item>
     </style>
 
     <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert">
@@ -25,6 +27,7 @@
         <!-- MENU -->
         <item name="android:actionBarStyle">@style/ActionBarTheme</item>
         <item name="actionBarStyle">@style/ActionBarTheme</item>
+        <item name="actionBarTheme">@style/ActionBarTheme</item>
 
         <!-- DIALOG -->
         <item name="md_color_title">@color/colorPrimary</item>
@@ -55,13 +58,13 @@
         <item name="scrimBackground">#E607FF</item>
 
 
-        <item name="android:editTextColor">@color/colorText</item>
-        <item name="android:textColorPrimary">@color/colorText</item>
-        <item name="android:textColorSecondary">@color/colorText</item>
-        <item name="android:textColorTertiary">@color/colorText</item>
-        <item name="android:textColorPrimaryInverse">@color/colorText</item>
-        <item name="android:textColorSecondaryInverse">@color/colorText</item>
-        <item name="android:textColorTertiaryInverse">@color/colorText</item>
+        <item name="android:editTextColor">@color/colorBlack</item>
+        <item name="android:textColorPrimary">@color/colorBlack</item>
+        <item name="android:textColorSecondary">@color/colorBlack</item>
+        <item name="android:textColorTertiary">@color/colorBlack</item>
+        <item name="android:textColorPrimaryInverse">@color/colorBlack</item>
+        <item name="android:textColorSecondaryInverse">@color/colorBlack</item>
+        <item name="android:textColorTertiaryInverse">@color/colorBlack</item>
     </style>
 
     <style name="MyTheme" parent="@android:style/Theme.Holo.Light">
@@ -98,14 +101,22 @@
         <item name="colorOnError">#2196F3</item>
         <item name="colorOnSurface">#E91E63</item>
         <item name="scrimBackground">#FFC107</item>
-        <item name="textAppearanceHeadline1">@style/TextAppearance.MaterialComponents.Headline1</item>
-        <item name="textAppearanceHeadline2">@style/TextAppearance.MaterialComponents.Headline2</item>
-        <item name="textAppearanceHeadline3">@style/TextAppearance.MaterialComponents.Headline3</item>
-        <item name="textAppearanceHeadline4">@style/TextAppearance.MaterialComponents.Headline4</item>
-        <item name="textAppearanceHeadline5">@style/TextAppearance.MaterialComponents.Headline5</item>
-        <item name="textAppearanceHeadline6">@style/TextAppearance.MaterialComponents.Headline6</item>
-        <item name="textAppearanceSubtitle1">@style/TextAppearance.MaterialComponents.Subtitle1</item>
-        <item name="textAppearanceSubtitle2">@style/TextAppearance.MaterialComponents.Subtitle2</item>
+        <item name="textAppearanceHeadline1">@style/TextAppearance.MaterialComponents.Headline1
+        </item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.MaterialComponents.Headline2
+        </item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.MaterialComponents.Headline3
+        </item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.MaterialComponents.Headline4
+        </item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.MaterialComponents.Headline5
+        </item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.MaterialComponents.Headline6
+        </item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.MaterialComponents.Subtitle1
+        </item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.MaterialComponents.Subtitle2
+        </item>
         <item name="textAppearanceBody1">@style/TextAppearance.MaterialComponents.Body1</item>
         <item name="textAppearanceBody2">@style/TextAppearance.MaterialComponents.Body2</item>
         <item name="textAppearanceCaption">@style/TextAppearance.MaterialComponents.Caption</item>
