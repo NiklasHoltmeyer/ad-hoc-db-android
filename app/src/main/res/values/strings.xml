@@ -17,4 +17,5 @@
 
     <string name="dialog_aggree">Aggree</string>
     <string name="dialog_disaggree">Disaggree</string>
+    <string name="menu_search">Search</string>
 </resources>

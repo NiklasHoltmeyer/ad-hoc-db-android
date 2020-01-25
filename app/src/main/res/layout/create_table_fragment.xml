@@ -126,7 +126,7 @@
                 android:onClick="clearButtonOnClick"
                 android:text="@string/create_table_button_clear"
                 android:textColor="@color/colorOnButtonSecondary"
-                app:backgroundTint="@color/colorOnAccent"
+                app:backgroundTint="@color/colorButtonSecondary"
                 app:icon="@drawable/ic_remove_circle_black_24dp"
                 app:iconTint="@color/colorOnButtonSecondary" />
         </LinearLayout>
