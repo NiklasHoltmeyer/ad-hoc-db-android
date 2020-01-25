@@ -1,6 +1,6 @@
 package de.hsos.ma.adhocdb.ui;
 
-public class CONSTS {
+public final class CONSTS {
     public static final String itemId = "item.id";
     public static final String itemName = "item.name";
     public static final String itemImage = "item.image";

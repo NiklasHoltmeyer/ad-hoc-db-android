@@ -1,14 +1,31 @@
 <resources>
 
+    <style name="ActionBarTheme" parent="@style/Widget.AppCompat.ActionBar">
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textColorPrimary">@color/colorText</item>
+        <item name="android:actionMenuTextAppearance">@color/colorWhite</item>
+
+        <item name="android:background">@color/colorAccent</item>
+        <item name="popupTheme">@style/ActionBarPopupTheme</item>
+        <!-- backward compatibility -->
+        <item name="background">@color/colorAccent</item>
+    </style>
+
     <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:colorAccent">#0000FF</item>
     </style>
 
-    <style name="AppTheme.Custom" parent="Theme.AppCompat">
+    <style name="ActionBarPopupTheme">
+        <item name="android:textColor">@color/colorMenuText</item>
+        <item name="android:background">@color/colorMenuBackground</item>
     </style>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light">
+        <!-- MENU -->
+        <item name="android:actionBarStyle">@style/ActionBarTheme</item>
+        <item name="actionBarStyle">@style/ActionBarTheme</item>
+
         <!-- DIALOG -->
         <item name="md_color_title">@color/colorPrimary</item>
         <item name="md_color_content">@color/colorPrimaryDark</item>
@@ -20,6 +37,7 @@
         <item name="colorPrimaryDark">@color/colorTest3</item>
         <item name="colorAccent">@color/colorAccent</item>
 
+        <item name="android:actionMenuTextColor">@color/colorMenuText</item>
 
         <item name="android:textColor">@color/colorText</item>
         <item name="color">@color/colorTest4</item>
@@ -33,7 +51,7 @@
         <item name="colorOnSecondary">#00BCD4</item>
         <item name="colorOnBackground">#673AB7</item>
         <item name="colorOnError">#2196F3</item>
-        <item name="colorOnSurface">@color/onSurface</item> <!-- placeholder farbe -->
+        <item name="colorOnSurface">@color/colorOnSurface</item> <!-- placeholder farbe -->
         <item name="scrimBackground">#E607FF</item>
 
 
@@ -55,7 +73,7 @@
     </style>
 
     <style name="MyTheme.ActionBar.TitleTextStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
-        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textColor">@color/colorMenuText</item>
     </style>
 
     <style name="Theme.MyApp" parent="Theme.AppCompat">
@@ -95,5 +113,4 @@
         <item name="textAppearanceOverline">@style/TextAppearance.MaterialComponents.Overline</item>
 
     </style>
-
 </resources>

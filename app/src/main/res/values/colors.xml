@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- //TODO res umennen colorX _> xColor -->
     <!-- https://colorhunt.co/palette/117601 -->
     <color name="colorPrimary">#232931</color>
     <color name="colorPrimaryDark">#393e46</color>
@@ -7,9 +8,12 @@
     <color name="colorWhite">#eeeeee</color>
     <color name="colorWhiteSecondary">#D0D0D0</color>
     <color name="colorBlack">#111111</color>
-    <color name="onSurface">@color/colorBlack</color>
+    <color name="colorOnSurface">@color/colorBlack</color>
     <color name="colorBackground">@color/colorWhite</color>
     <color name="colorError">#F44336</color>
+
+    <color name="colorMenuText">@color/colorWhite</color>
+    <color name="colorMenuBackground">@color/colorAccent</color>
 
     <color name="colorText">@color/colorBlack</color>
     <color name="colorOnAccent">@color/colorWhite</color>
@@ -17,6 +21,7 @@
     <color name="colorHeaderBackground">@color/colorWhite</color>
 
     <color name="colorOnButtonSecondary">@color/colorWhite</color>
+    <color name="colorOnButtonPrimary">@color/colorWhite</color>
 
     <color name="colorButtonPrimary">@color/colorAccent</color>
     <color name="colorButtonSecondary">@color/colorPrimaryDark</color>
