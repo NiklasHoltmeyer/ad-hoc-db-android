@@ -37,7 +37,7 @@ class MainActivity : BaseCoroutine(R.layout.activity_main), OnTableClickListener
 
     private fun initRecyclerView(){
         launch{
-            tablesFilterable = DataSource.getDataSet(true, applicationContext)
+            tablesFilterable = DataSource.getDataSet(true, applicationContext).toMutableList()
             tablesFullList = tablesFilterable.toCollection(mutableListOf())
             recycler_view.apply {
                 layoutManager = LinearLayoutManager(this@MainActivity)
