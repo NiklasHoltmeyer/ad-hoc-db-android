@@ -1,15 +1,16 @@
 package de.hsos.ma.adhocdb.entities
 
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "tables")
 data class Table(
-    val name : String,
-    val description : String,
-    val image : String,
-    val colNames : List<String> = emptyList(),
-    val rows : List<Row> = emptyList()
+    var name : String = "",
+    var description : String = "",
+    var image : String = "",
+    @Ignore var colNames : List<String> = emptyList(),
+    @Ignore var rows : List<Row> = emptyList()
 ){
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0

@@ -18,7 +18,7 @@ import de.hsos.ma.adhocdb.ui.homescreen.MainActivity
 import kotlinx.coroutines.launch
 
 class CreateTableColumnNamesActivity : BaseCoroutine(R.layout.activity_create_table, "Set Column Names", true) {
-    private var columnCount : Int = 5//-1
+    private var columnCount : Int = 2//-1
     private var tableName = ""
     private var tableDescription = ""
     private var imageURL = ""
@@ -44,7 +44,7 @@ class CreateTableColumnNamesActivity : BaseCoroutine(R.layout.activity_create_ta
         val container = findViewById<LinearLayout>(R.id.columnNameInputContainer)
         val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
-        for(i in 1 .. 5){
+        for(i in 1 .. columnCount){
             val view = inflater.inflate(R.layout.view_input, LinearLayout(this))
             val textInputLayout = view.findViewById<TextInputLayout>(R.id.textInputLayoutTableName)
             val textView = view.findViewById<TextInputEditText>(R.id.textInputName)
