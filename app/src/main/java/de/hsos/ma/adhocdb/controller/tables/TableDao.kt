@@ -2,6 +2,7 @@ package de.hsos.ma.adhocdb.controller.tables
 
 import androidx.room.*
 import androidx.sqlite.db.SupportSQLiteQuery
+import de.hsos.ma.adhocdb.entities.Column
 import de.hsos.ma.adhocdb.entities.Table
 import java.util.*
 
@@ -23,4 +24,10 @@ interface TableDao{
     suspend fun getTableViaQuery(query: SupportSQLiteQuery) : Optional<Table>
     @RawQuery
     suspend fun getTablesViaQuery(query: SupportSQLiteQuery) : List<Table>
+
+    @Insert
+    suspend fun insert(column: Column): Long
+
+    /*@Query("SELECT * FROM columns WHERE id=:tablId ")
+    fun getColumn(tablId: String): Column*/
 }

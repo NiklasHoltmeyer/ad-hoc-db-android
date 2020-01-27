@@ -11,6 +11,7 @@ import android.widget.Toast
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import de.hsos.ma.adhocdb.R
+import de.hsos.ma.adhocdb.entities.Column
 import de.hsos.ma.adhocdb.entities.Table
 import de.hsos.ma.adhocdb.framework.persistence.database.TablesDatabase
 import de.hsos.ma.adhocdb.ui.BaseCoroutine
@@ -125,26 +126,23 @@ class CreateTableColumnNamesActivity : BaseCoroutine(R.layout.activity_create_ta
         Log.e("ERROR", "Counter: ${this.textViews.size}")
 
         var table = createTable("test", "test", "test")
-        var table2 = createTable("test2", "test", "test")
-        var table3 = createTable("test3", "test", "test")
-        Log.e("ERROR", table.toString())
-        Log.e("ERROR", table2.toString())
-        Log.e("ERROR", table3.toString())
+
+        if(table == null){
+            Toast.makeText(this, "ERROR: Could not Create Table", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         launch{
-            if(table!=null){
-                val x = TablesDatabase(applicationContext).tableDao().insert(table!!) //TODO
-                Log.e("ERROR", "Table1 $x")
-            }
-            if(table2!=null){
-                val x = TablesDatabase(applicationContext).tableDao().insert(table2!!) //TODO
-                Log.e("ERROR", "Table2 $x")
+            val tableId = TablesDatabase(applicationContext).tableDao().insert(table)
+            val col = Column("testname")
+
+            for((i, textView) in textViews.withIndex()){
+                Log.e("ERROR", "I: " + (i + 1))
+                Log.e("ERROR", textView.text.toString())
             }
 
         }
 
-        for((i, textView) in this.textViews.withIndex()){
-            Log.e("ERROR", "I: " + (i + 1))
-            Log.e("ERROR", textView.text.toString())
-        }
+
     }
 }
