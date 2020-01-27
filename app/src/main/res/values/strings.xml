@@ -33,4 +33,5 @@
     <string name="editTable_Description">Change Table Description</string>
     <string name="editTableDelete">Delete Table</string>
     <string name="editTableDeleteWarning">Are you Sure you want to delete this Table?</string>
+    <string name="unit">Unit</string>
 </resources>

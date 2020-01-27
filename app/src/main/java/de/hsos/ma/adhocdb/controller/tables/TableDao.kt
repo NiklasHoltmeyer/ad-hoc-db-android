@@ -36,6 +36,9 @@ interface TableDao{
     @Insert
     suspend fun insert(cell: Cell): Long
 
+    @Insert
+    suspend fun insert(cells: List<Cell>): List<Long>
+
     @Query("SELECT * FROM columns WHERE tableId=:tablId ")
     fun getColumnsByTableId(tablId: String): List<Column>
 

@@ -1,8 +1,12 @@
 package de.hsos.ma.adhocdb.ui.TableShow
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.LinearLayout
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.annotation.MainThread
 import androidx.appcompat.app.ActionBar
@@ -171,6 +175,39 @@ class TableShowActivity : BaseCoroutine(R.layout.activity_table_show, "Table Vie
             drawTable()
         }
 
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        var searchView = menu.findItem(R.id.action_search)?.actionView as SearchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
+
+            override fun onQueryTextChange(queryFilter: String?): Boolean {
+                //
+                return true
+            }
+        })
+
+        var addView = menu.findItem(R.id.action_add)
+            .setOnMenuItemClickListener { addDataSet() }
+        return true
+    }
+
+    fun addDataSet() : Boolean{
+        val tableID = table?.id
+        if(tableID == null){
+            Toast.makeText(this, "Table ID NPE", Toast.LENGTH_LONG)
+            return true
+        }else{
+            val intent = Intent(this@TableShowActivity, TableAddDataSet::class.java)
+            intent.putExtra(CONSTS.itemId, tableID)
+            startActivity(intent)
+        }
+        return true
     }
 }
 
