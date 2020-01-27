@@ -22,6 +22,7 @@
 
     <color name="colorOnButtonSecondary">@color/colorWhite</color>
     <color name="colorOnButtonPrimary">@color/colorWhite</color>
+    <color name="colorOnButtonDanger">@color/colorError</color>
 
     <color name="colorButtonPrimary">@color/colorAccent</color>
     <color name="colorButtonSecondary">@color/colorPrimaryDark</color>

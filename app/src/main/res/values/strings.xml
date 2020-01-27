@@ -23,5 +23,14 @@
     <string name="table_cell_text_placeholder">--PLACEHOLDER--</string>
     <string name="table_list_image_description">Table Image</string>
     <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
     <string name="menu_search">Search</string>
+    <string name="change_table_name">Change Name</string>
+    <string name="edit_table">Edit Table</string>
+    <string name="change_table_description">Change Description</string>
+    <string name="delete_table">Delete Table</string>
+    <string name="editTableName">Change Table Name</string>
+    <string name="editTable_Description">Change Table Description</string>
+    <string name="editTableDelete">Delete Table</string>
+    <string name="editTableDeleteWarning">Are you Sure you want to delete this Table?</string>
 </resources>

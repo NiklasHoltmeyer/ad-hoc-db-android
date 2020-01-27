@@ -24,7 +24,7 @@ class CreateTableColumnNamesActivity :
     BaseCoroutine(R.layout.activity_create_table, "Set Column Names", true) {
     private var columnCount: Int = -1//-1
     private var tableName = ""
-    private var tableDescription = "" //TODO entfernen
+    private var tableDescription = ""
     private var imageURL = ""
     private var textViews: ArrayList<TextInputEditText> = ArrayList<TextInputEditText>()
 

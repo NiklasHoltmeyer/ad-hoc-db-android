@@ -6,9 +6,9 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "tables")
 data class Table(
-    val name : String,
-    val description : String,
-    val image : String
+    var name : String,
+    var description : String,
+    var image : String
 ){
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0

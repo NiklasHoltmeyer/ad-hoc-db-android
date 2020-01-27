@@ -31,6 +31,10 @@ class TableViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(item
         itemView.setOnClickListener{
             onClick.onItemClick(tableEntity, adapterPosition)
         }
+
+        itemView.setOnLongClickListener{
+            onClick.onItemLongClick(tableEntity, adapterPosition)
+        }
     }
 
 }

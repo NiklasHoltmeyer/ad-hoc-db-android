@@ -74,6 +74,8 @@ dependencies {
     annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
 
     implementation "com.afollestad.material-dialogs:core:$materialDialogVersion"
+    implementation "com.afollestad.material-dialogs:input:$materialDialogVersion"
+
 
     implementation "com.google.code.gson:gson:$gsonVersion"
 

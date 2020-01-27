@@ -1,0 +1,126 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="0dp"
+        android:layout_margin="0dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/edit_table"
+            android:textColor="@color/colorText"
+            android:textStyle="bold|italic" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/change_table_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="0px"
+            android:layout_marginTop="0px"
+            android:backgroundTint="@color/colorButtonPrimary"
+            android:text="@string/change_table_name"
+            android:textColor="@color/colorOnButtonPrimary" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorPrimaryDark"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:alpha="0.35"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/change_table_description"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="0px"
+            android:layout_marginTop="0px"
+            android:backgroundTint="@color/colorButtonSecondary"
+            android:text="@string/change_table_description"
+            android:textColor="@color/colorOnButtonPrimary" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorPrimaryDark"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:alpha="0.35"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/change_table_delete"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="0px"
+            android:layout_marginTop="0px"
+            android:backgroundTint="@color/colorOnButtonDanger"
+            android:text="@string/delete_table"
+            android:textColor="@color/colorOnButtonPrimary" />
+        <!--
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/colorBackground">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/change_table_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:backgroundTint="@color/colorButtonPrimary"
+                android:text="@string/change_table_name"
+                android:textColor="@color/colorOnButtonPrimary" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/colorButtonSecondary" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/colorBackground">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/change_table_description"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:backgroundTint="@color/colorButtonSecondary"
+                android:text="@string/change_table_description"
+                android:textColor="@color/colorOnButtonPrimary" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/colorButtonSecondary" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/colorBackground">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/change_table_delete"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:backgroundTint="@color/colorOnButtonDanger"
+                android:text="@string/delete_table"
+                android:textColor="@color/colorOnButtonPrimary" />
+        </com.google.android.material.card.MaterialCardView>
+        -->
+    </LinearLayout>
+</FrameLayout>
