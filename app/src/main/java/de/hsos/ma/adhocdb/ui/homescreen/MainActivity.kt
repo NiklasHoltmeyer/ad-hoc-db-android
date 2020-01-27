@@ -59,9 +59,9 @@ class MainActivity : BaseCoroutine(R.layout.activity_main, "Home Screen"), OnTab
         val intent = Intent(this, TableShowActivity::class.java)
         val item = tablesFilterable[pos]
         intent.putExtra(CONSTS.itemId, item.id)
-        intent.putExtra(CONSTS.itemName, item.name)
+        /*intent.putExtra(CONSTS.itemName, item.name)
         intent.putExtra(CONSTS.itemImage, item.image)
-        intent.putExtra(CONSTS.itemDescription, item.description)
+        intent.putExtra(CONSTS.itemDescription, item.description)*/
         startActivity(intent)
     }
 
