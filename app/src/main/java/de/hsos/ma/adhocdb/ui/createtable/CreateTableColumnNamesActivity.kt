@@ -12,6 +12,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import de.hsos.ma.adhocdb.R
 import de.hsos.ma.adhocdb.entities.Table
+import de.hsos.ma.adhocdb.framework.persistence.database.TablesDatabase
 import de.hsos.ma.adhocdb.ui.BaseCoroutine
 import de.hsos.ma.adhocdb.ui.CONSTS
 import de.hsos.ma.adhocdb.ui.homescreen.MainActivity
@@ -123,9 +124,16 @@ class CreateTableColumnNamesActivity : BaseCoroutine(R.layout.activity_create_ta
 
         Log.e("ERROR", "Counter: ${this.textViews.size}")
 
+        val list = arrayListOf<String>()
         for((i, textView) in this.textViews.withIndex()){
             Log.e("ERROR", "I: " + (i + 1))
             Log.e("ERROR", textView.text.toString())
+            list.add(textView?.text.toString())
+        }
+        Log.e("ERROR", "WUHU ${list.toString()}")
+        var table = Table(", ", "", "", list.toList())
+        launch{
+            TablesDatabase(applicationContext).tableDao().insert(table) //TODO
         }
     }
 }
