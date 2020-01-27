@@ -27,8 +27,8 @@ class CreateTableActivity : BaseCoroutine(R.layout.activity_create_table, "Creat
     fun clearButtonOnClick(view: View) {
         MaterialDialog(this).show {
             cancelOnTouchOutside(false)
-            title(R.string.create_table_dialog_header)
-            message(R.string.create_table_dialog_body)
+            title(R.string.create_table_clear_title)
+            message(R.string.create_table_clear_input_dialog_body)
             positiveButton(R.string.dialog_aggree){
                 clearInput()
             }
