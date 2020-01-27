@@ -20,7 +20,6 @@ import kotlinx.coroutines.launch
 
 
 class TableShowActivity : BaseCoroutine(R.layout.activity_table_show, "Table View", true) {
-    private var actionbar: ActionBar? = null
     private var table: Table? = null
     private var columns: List<Column> = emptyList()
     private var columnsToDraw: List<Column> = emptyList()
@@ -145,6 +144,11 @@ class TableShowActivity : BaseCoroutine(R.layout.activity_table_show, "Table Vie
             val colDTOs = columns.map {
                 ColumnDTO(it.name, db.getCellsByTableIdandColumnId(tableId, it.id.toString()))
             }.toList()
+
+            Log.e("ERROR","ColDTOS ${colDTOs.size}")
+            for (colDTO in colDTOs) {
+                Log.e("ERROR",colDTO.toString())
+            }
 
             callBack(table, columns, colDTOs)
         }

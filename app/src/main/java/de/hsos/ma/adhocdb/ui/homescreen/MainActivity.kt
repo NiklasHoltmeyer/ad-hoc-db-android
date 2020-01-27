@@ -3,6 +3,7 @@ package de.hsos.ma.adhocdb.ui.homescreen
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.SearchView
 import android.widget.Toast
@@ -18,9 +19,10 @@ import de.hsos.ma.adhocdb.ui.tablelist.OnTableClickListener
 import de.hsos.ma.adhocdb.ui.tablelist.TableRecyclerAdapter
 import de.hsos.ma.adhocdb.ui.tablelist.TopSpacingItemDecoration
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class MainActivity : BaseCoroutine(R.layout.activity_main, "Home Screen"), OnTableClickListener {
+class MainActivity : BaseCoroutine(R.layout.activity_main, "Table Overview"), OnTableClickListener {
     private lateinit var tableAdapter: TableRecyclerAdapter
     var tablesFilterable: MutableList<Table> = ArrayList()
     var tablesFullList: MutableList<Table> = ArrayList()
@@ -30,22 +32,20 @@ class MainActivity : BaseCoroutine(R.layout.activity_main, "Home Screen"), OnTab
         initRecyclerView()
     }
 
-    fun addButtonOnClick(view: View) {
-        val intent = Intent(this, CreateTableActivity::class.java)
-        startActivity(intent)
-    }
-
     private fun initRecyclerView() {
         launch {
             tablesFilterable = DataSource.getDataSet(true, applicationContext).toMutableList()
             tablesFullList = tablesFilterable.toCollection(mutableListOf())
-            recycler_view.apply {
-                layoutManager = LinearLayoutManager(this@MainActivity)
-                val topSpacingDecorator =
-                    TopSpacingItemDecoration(30)
-                addItemDecoration(topSpacingDecorator)
-                tableAdapter = TableRecyclerAdapter(this@MainActivity, tablesFilterable)
-                adapter = tableAdapter
+
+            launch(Dispatchers.Main){
+                recycler_view.apply {
+                    layoutManager = LinearLayoutManager(this@MainActivity)
+                    val topSpacingDecorator =
+                        TopSpacingItemDecoration(30)
+                    addItemDecoration(topSpacingDecorator)
+                    tableAdapter = TableRecyclerAdapter(this@MainActivity, tablesFilterable)
+                    adapter = tableAdapter
+                }
             }
         }
     }
@@ -59,9 +59,6 @@ class MainActivity : BaseCoroutine(R.layout.activity_main, "Home Screen"), OnTab
         val intent = Intent(this, TableShowActivity::class.java)
         val item = tablesFilterable[pos]
         intent.putExtra(CONSTS.itemId, item.id)
-        /*intent.putExtra(CONSTS.itemName, item.name)
-        intent.putExtra(CONSTS.itemImage, item.image)
-        intent.putExtra(CONSTS.itemDescription, item.description)*/
         startActivity(intent)
     }
 
@@ -78,6 +75,18 @@ class MainActivity : BaseCoroutine(R.layout.activity_main, "Home Screen"), OnTab
                 return true
             }
         })
+
+        var addView = menu.findItem(R.id.action_add).setOnMenuItemClickListener(object: MenuItem.OnMenuItemClickListener{
+            override fun onMenuItemClick(item: MenuItem?): Boolean {
+                loadAddTableView()
+                return true
+            }
+        })
         return true
+    }
+
+    private fun loadAddTableView(){
+        val intent = Intent(this, CreateTableActivity::class.java)
+        startActivity(intent)
     }
 }

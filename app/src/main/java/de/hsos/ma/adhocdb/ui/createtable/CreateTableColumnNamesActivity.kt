@@ -22,9 +22,9 @@ import kotlinx.coroutines.launch
 
 class CreateTableColumnNamesActivity :
     BaseCoroutine(R.layout.activity_create_table, "Set Column Names", true) {
-    private var columnCount: Int = 1//-1
-    private var tableName = "2"
-    private var tableDescription = "3" //TODO entfernen
+    private var columnCount: Int = -1//-1
+    private var tableName = ""
+    private var tableDescription = "" //TODO entfernen
     private var imageURL = ""
     private var textViews: ArrayList<TextInputEditText> = ArrayList<TextInputEditText>()
 
@@ -122,7 +122,7 @@ class CreateTableColumnNamesActivity :
 
         Log.e("ERROR", "Counter: ${this.textViews.size}")
 
-        var table = createTable("test", "test", "test")
+        var table = createTable(this.tableName, this.tableDescription, this.imageURL)
 
         if (table == null) {
             Toast.makeText(this, "ERROR: Could not Create Table", Toast.LENGTH_SHORT).show()

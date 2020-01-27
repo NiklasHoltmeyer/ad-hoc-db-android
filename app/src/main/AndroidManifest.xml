@@ -19,11 +19,6 @@
         <activity
             android:name=".ui.createtable.CreateTableColumnNamesActivity"
             android:parentActivityName=".ui.homescreen.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.createtable.CreateTableActivity"
@@ -43,9 +38,13 @@
         <activity
             android:name=".ui.TableShow.TableShowActivity"
             android:parentActivityName=".ui.homescreen.MainActivity" />
-        <activity android:name=".ui.tablelist.LayoutTableListItem" />
+        <activity android:name=".ui.tablelist.LayoutTableListItem"
+            android:parentActivityName=".ui.homescreen.MainActivity" />
         <activity android:name=".ui.homescreen.MainActivity">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

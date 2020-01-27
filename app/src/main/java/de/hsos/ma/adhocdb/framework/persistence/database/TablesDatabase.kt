@@ -23,6 +23,6 @@ abstract class TablesDatabase : RoomDatabase(){
         }
 
 
-        private fun buildDataBase(context: Context) =  Room.databaseBuilder(context.applicationContext, TablesDatabase::class.java, "tablesx2aaaaaaaaa.db").build()
+        private fun buildDataBase(context: Context) =  Room.databaseBuilder(context.applicationContext, TablesDatabase::class.java, "tablesx2aaaaaaaaaa.db").build()
     }
 }
