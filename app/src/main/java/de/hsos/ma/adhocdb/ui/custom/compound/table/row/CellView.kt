@@ -73,10 +73,11 @@ class CellView : ConstraintLayout {
 
         val card: MaterialCardView = findViewById(R.id.cellview_card_view)
         if (posX != null && posY != null && posX!! >= 0 && posY!! >= 0) {
-            val r = ((posX!!) * 15) % 255
-            val g = ((posY!!) * 15) % 255
-            val b = (posX!! * posY!! * 15) % 255
-            card.setCardBackgroundColor(Color.rgb(r, g, b))
+            var rgb = ((posX!! * 25) + posY!! * 10) % 255
+            card.setCardBackgroundColor(Color.rgb(rgb, rgb, rgb))
+
+            if(rgb > 127) card.findViewById<TextView>(R.id.cellview_text)?.setTextColor(Color.BLACK)
+            else card.findViewById<TextView>(R.id.cellview_text)?.setTextColor(Color.WHITE)
         }
 
         card.setOnLongClickListener {

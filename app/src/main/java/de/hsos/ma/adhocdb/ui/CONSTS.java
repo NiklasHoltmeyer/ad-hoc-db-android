@@ -11,4 +11,6 @@ public final class CONSTS {
     public static final String tableName = "tableName";
     public static final String tableDescription = "tableDescription";
     public static final String imageURL = "imageURL";
+
+    public static final String columnsToBeDrawn = "columnsToBeDrawn";
 }

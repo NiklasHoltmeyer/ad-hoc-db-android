@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "8671bfb738a6a2e431efcd002fffdcc3",
+    "identityHash": "3f883a811a6237bb7d59ac162c707e26",
     "entities": [
       {
         "tableName": "tables",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `description` TEXT NOT NULL, `image` TEXT NOT NULL, `colNames` TEXT NOT NULL, `rows` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `description` TEXT NOT NULL, `image` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -31,18 +31,6 @@
             "columnName": "image",
             "affinity": "TEXT",
             "notNull": true
-          },
-          {
-            "fieldPath": "colNames",
-            "columnName": "colNames",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "rows",
-            "columnName": "rows",
-            "affinity": "TEXT",
-            "notNull": true
           }
         ],
         "primaryKey": {
@@ -53,12 +41,153 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "columns",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `tableId` INTEGER NOT NULL, `name` TEXT NOT NULL, FOREIGN KEY(`tableId`) REFERENCES `tables`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tableId",
+            "columnName": "tableId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_columns_id_tableId",
+            "unique": false,
+            "columnNames": [
+              "id",
+              "tableId"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_columns_id_tableId` ON `${TABLE_NAME}` (`id`, `tableId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "tables",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "tableId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "cells",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `tableId` INTEGER NOT NULL, `columnId` INTEGER NOT NULL, `value` TEXT NOT NULL, `type` TEXT NOT NULL, FOREIGN KEY(`tableId`) REFERENCES `tables`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`columnId`) REFERENCES `columns`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tableId",
+            "columnName": "tableId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "columnId",
+            "columnName": "columnId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "value",
+            "columnName": "value",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_cells_id_tableId",
+            "unique": false,
+            "columnNames": [
+              "id",
+              "tableId"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_cells_id_tableId` ON `${TABLE_NAME}` (`id`, `tableId`)"
+          },
+          {
+            "name": "index_cells_id_tableId_columnId",
+            "unique": false,
+            "columnNames": [
+              "id",
+              "tableId",
+              "columnId"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_cells_id_tableId_columnId` ON `${TABLE_NAME}` (`id`, `tableId`, `columnId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "tables",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "tableId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "columns",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "columnId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8671bfb738a6a2e431efcd002fffdcc3')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '3f883a811a6237bb7d59ac162c707e26')"
     ]
   }
 }

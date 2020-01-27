@@ -1,16 +1,14 @@
 package de.hsos.ma.adhocdb.framework.persistence.database
 
-import de.hsos.ma.adhocdb.framework.persistence.DataConverter.RowDataConverter
-import de.hsos.ma.adhocdb.framework.persistence.DataConverter.StringDataConverter
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
 import de.hsos.ma.adhocdb.controller.tables.TableDao
+import de.hsos.ma.adhocdb.entities.Cell
+import de.hsos.ma.adhocdb.entities.Column
 import de.hsos.ma.adhocdb.entities.Table
-@Database(entities = [Table::class], version = 1)
-@TypeConverters(StringDataConverter::class, RowDataConverter::class)
+@Database(entities = [Table::class, Column::class, Cell::class], version = 1)
 abstract class TablesDatabase : RoomDatabase(){
     abstract fun tableDao(): TableDao
 
@@ -25,6 +23,6 @@ abstract class TablesDatabase : RoomDatabase(){
         }
 
 
-        private fun buildDataBase(context: Context) =  Room.databaseBuilder(context.applicationContext, TablesDatabase::class.java, "tablesxaaa2.db").build()
+        private fun buildDataBase(context: Context) =  Room.databaseBuilder(context.applicationContext, TablesDatabase::class.java, "tablesx2aaaaaaaaaaa.db").build()
     }
 }

@@ -11,7 +11,7 @@ abstract class BaseCoroutine (private val layoutRes: Int, private val pageTitle 
     private lateinit var job : Job
 
     override val coroutineContext: CoroutineContext
-        get() = job + Dispatchers.Main
+        get() = job + Dispatchers.IO
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

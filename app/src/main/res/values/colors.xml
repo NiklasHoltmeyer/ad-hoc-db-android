@@ -34,7 +34,7 @@
     <color name="colorTest3">#8BC34A</color>
     <color name="colorTest4">#9C27B0</color>
     <color name="colorTest5">#FFEB3B</color>
-
+    <color name="colorCellText">@color/colorWhite</color>
 
 
     <!--<color name="colorPrimary">#008577</color>
