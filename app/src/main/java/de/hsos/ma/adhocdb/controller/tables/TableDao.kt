@@ -8,7 +8,7 @@ import java.util.*
 @Dao
 interface TableDao{
     @Insert
-    suspend fun insert(table: Table)
+    suspend fun insert(table: Table): Long
     @Update
     suspend fun update(table: Table)
     @Delete

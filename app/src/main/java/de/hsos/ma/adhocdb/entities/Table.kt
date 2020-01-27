@@ -6,16 +6,13 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "tables")
 data class Table(
-    var name : String = "",
-    var description : String = "",
-    var image : String = "",
-    @Ignore var colNames : List<String> = emptyList(),
-    @Ignore var rows : List<Row> = emptyList()
+    var name : String,
+    var description : String,
+    var image : String
 ){
     @PrimaryKey(autoGenerate = true)
-    var id: Int = 0
-
+    var id: Long = 0
     override fun toString(): String {
-        return "TableEntity(name='$name', description='$description', image='$image', id=$id)"
+        return "Table(id=$id, name='$name', description='$description', image='$image')"
     }
 }

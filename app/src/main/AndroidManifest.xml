@@ -27,7 +27,8 @@
         </activity>
         <activity
             android:name=".ui.createtable.CreateTableActivity"
-            android:parentActivityName=".ui.homescreen.MainActivity" />
+            android:parentActivityName=".ui.homescreen.MainActivity">
+        </activity>
         <activity
             android:name=".ui.homescreen.TestTableActivity"
             android:parentActivityName=".ui.homescreen.MainActivity">

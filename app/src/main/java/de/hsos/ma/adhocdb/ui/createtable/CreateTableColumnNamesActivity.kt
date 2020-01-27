@@ -12,15 +12,16 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import de.hsos.ma.adhocdb.R
 import de.hsos.ma.adhocdb.entities.Table
+import de.hsos.ma.adhocdb.framework.persistence.database.TablesDatabase
 import de.hsos.ma.adhocdb.ui.BaseCoroutine
 import de.hsos.ma.adhocdb.ui.CONSTS
 import de.hsos.ma.adhocdb.ui.homescreen.MainActivity
 import kotlinx.coroutines.launch
 
 class CreateTableColumnNamesActivity : BaseCoroutine(R.layout.activity_create_table, "Set Column Names", true) {
-    private var columnCount : Int = 2//-1
-    private var tableName = ""
-    private var tableDescription = ""
+    private var columnCount : Int = 1//-1
+    private var tableName = "2"
+    private var tableDescription = "3" //TODO entfernen
     private var imageURL = ""
     private var textViews : ArrayList<TextInputEditText> = ArrayList<TextInputEditText>()
 
@@ -58,16 +59,15 @@ class CreateTableColumnNamesActivity : BaseCoroutine(R.layout.activity_create_ta
         }
     }
 
-    fun createTable(colNames : List<String>) : Table?{
+    fun createTable(tableName: String, tableDescription: String, imageURL: String) : Table?{
         if(tableName == null || tableName.isEmpty() ||
             tableDescription == null || tableDescription.isEmpty() ||
-            imageURL == null || imageURL.isEmpty() ||
-            colNames == null || colNames.isEmpty()){
+            imageURL == null || imageURL.isEmpty()){
             Toast.makeText(this, "[ERROR] Data-Null or Empty", Toast.LENGTH_LONG).show()
             return null
         }
 
-        return Table(tableName, tableDescription, imageURL, colNames)
+        return Table(tableName, tableDescription, imageURL)
     }
 
     private fun loadIntents(){
@@ -102,7 +102,7 @@ class CreateTableColumnNamesActivity : BaseCoroutine(R.layout.activity_create_ta
 
      private fun saveTable(table : Table){ //TODO callback function
         launch{
-            //TablesDatabase(applicationContext).tableDao().insert(table) //TODO
+            TablesDatabase(applicationContext).tableDao().insert(table) //TODO
             onSuccessCallback()
         }
     }
@@ -114,6 +114,7 @@ class CreateTableColumnNamesActivity : BaseCoroutine(R.layout.activity_create_ta
 
     fun saveTableColNames(view: View) {
         Log.e("ERROR", "saveTableColNames")
+
         for(textView in this.textViews){
             if(textView.text == null || textView!!.text!!.isEmpty()){
                 Toast.makeText(this, "Please Fill each Col. Name", Toast.LENGTH_SHORT).show()
@@ -122,6 +123,24 @@ class CreateTableColumnNamesActivity : BaseCoroutine(R.layout.activity_create_ta
         }
 
         Log.e("ERROR", "Counter: ${this.textViews.size}")
+
+        var table = createTable("test", "test", "test")
+        var table2 = createTable("test2", "test", "test")
+        var table3 = createTable("test3", "test", "test")
+        Log.e("ERROR", table.toString())
+        Log.e("ERROR", table2.toString())
+        Log.e("ERROR", table3.toString())
+        launch{
+            if(table!=null){
+                val x = TablesDatabase(applicationContext).tableDao().insert(table!!) //TODO
+                Log.e("ERROR", "Table1 $x")
+            }
+            if(table2!=null){
+                val x = TablesDatabase(applicationContext).tableDao().insert(table2!!) //TODO
+                Log.e("ERROR", "Table2 $x")
+            }
+
+        }
 
         for((i, textView) in this.textViews.withIndex()){
             Log.e("ERROR", "I: " + (i + 1))
