@@ -138,10 +138,17 @@ class MainActivity : BaseCoroutine(R.layout.activity_main, "Table Overview"), On
             }
     }
 
+    private fun reloadView(){
+        launch(Dispatchers.Main){
+            recreate()
+        }
+    }
+
     private fun updateTable(table: Table) {
         launch {
             val db = TablesDatabase(applicationContext).tableDao()
             db.update(table)
+            reloadView()
         }
     }
 
@@ -149,13 +156,14 @@ class MainActivity : BaseCoroutine(R.layout.activity_main, "Table Overview"), On
         launch {
             val db = TablesDatabase(applicationContext).tableDao()
             db.delete(table)
+            reloadView()
         }
     }
 
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
-        var searchView = menu.findItem(R.id.action_search)?.actionView as SearchView
+        var searchView = menu.findItem(R.id.action_search_with_query)?.actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return true

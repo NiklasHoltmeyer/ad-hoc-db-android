@@ -7,11 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.LinearLayout
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
 import androidx.core.view.size
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -116,9 +115,6 @@ class TableAddDataSet : BaseCoroutine(R.layout.activity_table_add_data_set, "Add
         goBackShowTable()
     }
     fun onSubmitButtonClick(view: View) {
-        /*var inputFields: ArrayList<TextInputEditText> = ArrayList()
-    var spinners: ArrayList<Spinner> = ArrayList()
-    var cols: List<Column> = emptyList()*/
         if(inputFields.size != spinners.size || spinners.size != cols.size){
             Toast.makeText(this, "Error onSubmitButton != size", Toast.LENGTH_LONG)
         }

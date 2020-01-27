@@ -6,15 +6,22 @@
         android:icon="@drawable/ic_add_black_24dp"
         android:title="@string/menu_search"
         app:showAsAction="ifRoom|collapseActionView"
-        app:actionViewClass="android.widget.SearchView"
         android:iconTint="@color/colorOnAccent"
         />
 
-    <item android:id="@+id/action_search"
+    <item android:id="@+id/action_search_with_query"
         android:icon="@drawable/ic_search_white_24dp"
         android:title="@string/menu_search"
         app:showAsAction="ifRoom|collapseActionView"
         app:actionViewClass="android.widget.SearchView"
         android:iconTint="@color/colorOnAccent"
+        android:visible="true"
+        />
+    <item android:id="@+id/action_search"
+        android:icon="@drawable/ic_search_white_24dp"
+        android:title="@string/menu_search"
+        app:showAsAction="ifRoom|collapseActionView"
+        android:iconTint="@color/colorOnAccent"
+        android:visible="false"
         />
 </menu>

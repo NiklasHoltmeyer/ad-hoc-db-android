@@ -4,13 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
-import android.view.MenuItem
 import android.widget.LinearLayout
-import android.widget.SearchView
 import android.widget.Toast
-import androidx.annotation.MainThread
-import androidx.appcompat.app.ActionBar
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.list.isItemChecked
+import com.afollestad.materialdialogs.list.listItemsMultiChoice
 import de.hsos.ma.adhocdb.R
 import de.hsos.ma.adhocdb.entities.Cell
 import de.hsos.ma.adhocdb.entities.Column
@@ -26,7 +25,6 @@ import kotlinx.coroutines.launch
 class TableShowActivity : BaseCoroutine(R.layout.activity_table_show, "Table View", true) {
     private var table: Table? = null
     private var columns: List<Column> = emptyList()
-    private var columnsToDraw: List<Column> = emptyList()
     private var colDTOs: List<ColumnDTO> = emptyList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,6 +41,7 @@ class TableShowActivity : BaseCoroutine(R.layout.activity_table_show, "Table Vie
         }
 
         val container = findViewById<LinearLayout>(R.id.linearLayout)
+        container.removeAllViews()
 
         val cellLayoutParams = ConstraintLayout.LayoutParams(
             ConstraintLayout.LayoutParams.WRAP_CONTENT,
@@ -56,8 +55,8 @@ class TableShowActivity : BaseCoroutine(R.layout.activity_table_show, "Table Vie
 
         columnLayoutParams.width = calcDps(150f)
 
-        for((x, col) in this.colDTOs.withIndex()){
-            drawColumn(columnLayoutParams, col, x, cellLayoutParams, container)
+        for ((x, col) in this.colDTOs.withIndex()) {
+            if (col.visible) drawColumn(columnLayoutParams, col, x, cellLayoutParams, container)
         }
     }
 
@@ -81,7 +80,7 @@ class TableShowActivity : BaseCoroutine(R.layout.activity_table_show, "Table Vie
             unit = "",
             pos_x = x,
             pos_y = 0,
-            dividerRight = (columnsToDraw.size != x),
+            dividerRight = (colDTOs.size != x),
             dividerLeft = false,
             dividerTop = false,
             dividerBottom = true
@@ -146,12 +145,12 @@ class TableShowActivity : BaseCoroutine(R.layout.activity_table_show, "Table Vie
 
 
             val colDTOs = columns.map {
-                ColumnDTO(it.name, db.getCellsByTableIdandColumnId(tableId, it.id.toString()))
+                ColumnDTO(it.name, db.getCellsByTableIdandColumnId(tableId, it.id.toString()), true)
             }.toList()
 
-            Log.e("ERROR","ColDTOS ${colDTOs.size}")
+            Log.e("ERROR", "ColDTOS ${colDTOs.size}")
             for (colDTO in colDTOs) {
-                Log.e("ERROR",colDTO.toString())
+                Log.e("ERROR", colDTO.toString())
             }
 
             callBack(table, columns, colDTOs)
@@ -166,43 +165,48 @@ class TableShowActivity : BaseCoroutine(R.layout.activity_table_show, "Table Vie
         this.table = table
         this.columns = columns
         this.colDTOs = colDTOs
-        if (!intent.hasExtra(CONSTS.columnsToBeDrawn)) {
-            this.columnsToDraw = columns
-        }
         //TODO else filtern welche columns angezeigt werden sollen
 
-        launch(Dispatchers.Main){
+        launch(Dispatchers.Main) {
             drawTable()
         }
 
     }
 
-
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
-        var searchView = menu.findItem(R.id.action_search)?.actionView as SearchView
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return true
-            }
+        menu.findItem(R.id.action_search_with_query).isVisible = false
+        var searchView = menu.findItem(R.id.action_search)
+            .setOnMenuItemClickListener { filterTable() }
+        searchView.isVisible = true
 
-            override fun onQueryTextChange(queryFilter: String?): Boolean {
-                //
-                return true
-            }
-        })
-
-        var addView = menu.findItem(R.id.action_add)
+        menu.findItem(R.id.action_add)
             .setOnMenuItemClickListener { addDataSet() }
         return true
     }
 
-    fun addDataSet() : Boolean{
+    fun filterTable(): Boolean {
+        val myItems = this.colDTOs.map { it.colName }.toList()
+
+        MaterialDialog(this).show {
+            listItemsMultiChoice(items = myItems)
+            negativeButton(R.string.cancel)
+            positiveButton(R.string.submit) {
+                for (i in colDTOs.indices) {
+                    colDTOs[i].visible = isItemChecked(i)
+                }
+                drawTable()
+            }
+        }
+        return true
+    }
+
+    fun addDataSet(): Boolean {
         val tableID = table?.id
-        if(tableID == null){
+        if (tableID == null) {
             Toast.makeText(this, "Table ID NPE", Toast.LENGTH_LONG)
             return true
-        }else{
+        } else {
             val intent = Intent(this@TableShowActivity, TableAddDataSet::class.java)
             intent.putExtra(CONSTS.itemId, tableID)
             startActivity(intent)
@@ -213,5 +217,6 @@ class TableShowActivity : BaseCoroutine(R.layout.activity_table_show, "Table Vie
 
 data class ColumnDTO(
     val colName: String,
-    val cells: List<Cell>
+    val cells: List<Cell>,
+    var visible: Boolean
 )
