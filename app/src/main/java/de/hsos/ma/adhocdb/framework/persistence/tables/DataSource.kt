@@ -26,7 +26,7 @@ class DataSource {
                 tableMock.columns.forEach {
                     val colID = db.insert(Column(tableId, it.name))
                     for(cell in it.cells){
-                        val _cell : Cell = Cell(tableId, colID, cell.value, cell.type)
+                        val _cell : Cell = Cell(tableId, colID, cell.value, cell.type, cell.row)
                         db.insert(_cell)
                     }
 
@@ -47,17 +47,17 @@ class DataSource {
                     arrayListOf(
                         MockCol("Einnahme & Ausgaben",
                             arrayListOf(
-                                Cell(0, 0, "-5.55", "€"),
-                                Cell(0, 0, "+1.23", "€"),
-                                Cell(0, 0, "-10.10", "€")
+                                Cell(0, 0, "-5.55", "€", 0),
+                                Cell(0, 0, "+1.23", "€", 1),
+                                Cell(0, 0, "-10.10", "€", 2)
                             )
                         ),
                         MockCol(
                             "Beschreibung",
                             arrayListOf(
-                                Cell(0,0, "Ausgabe A", "String"),
-                                Cell(0,0, "Einnahme X", "String"),
-                                Cell(0,0, "Ausgabe B", "String")
+                                Cell(0,0, "Ausgabe A", "String", 0),
+                                Cell(0,0, "Einnahme X", "String", 1),
+                                Cell(0,0, "Ausgabe B", "String", 2)
                             )
                         )
 

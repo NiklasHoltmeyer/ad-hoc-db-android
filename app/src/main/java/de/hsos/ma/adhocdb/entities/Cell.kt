@@ -1,9 +1,6 @@
 package de.hsos.ma.adhocdb.entities
 
-import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.Index
-import androidx.room.PrimaryKey
+import androidx.room.*
 
 @Entity(
     tableName = "cells",
@@ -26,8 +23,8 @@ data class Cell(
     val tableId: Long,
     val columnId: Long,
     var value: String,
-    var type: String
-
+    var type: String,
+    @ColumnInfo(name = "_row")var row: Long = -1
 
 ) {
     @PrimaryKey(autoGenerate = true) var id: Long = 0

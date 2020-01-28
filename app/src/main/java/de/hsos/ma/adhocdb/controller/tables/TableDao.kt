@@ -64,6 +64,9 @@ interface TableDao{
     @Query("SELECT * FROM cells WHERE Id=:id and tableId=:tableId")
     fun getCellsByIdandTableId(id: String, tableId: String): List<Cell>
 
+    @Query("SELECT * FROM cells WHERE _row=:row and tableId=:tableId")
+    fun getCellsTableIdAndRow(tableId: String, row: String): List<Cell>
+
     @Query("SELECT * FROM cells")
     suspend fun getAllCells() : List<Cell>
 }

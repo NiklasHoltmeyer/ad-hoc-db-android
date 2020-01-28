@@ -53,8 +53,6 @@ class TableAddDataSet : BaseCoroutineAppCompactActivity(R.layout.activity_table_
                 }
             }
         }
-
-
     }
 
     private fun drawInput(
@@ -119,8 +117,7 @@ class TableAddDataSet : BaseCoroutineAppCompactActivity(R.layout.activity_table_
             var value = inputFields[i].text.toString()
             var type = spinners[i].selectedItem.toString()
             type = UNITCONSTS.UNITS[type] ?: ""
-            val cell = Cell(tableId!!, col.id, value, type)
-
+            val cell = Cell(tableId!!, col.id, value, type, (cols.size + 1).toLong())
             result.add(cell)
         }
 

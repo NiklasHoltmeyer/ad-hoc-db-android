@@ -165,20 +165,11 @@ class TableShowActivity :
             val db =  TablesDatabase(applicationContext).tableDao()
             val tableID = table?.id.toString()
 
-            Log.e("ERRROR", "Cell ${cell.toString()}")
-            Log.e("ERRROR", "Table ${tableID.toString()}")
-
-
-/*            db.getCellsByIdandTableId(tableId = tableID, id = cell.id.toString()).forEach{
-                Log.e("ERRROR", "${it.toString()}")
-                //db.delete(it)
-            }*/
-
-            for (cell in db.getAllCells()) {
-                Log.e("ERRROR", "CELL: ${cell.toString()}")
-
+            db.getCellsTableIdAndRow(tableID, cell.row.toString()).forEach{
+                db.delete(it)
             }
-            //reloadView()
+
+            reloadView()
         }
     }
 
