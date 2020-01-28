@@ -16,6 +16,7 @@ import com.afollestad.materialdialogs.list.isItemChecked
 import com.afollestad.materialdialogs.list.listItemsMultiChoice
 import com.google.android.material.button.MaterialButton
 import de.hsos.ma.adhocdb.R
+import de.hsos.ma.adhocdb.Table_Show_Add_Dialog
 import de.hsos.ma.adhocdb.ui.table.view.unit.UnitChooserView
 import de.hsos.ma.adhocdb.entities.Cell
 import de.hsos.ma.adhocdb.entities.Column
@@ -210,7 +211,10 @@ class TableShowActivity :
                 customView(view = view)
                 negativeButton(R.string.cancel)
                 positiveButton(R.string.submit){
-                    if(table != null) addColumn(table!!, view.getTextInput(), colSize)
+                    if(table != null){
+                        addColumn(table!!, view.getTextInput(), colSize)
+                    }
+
                 }
             }
     }
@@ -401,7 +405,29 @@ class TableShowActivity :
         searchView.isVisible = true
 
         menu.findItem(R.id.action_add)
-            .setOnMenuItemClickListener { addDataSet() }
+            .setOnMenuItemClickListener { addButtonCallBack() }
+        return true
+    }
+
+    private fun addButtonCallBack(): Boolean {
+        val view = Table_Show_Add_Dialog(this@TableShowActivity, object: de.hsos.ma.adhocdb.OnClickListener{
+            override fun onButtonClick(): Boolean {
+                addDataSet()
+                return true
+            }
+
+        }, object: de.hsos.ma.adhocdb.OnClickListener{
+            override fun onButtonClick(): Boolean {
+                addColumnDialog(table, this@TableShowActivity.colDTOs[0].cells.size)
+                return true
+            }
+        })
+
+        val dialog = MaterialDialog(this@TableShowActivity)
+            .title(R.string.add)
+            .show{
+                customView(view = view)
+            }
         return true
     }
 
