@@ -24,7 +24,7 @@ class TableAddDataSet : BaseCoroutineAppCompactActivity(R.layout.activity_table_
     var inputFields: ArrayList<TextInputEditText> = ArrayList()
     var spinners: ArrayList<Spinner> = ArrayList()
     var cols: List<Column> = emptyList()
-
+    var row: Long = -1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_table_add_data_set)
@@ -86,13 +86,19 @@ class TableAddDataSet : BaseCoroutineAppCompactActivity(R.layout.activity_table_
     }
 
     private fun loadIntents() {
-        //INTENTCONSTS.itemId
         if (!intent.hasExtra(INTENTCONSTS.itemId)) {
             Toast.makeText(this, "Couldnt Retriev ID", Toast.LENGTH_LONG)
             return
         }
         tableId = intent.getLongExtra(INTENTCONSTS.itemId, -1)
         if (tableId!! < 0) tableId = null
+
+        if (!intent.hasExtra(INTENTCONSTS.itemRow)) {
+            Toast.makeText(this, "Couldnt Retriev RowID", Toast.LENGTH_LONG)
+            return
+        }
+
+        row = intent.getLongExtra(INTENTCONSTS.itemRow, -1)
     }
 
     fun goBackShowTable(){
@@ -117,7 +123,7 @@ class TableAddDataSet : BaseCoroutineAppCompactActivity(R.layout.activity_table_
             var value = inputFields[i].text.toString()
             var type = spinners[i].selectedItem.toString()
             type = UNITCONSTS.UNITS[type] ?: ""
-            val cell = Cell(tableId!!, col.id, value, type, (cols.size + 1).toLong())
+            val cell = Cell(tableId!!, col.id, value, type, row)
             result.add(cell)
         }
 

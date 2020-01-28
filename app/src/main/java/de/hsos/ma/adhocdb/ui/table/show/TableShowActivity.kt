@@ -120,7 +120,7 @@ class TableShowActivity :
             val colId = db.insert(Column(table.id, colName))
 
             for(i in 1 .. colSize){
-                db.insert(Cell(table.id, colId, "", ""))
+                db.insert(Cell(table.id, colId, "", "", (i-1).toLong()))
             }
 
             reloadView()
@@ -446,6 +446,7 @@ class TableShowActivity :
         } else {
             val intent = Intent(this@TableShowActivity, TableAddDataSet::class.java)
             intent.putExtra(INTENTCONSTS.itemId, tableID)
+            intent.putExtra(INTENTCONSTS.itemRow, this@TableShowActivity.colDTOs[0].cells.size)
             startActivity(intent)
         }
         return true

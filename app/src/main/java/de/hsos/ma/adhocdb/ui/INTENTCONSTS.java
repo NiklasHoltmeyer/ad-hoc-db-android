@@ -5,6 +5,8 @@ public final class INTENTCONSTS {
     public static final String itemName = "item.name";
     public static final String itemImage = "item.image";
     public static final String itemDescription = "item.description";
+    public static final String itemRow = "item.row";
+
 
     public static final String columnCount = "columnCount";
 
