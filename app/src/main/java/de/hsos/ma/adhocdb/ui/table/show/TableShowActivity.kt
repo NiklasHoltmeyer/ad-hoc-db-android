@@ -3,6 +3,7 @@ package de.hsos.ma.adhocdb.ui.table.show
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
+import android.util.Log
 import android.view.Menu
 import android.widget.LinearLayout
 import android.widget.Toast

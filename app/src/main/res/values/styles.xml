@@ -51,7 +51,6 @@
         <item name="colorError">@color/colorError</item>
         <item name="colorPrimaryVariant">@color/colorAccent</item>
         <item name="colorSecondaryVariant">@color/colorTest</item>
-        <item name="colorSurface">#313131</item>
         <item name="colorOnPrimary">#00BCD4</item>
         <item name="colorOnSecondary">#00BCD4</item>
         <item name="colorOnBackground">#673AB7</item>
@@ -97,7 +96,6 @@
         <!-- New MaterialComponents attributes. -->
         <item name="colorPrimaryVariant">@color/colorAccent</item>
         <item name="colorSecondaryVariant">@color/colorTest</item>
-        <item name="colorSurface">#313131</item>
         <item name="colorOnPrimary">#9C27B0</item>
         <item name="colorOnSecondary">#00BCD4</item>
         <item name="colorOnBackground">#673AB7</item>

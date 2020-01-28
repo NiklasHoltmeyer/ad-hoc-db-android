@@ -3,6 +3,7 @@ package de.hsos.ma.adhocdb.ui.table.home
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
@@ -98,7 +99,7 @@ class TableAddDataSet : BaseCoroutineAppCompactActivity(R.layout.activity_table_
             return
         }
 
-        row = intent.getLongExtra(INTENTCONSTS.itemRow, -1)
+        row = intent.getIntExtra(INTENTCONSTS.itemRow, -1).toLong()
     }
 
     fun goBackShowTable(){
