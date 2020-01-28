@@ -3,7 +3,6 @@ package de.hsos.ma.adhocdb.ui.table.show
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
-import android.util.Log
 import android.view.Menu
 import android.widget.LinearLayout
 import android.widget.Toast
@@ -13,10 +12,11 @@ import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.customview.getCustomView
 import com.afollestad.materialdialogs.input.input
 import com.afollestad.materialdialogs.list.isItemChecked
+import com.afollestad.materialdialogs.list.listItems
 import com.afollestad.materialdialogs.list.listItemsMultiChoice
 import com.google.android.material.button.MaterialButton
+import de.hsos.ma.adhocdb.AggregationDialogView
 import de.hsos.ma.adhocdb.R
-import de.hsos.ma.adhocdb.Table_Show_Add_Dialog
 import de.hsos.ma.adhocdb.ui.table.view.unit.UnitChooserView
 import de.hsos.ma.adhocdb.entities.Cell
 import de.hsos.ma.adhocdb.entities.Column
@@ -26,6 +26,7 @@ import de.hsos.ma.adhocdb.ui.BaseCoroutineAppCompactActivity
 import de.hsos.ma.adhocdb.ui.INTENTCONSTS
 import de.hsos.ma.adhocdb.ui.UNITCONSTS
 import de.hsos.ma.adhocdb.ui.table.home.TableAddDataSet
+import de.hsos.ma.adhocdb.ui.table.view.Table_Show_Add_Dialog
 import de.hsos.ma.adhocdb.ui.table.view.cell.CellView
 import de.hsos.ma.adhocdb.ui.table.view.cell.OnClickListener
 import de.hsos.ma.adhocdb.ui.table.view.column.TableAddColumn
@@ -395,28 +396,35 @@ class TableShowActivity :
             .setOnMenuItemClickListener { filterTable() }
         searchView.isVisible = true
 
+        var funcView = menu.findItem(R.id.action_func)
+            .setOnMenuItemClickListener { openAggregationDialog() }
+        funcView.isVisible = true
+
         menu.findItem(R.id.action_add)
             .setOnMenuItemClickListener { addButtonCallBack() }
         return true
     }
 
     private fun addButtonCallBack(): Boolean {
-        val view = Table_Show_Add_Dialog(this@TableShowActivity, object: de.hsos.ma.adhocdb.OnClickListener{
-            override fun onButtonClick(): Boolean {
-                addDataSet()
-                return true
-            }
+        val view = Table_Show_Add_Dialog(
+            this@TableShowActivity,
+            object : de.hsos.ma.adhocdb.ui.table.view.OnClickListener {
+                override fun onButtonClick(): Boolean {
+                    addDataSet()
+                    return true
+                }
 
-        }, object: de.hsos.ma.adhocdb.OnClickListener{
-            override fun onButtonClick(): Boolean {
-                addColumnDialog(table, this@TableShowActivity.colDTOs[0].cells.size)
-                return true
-            }
-        })
+            },
+            object : de.hsos.ma.adhocdb.ui.table.view.OnClickListener {
+                override fun onButtonClick(): Boolean {
+                    addColumnDialog(table, this@TableShowActivity.colDTOs[0].cells.size)
+                    return true
+                }
+            })
 
         val dialog = MaterialDialog(this@TableShowActivity)
             .title(R.string.add)
-            .show{
+            .show {
                 customView(view = view)
             }
         return true
@@ -452,6 +460,81 @@ class TableShowActivity :
         return true
     }
 
+    fun showAggregation(aggregationHelper: AggregationHelper){
+        val items = this.colDTOs.map { it.col.name }.toList()
+        MaterialDialog(this).show {
+            listItems(items = items){ dialog, index, text ->
+                val cells = this@TableShowActivity.colDTOs[index].cells
+                val result = aggregationHelper.aggregate(cells)
+                MaterialDialog(this@TableShowActivity).show {
+                    title(R.string.aggregationTitle)
+                    message(text = "Result: $result")
+                }
+            }
+        }
+    }
+
+    fun onSumClick(){
+        //showAggregation(null)
+        val sumAggregationHelper = object: AggregationHelper {
+            override fun aggregate(cells: List<Cell>): String {
+                var f = 0f
+                for(cell in cells){
+                    try {
+                        f += cell.value.toFloat()
+                    }
+                    catch (e: Exception) {}
+                }
+                return (f).toString()
+            }
+        }
+
+        showAggregation(sumAggregationHelper)
+    }
+
+    fun onAvgClick(){
+        val avgAggregationHelper = object: AggregationHelper {
+            override fun aggregate(cells: List<Cell>): String {
+                var f = 0f
+                var c = 0
+                for(cell in cells){
+                    try {
+                        f += cell.value.toFloat()
+                        ++c
+                    }
+                    catch (e: Exception) {}
+                }
+                return (f/c).toString()
+            }
+        }
+
+        showAggregation(avgAggregationHelper)
+    }
+
+    fun openAggregationDialog(): Boolean {
+        val onSumButton = object: de.hsos.ma.adhocdb.OnClickListener {
+            override fun onButtonClick(): Boolean {
+                this@TableShowActivity.onSumClick()
+                return true
+            }
+        }
+
+        val onAvgButton = object: de.hsos.ma.adhocdb.OnClickListener {
+            override fun onButtonClick(): Boolean {
+                this@TableShowActivity.onAvgClick()
+                return true
+            }
+        }
+
+
+        val view = AggregationDialogView(this, onSumButton, onAvgButton)
+        MaterialDialog(this@TableShowActivity)
+            .show {
+                customView(view = view)
+            }
+
+        return false
+    }
 
 }
 
@@ -460,3 +543,7 @@ data class ColumnDTO(
     val cells: List<Cell>,
     var visible: Boolean
 )
+
+interface AggregationHelper {
+    fun aggregate(cells : List<Cell>) : String
+}
