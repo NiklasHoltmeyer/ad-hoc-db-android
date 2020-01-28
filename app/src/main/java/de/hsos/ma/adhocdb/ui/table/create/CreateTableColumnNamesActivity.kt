@@ -11,6 +11,7 @@ import android.widget.Toast
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import de.hsos.ma.adhocdb.R
+import de.hsos.ma.adhocdb.TableAddColumn
 import de.hsos.ma.adhocdb.entities.Column
 import de.hsos.ma.adhocdb.entities.Table
 import de.hsos.ma.adhocdb.framework.persistence.database.TablesDatabase
@@ -25,7 +26,9 @@ class CreateTableColumnNamesActivity :
     private var tableName = ""
     private var tableDescription = ""
     private var imageURL = ""
-    private var textViews: ArrayList<TextInputEditText> = ArrayList<TextInputEditText>()
+    //private var textViews: ArrayList<TextInputEditText> = ArrayList<TextInputEditText>()
+    private var columnViews: ArrayList<TableAddColumn> = ArrayList<TableAddColumn>()
+    //TableAddColumn
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +51,12 @@ class CreateTableColumnNamesActivity :
         val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
         for (i in 1..columnCount) {
+            //1312
+            val view = TableAddColumn(this,"Column $i")
+            columnViews.add(view)
+            container.addView(view)
+
+            /*
             val view = inflater.inflate(R.layout.view_input, LinearLayout(this))
             val textInputLayout = view.findViewById<TextInputLayout>(R.id.textInputLayoutTableName)
             val textView = view.findViewById<TextInputEditText>(R.id.textInputName)
@@ -58,6 +67,7 @@ class CreateTableColumnNamesActivity :
             textViews.add(textView)
 
             container.addView(view)
+            */
         }
     }
 
@@ -106,6 +116,38 @@ class CreateTableColumnNamesActivity :
     fun saveTableColNames(view: View) {
         Log.e("ERROR", "saveTableColNames")
 
+        for (textView in this.columnViews) {
+            var input = textView.getTextInput()
+            if (input == null || input.isEmpty()) {
+                Toast.makeText(this, "Please Fill each Col. Name", Toast.LENGTH_SHORT).show()
+                return
+            }
+        }
+
+        Log.e("ERROR", "Counter: ${this.columnViews.size}")
+
+        var table = createTable(this.tableName, this.tableDescription, this.imageURL)
+
+        if (table == null) {
+            Toast.makeText(this, "ERROR: Could not Create Table", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        launch {
+            val db = TablesDatabase(applicationContext).tableDao()
+            val tableId = db.insert(table)
+
+            for (textView in columnViews) {
+                val colName = textView.getTextInput()
+                val column = Column(tableId, colName)
+                db.insert(column)
+            }
+
+            onSuccessCallback(tableId)
+        }
+
+
+        /*
         for (textView in this.textViews) {
             if (textView.text == null || textView!!.text!!.isEmpty()) {
                 Toast.makeText(this, "Please Fill each Col. Name", Toast.LENGTH_SHORT).show()
@@ -133,7 +175,7 @@ class CreateTableColumnNamesActivity :
             }
 
             onSuccessCallback(tableId)
-        }
+        }*/
 
     }
 }

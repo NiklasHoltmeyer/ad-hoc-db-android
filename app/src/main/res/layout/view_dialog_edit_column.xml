@@ -6,9 +6,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="0dp"
         android:orientation="vertical"
-        android:padding="0dp"
-        android:layout_margin="0dp">
+        android:padding="0dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -18,14 +18,15 @@
             android:text="@string/edit_column_value"
             android:textColor="@color/colorText"
             android:textStyle="bold|italic" />
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/change_column_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="0px"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="0px"
-            android:layout_marginTop="0px"
             android:backgroundTint="@color/colorButtonPrimary"
             android:text="@string/change_column_name"
             android:textColor="@color/colorOnButtonPrimary" />
@@ -33,18 +34,39 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/colorPrimaryDark"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:alpha="0.35"/>
+            android:alpha="0.35"
+            android:background="@color/colorPrimaryDark" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/change_column_add"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="0px"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="0px"
+            android:backgroundTint="@color/colorButtonSecondary"
+            android:text="@string/change_table_column_add"
+            android:textColor="@color/colorOnButtonPrimary" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:alpha="0.35"
+            android:background="@color/colorPrimaryDark" />
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/change_column_delete"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="0px"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="0px"
-            android:layout_marginTop="0px"
             android:backgroundTint="@color/colorOnButtonDanger"
             android:text="@string/delete_column"
             android:textColor="@color/colorOnButtonPrimary" />

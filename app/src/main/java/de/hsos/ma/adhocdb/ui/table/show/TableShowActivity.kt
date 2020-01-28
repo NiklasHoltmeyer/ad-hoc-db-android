@@ -175,12 +175,20 @@ class TableShowActivity :
             deleteColumnWarningDialog(col)
         }
 
+        customView.findViewById<MaterialButton>(R.id.change_column_add).setOnClickListener {
+            addColumnDialog(table)
+        }
+
         customView.findViewById<MaterialButton>(R.id.change_column_name).setOnClickListener{
             changeColNameDialog(col.col)
         }
 
 
         dialog.show()
+    }
+
+    private fun addColumnDialog(table: Table?) {
+        //1312
     }
 
     private fun deleteColumnWarningDialog(col: ColumnDTO) {

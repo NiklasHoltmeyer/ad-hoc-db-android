@@ -20,14 +20,13 @@ import androidx.room.PrimaryKey
             onDelete = ForeignKey.CASCADE
         )
     ],
-    indices = [Index(value=["id", "tableId"]), Index(value=["id", "tableId", "columnId"])]
+    indices = [Index(value=["id", "tableId"]), Index(value=["id", "tableId", "columnId"], unique = true)]
 )
 data class Cell(
     val tableId: Long,
     val columnId: Long,
-
-    val value: String,
-    val type: String
+    var value: String,
+    var type: String
 
 
 ) {

@@ -50,4 +50,5 @@
     <string name="editRowDelete">Delete Table</string>
     <string name="editRowDeleteWarning">Delete Row?</string>
     <string name="editColumnName">Change Column Name</string>
+    <string name="change_table_column_add">Add additional Column</string>
 </resources>

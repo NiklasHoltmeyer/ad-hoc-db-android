@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "3f883a811a6237bb7d59ac162c707e26",
+    "identityHash": "2679e2f86f9958442e08f2a360ece29d",
     "entities": [
       {
         "tableName": "tables",
@@ -149,13 +149,13 @@
           },
           {
             "name": "index_cells_id_tableId_columnId",
-            "unique": false,
+            "unique": true,
             "columnNames": [
               "id",
               "tableId",
               "columnId"
             ],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_cells_id_tableId_columnId` ON `${TABLE_NAME}` (`id`, `tableId`, `columnId`)"
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_cells_id_tableId_columnId` ON `${TABLE_NAME}` (`id`, `tableId`, `columnId`)"
           }
         ],
         "foreignKeys": [
@@ -187,7 +187,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '3f883a811a6237bb7d59ac162c707e26')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2679e2f86f9958442e08f2a360ece29d')"
     ]
   }
 }

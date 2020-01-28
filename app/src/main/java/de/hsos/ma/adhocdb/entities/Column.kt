@@ -16,7 +16,7 @@ import androidx.room.PrimaryKey
 )
 data class Column(
     val tableId: Long,
-    val name: String
+    var name: String
 ) {
     @PrimaryKey(autoGenerate = true) var id: Long = 0
     override fun toString(): String {
