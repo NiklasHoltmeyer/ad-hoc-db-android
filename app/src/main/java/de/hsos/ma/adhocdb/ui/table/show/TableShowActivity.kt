@@ -16,7 +16,7 @@ import com.afollestad.materialdialogs.list.isItemChecked
 import com.afollestad.materialdialogs.list.listItemsMultiChoice
 import com.google.android.material.button.MaterialButton
 import de.hsos.ma.adhocdb.R
-import de.hsos.ma.adhocdb.UnitChooserView
+import de.hsos.ma.adhocdb.ui.table.view.unit.UnitChooserView
 import de.hsos.ma.adhocdb.entities.Cell
 import de.hsos.ma.adhocdb.entities.Column
 import de.hsos.ma.adhocdb.entities.Table
@@ -25,8 +25,9 @@ import de.hsos.ma.adhocdb.ui.BaseCoroutineAppCompactActivity
 import de.hsos.ma.adhocdb.ui.INTENTCONSTS
 import de.hsos.ma.adhocdb.ui.UNITCONSTS
 import de.hsos.ma.adhocdb.ui.table.home.TableAddDataSet
-import de.hsos.ma.adhocdb.ui.table.view.CellView
-import de.hsos.ma.adhocdb.ui.table.view.OnClickListener
+import de.hsos.ma.adhocdb.ui.table.view.cell.CellView
+import de.hsos.ma.adhocdb.ui.table.view.cell.OnClickListener
+import de.hsos.ma.adhocdb.ui.table.view.column.TableAddColumn
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -92,7 +93,8 @@ class TableShowActivity :
             dividerLeft = false,
             dividerTop = false,
             dividerBottom = true,
-            listener = object : OnClickListener {
+            listener = object :
+                OnClickListener {
                 override fun onLongItemClick(posX: Int?, posY: Int?): Boolean {
                     editColumnDialog(col)
                     return true
@@ -109,6 +111,19 @@ class TableShowActivity :
         }
 
         container.addView(columnLayout)
+    }
+
+    private fun addColumn(table: Table, colName: String, colSize: Int) {
+        launch{
+            val db = TablesDatabase(applicationContext).tableDao()
+            val colId = db.insert(Column(table.id, colName))
+
+            for(i in 1 .. colSize){
+                db.insert(Cell(table.id, colId, "", ""))
+            }
+
+            reloadView()
+        }
     }
 
     private fun deleteColumn(col: ColumnDTO) {
@@ -176,7 +191,7 @@ class TableShowActivity :
         }
 
         customView.findViewById<MaterialButton>(R.id.change_column_add).setOnClickListener {
-            addColumnDialog(table)
+            addColumnDialog(table, col.cells.size)
         }
 
         customView.findViewById<MaterialButton>(R.id.change_column_name).setOnClickListener{
@@ -187,8 +202,17 @@ class TableShowActivity :
         dialog.show()
     }
 
-    private fun addColumnDialog(table: Table?) {
-        //1312
+    private fun addColumnDialog(table: Table?, colSize: Int) {
+        val view: TableAddColumn = TableAddColumn(this, "Ad Column")
+        MaterialDialog(this)
+            .title(R.string.addColumn)
+            .show {
+                customView(view = view)
+                negativeButton(R.string.cancel)
+                positiveButton(R.string.submit){
+                    if(table != null) addColumn(table!!, view.getTextInput(), colSize)
+                }
+            }
     }
 
     private fun deleteColumnWarningDialog(col: ColumnDTO) {
@@ -231,7 +255,10 @@ class TableShowActivity :
     }
 
     private fun changeCellType(cell: Cell) {
-        val chooserView = UnitChooserView(this, R.array.units_array)
+        val chooserView = UnitChooserView(
+            this,
+            R.array.units_array
+        )
         chooserView.layoutParams = ConstraintLayout.LayoutParams(
             ConstraintLayout.LayoutParams.WRAP_CONTENT,
             ConstraintLayout.LayoutParams.WRAP_CONTENT
@@ -302,7 +329,8 @@ class TableShowActivity :
             dividerLeft = false,
             dividerTop = false,
             dividerBottom = false,
-            listener = object : OnClickListener {
+            listener = object :
+                OnClickListener {
                 override fun onLongItemClick(posX: Int?, posY: Int?): Boolean {
                     changeCellDialog(cell)
                     return true

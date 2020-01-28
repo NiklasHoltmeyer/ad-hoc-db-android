@@ -8,10 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 import de.hsos.ma.adhocdb.R
-import de.hsos.ma.adhocdb.TableAddColumn
+import de.hsos.ma.adhocdb.ui.table.view.column.TableAddColumn
 import de.hsos.ma.adhocdb.entities.Column
 import de.hsos.ma.adhocdb.entities.Table
 import de.hsos.ma.adhocdb.framework.persistence.database.TablesDatabase
@@ -52,7 +50,10 @@ class CreateTableColumnNamesActivity :
 
         for (i in 1..columnCount) {
             //1312
-            val view = TableAddColumn(this,"Column $i")
+            val view = TableAddColumn(
+                this,
+                "Column $i"
+            )
             columnViews.add(view)
             container.addView(view)
 
