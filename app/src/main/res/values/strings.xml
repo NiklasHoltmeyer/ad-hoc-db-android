@@ -56,4 +56,8 @@
     <string name="change_table_add_dataset">Add Row</string>
     <string name="change_table_add_column">Add Column</string>
     <string name="add">Add</string>
+    <string name="function">Functions</string>
+    <string name="func_sum">Sum</string>
+    <string name="func_avg">Avg</string>
+    <string name="aggregationTitle">Aggregation</string>
 </resources>

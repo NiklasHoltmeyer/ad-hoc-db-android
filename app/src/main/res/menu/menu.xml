@@ -18,7 +18,14 @@
         android:visible="true"
         />
     <item android:id="@+id/action_search"
-        android:icon="@drawable/ic_search_white_24dp"
+        android:icon="@drawable/ic_filter_list_black_24dp"
+        android:title="@string/menu_search"
+        app:showAsAction="ifRoom|collapseActionView"
+        android:iconTint="@color/colorOnAccent"
+        android:visible="false"
+        />
+    <item android:id="@+id/action_func"
+        android:icon="@drawable/ic_functions_black_24dp"
         android:title="@string/menu_search"
         app:showAsAction="ifRoom|collapseActionView"
         android:iconTint="@color/colorOnAccent"
