@@ -81,7 +81,7 @@
         <item name="android:textColor">@color/colorMenuText</item>
     </style>
 
-    <style name="Theme.MyApp" parent="Theme.AppCompat">
+    <style name="Theme.MyApp" parent="Theme.AppCompat.Light">
         <!-- DIALOG -->
         <item name="md_color_title">@color/colorPrimary</item>
         <item name="md_color_content">@color/colorPrimaryDark</item>
