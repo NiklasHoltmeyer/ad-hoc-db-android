@@ -7,7 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlin.coroutines.CoroutineContext
 
-abstract class BaseCoroutine (private val layoutRes: Int, private val pageTitle : String = "", private val showBackButton : Boolean = false) : CoroutineScope, AppCompatActivity() {
+abstract class BaseCoroutineAppCompactActivity (private val layoutRes: Int, private val pageTitle : String = "", private val showBackButton : Boolean = false) : CoroutineScope, AppCompatActivity() {
     private lateinit var job : Job
 
     override val coroutineContext: CoroutineContext
@@ -34,5 +34,10 @@ abstract class BaseCoroutine (private val layoutRes: Int, private val pageTitle 
     override fun onDestroy() {
         super.onDestroy()
         job.cancel()
+    }
+    protected inline fun calcDps(dps: Float): Int {
+        //Quelle: https://stackoverflow.com/a/5255256/5026265
+        val scale = applicationContext.resources.displayMetrics.density
+        return (dps * scale + 0.5f).toInt()
     }
 }

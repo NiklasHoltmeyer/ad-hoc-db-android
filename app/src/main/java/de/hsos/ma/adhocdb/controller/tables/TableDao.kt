@@ -18,6 +18,15 @@ interface TableDao{
     suspend fun delete(table: Table)
     @Query("SELECT * FROM TABLES")
     suspend fun getAll() : List<Table>
+
+    @Update
+    suspend fun update(cell: Cell)
+    @Delete
+    suspend fun delete(cell: Cell)
+
+    @Delete
+    suspend fun delete(column: Column)
+
     /*@Query("SELECT * FROM tables" +
                  " WHERE blabla")
     fun findTablesByBlabla(name: String) : List<TableEntity>*/
@@ -32,6 +41,9 @@ interface TableDao{
 
     @Insert
     suspend fun insert(column: Column): Long
+
+    @Update
+    suspend fun update(column: Column)
 
     @Insert
     suspend fun insert(cell: Cell): Long
@@ -48,4 +60,10 @@ interface TableDao{
 
     @Query("SELECT * FROM cells WHERE tableId=:tablId and columnId=:columnId")
     fun getCellsByTableIdandColumnId(tablId: String, columnId: String): List<Cell>
+
+    @Query("SELECT * FROM cells WHERE Id=:id and tableId=:tableId")
+    fun getCellsByIdandTableId(id: String, tableId: String): List<Cell>
+
+    @Query("SELECT * FROM cells")
+    suspend fun getAllCells() : List<Cell>
 }
