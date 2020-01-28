@@ -1,4 +1,4 @@
-package de.hsos.ma.adhocdb.ui.tablelist
+package de.hsos.ma.adhocdb.ui.table.view.recycler
 
 import de.hsos.ma.adhocdb.entities.Table
 

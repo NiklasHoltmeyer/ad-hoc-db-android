@@ -1,13 +1,13 @@
-package de.hsos.ma.adhocdb.ui.settings
+package de.hsos.ma.adhocdb.ui.table.view.recycler
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import de.hsos.ma.adhocdb.R
-import kotlinx.android.synthetic.main.layout_table_list_item.view.*
+import kotlinx.android.synthetic.main.view_table_list_item.view.*
 import de.hsos.ma.adhocdb.entities.Table
-import de.hsos.ma.adhocdb.ui.tablelist.OnTableClickListener
+import de.hsos.ma.adhocdb.ui.table.view.recycler.OnTableClickListener
 
 class TableViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
 

@@ -1,0 +1,408 @@
+package de.hsos.ma.adhocdb.ui.table.show
+
+import android.content.Intent
+import android.os.Bundle
+import android.text.InputType
+import android.util.Log
+import android.view.Menu
+import android.widget.LinearLayout
+import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.customview.customView
+import com.afollestad.materialdialogs.customview.getCustomView
+import com.afollestad.materialdialogs.input.input
+import com.afollestad.materialdialogs.list.isItemChecked
+import com.afollestad.materialdialogs.list.listItemsMultiChoice
+import com.google.android.material.button.MaterialButton
+import de.hsos.ma.adhocdb.R
+import de.hsos.ma.adhocdb.UnitChooserView
+import de.hsos.ma.adhocdb.entities.Cell
+import de.hsos.ma.adhocdb.entities.Column
+import de.hsos.ma.adhocdb.entities.Table
+import de.hsos.ma.adhocdb.framework.persistence.database.TablesDatabase
+import de.hsos.ma.adhocdb.ui.BaseCoroutineAppCompactActivity
+import de.hsos.ma.adhocdb.ui.INTENTCONSTS
+import de.hsos.ma.adhocdb.ui.UNITCONSTS
+import de.hsos.ma.adhocdb.ui.table.home.TableAddDataSet
+import de.hsos.ma.adhocdb.ui.table.view.CellView
+import de.hsos.ma.adhocdb.ui.table.view.OnClickListener
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+
+class TableShowActivity :
+    BaseCoroutineAppCompactActivity(R.layout.activity_table_show, "Table View", true){
+    private var table: Table? = null
+    private var columns: List<Column> = emptyList()
+    private var colDTOs: List<ColumnDTO> = emptyList()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        loadIntentExtras()
+    }
+
+    private fun drawTable() {
+        if (table == null) {
+            Toast.makeText(this, "ERROR: Table Nullpointer", Toast.LENGTH_LONG)
+            return
+        }
+
+        val container = findViewById<LinearLayout>(R.id.linearLayout)
+        container.removeAllViews()
+
+        val cellLayoutParams = ConstraintLayout.LayoutParams(
+            ConstraintLayout.LayoutParams.WRAP_CONTENT,
+            ConstraintLayout.LayoutParams.WRAP_CONTENT
+        )
+
+        val columnLayoutParams = ConstraintLayout.LayoutParams(
+            ConstraintLayout.LayoutParams.WRAP_CONTENT,
+            ConstraintLayout.LayoutParams.WRAP_CONTENT
+        )
+
+        columnLayoutParams.width = calcDps(150f)
+
+        for ((x, col) in this.colDTOs.withIndex()) {
+            if (col.visible) drawColumn(columnLayoutParams, col, x, cellLayoutParams, container)
+        }
+    }
+
+    private fun drawColumn(
+        columnLayoutParams: ConstraintLayout.LayoutParams,
+        col: ColumnDTO,
+        x: Int,
+        cellLayoutParams: ConstraintLayout.LayoutParams,
+        container: LinearLayout
+    ) {
+        val columnLayout = LinearLayout(this)
+
+        columnLayout.apply {
+            orientation = LinearLayout.VERTICAL
+            layoutParams = columnLayoutParams
+        }
+
+        val headerCell = CellView(
+            context = this,
+            value = col.col.name,
+            unit = "",
+            pos_x = x,
+            pos_y = 0,
+            dividerRight = (colDTOs.size != x),
+            dividerLeft = false,
+            dividerTop = false,
+            dividerBottom = true,
+            listener = object : OnClickListener {
+                override fun onLongItemClick(posX: Int?, posY: Int?): Boolean {
+                    editColumnDialog(col)
+                    return true
+                }
+
+            }
+        )
+
+        headerCell.layoutParams = cellLayoutParams
+        columnLayout.addView(headerCell)
+
+        for ((y, cell) in col.cells.withIndex()) {
+            drawCell(col, cell, x, y, cellLayoutParams, columnLayout)
+        }
+
+        container.addView(columnLayout)
+    }
+
+    private fun deleteColumn(col: ColumnDTO) {
+        launch{
+            val db = TablesDatabase(applicationContext).tableDao()
+            for (cell in col.cells) {
+                db.delete(cell)
+            }
+            db.delete(col.col)
+            reloadView()
+        }
+    }
+
+    private fun reloadView(){
+        launch(Dispatchers.Main){
+            recreate()
+        }
+    }
+
+    private fun updateColumn(col: Column) {
+        launch {
+            val db = TablesDatabase(applicationContext).tableDao()
+            db.update(col)
+            reloadView()
+        }
+    }
+
+    private fun updateCell(cell: Cell) {
+        launch {
+            val db = TablesDatabase(applicationContext).tableDao()
+            db.update(cell)
+            reloadView()
+        }
+    }
+
+    private fun deleteRow(cell: Cell){
+        launch{
+            val db =  TablesDatabase(applicationContext).tableDao()
+            val tableID = table?.id.toString()
+
+            Log.e("ERRROR", "Cell ${cell.toString()}")
+            Log.e("ERRROR", "Table ${tableID.toString()}")
+
+
+/*            db.getCellsByIdandTableId(tableId = tableID, id = cell.id.toString()).forEach{
+                Log.e("ERRROR", "${it.toString()}")
+                //db.delete(it)
+            }*/
+
+            for (cell in db.getAllCells()) {
+                Log.e("ERRROR", "CELL: ${cell.toString()}")
+
+            }
+            //reloadView()
+        }
+    }
+
+    private fun editColumnDialog(col: ColumnDTO) {
+        val dialog = MaterialDialog(this@TableShowActivity)
+            .customView(R.layout.view_dialog_edit_column, scrollable = true)
+        val customView = dialog.getCustomView()
+
+        customView.findViewById<MaterialButton>(R.id.change_column_delete).setOnClickListener {
+            deleteColumnWarningDialog(col)
+        }
+
+        customView.findViewById<MaterialButton>(R.id.change_column_name).setOnClickListener{
+            changeColNameDialog(col.col)
+        }
+
+
+        dialog.show()
+    }
+
+    private fun deleteColumnWarningDialog(col: ColumnDTO) {
+        MaterialDialog(this@TableShowActivity).show {
+            positiveButton(R.string.submit) {
+                deleteColumn(col)
+            }
+            negativeButton(R.string.cancel)
+            title(R.string.delte_title)
+            message(R.string.delete_column_dialog_body)
+        }
+    }
+
+    private fun changeColNameDialog(col: Column){
+        val type = InputType.TYPE_CLASS_TEXT
+        MaterialDialog(this)
+            .title(R.string.editColumnName)
+            .show {
+                positiveButton(R.string.submit)
+                negativeButton(R.string.cancel)
+                input(allowEmpty = false, inputType = type, prefill = col.name) { dialog, text ->
+                    col.name = text.toString()
+                    updateColumn(col)
+                }
+            }
+    }
+
+    private fun changeCellValue(cell: Cell) {
+        val type = InputType.TYPE_CLASS_TEXT
+        MaterialDialog(this)
+            .title(R.string.editCellValue)
+            .show {
+                positiveButton(R.string.submit)
+                negativeButton(R.string.cancel)
+                input(allowEmpty = false, inputType = type, prefill = cell.value) { dialog, text ->
+                    cell.value = text.toString()
+                    updateCell(cell)
+                }
+            }
+    }
+
+    private fun changeCellType(cell: Cell) {
+        val chooserView = UnitChooserView(this, R.array.units_array)
+        chooserView.layoutParams = ConstraintLayout.LayoutParams(
+            ConstraintLayout.LayoutParams.WRAP_CONTENT,
+            ConstraintLayout.LayoutParams.WRAP_CONTENT
+        )
+
+        MaterialDialog(this)
+            .title(R.string.editCellType)
+            .show {
+                positiveButton(R.string.submit){
+                    val spinnerValue = chooserView.getSpinnerValue()
+                    val type = UNITCONSTS.UNITS[spinnerValue].orEmpty()
+                    cell.type = type
+                    updateCell(cell)
+                }
+                negativeButton(R.string.cancel)
+                customView(view = chooserView)
+            }
+    }
+
+    private fun changeCellDialog(cell: Cell) {
+        val dialog = MaterialDialog(this@TableShowActivity)
+            .customView(R.layout.view_dialog_edit_cell, scrollable = true)
+        val customView = dialog.getCustomView()
+
+        customView.findViewById<MaterialButton>(R.id.change_cell_value).setOnClickListener {
+            changeCellValue(cell)
+        }
+
+        customView.findViewById<MaterialButton>(R.id.change_cell_type).setOnClickListener {
+            changeCellType(cell)
+        }
+
+        customView.findViewById<MaterialButton>(R.id.chang_row_delete).setOnClickListener {
+            changeRowDelete(cell)
+        }
+
+        dialog.show()
+
+    }
+
+    private fun changeRowDelete(cell: Cell) {
+        MaterialDialog(this)
+            .title(R.string.editRowDelete)
+            .show {
+                message(R.string.editRowDeleteWarning)
+                positiveButton(R.string.submit) {
+                    deleteRow(cell)
+                }
+                negativeButton(R.string.cancel)
+            }
+    }
+
+    private fun drawCell(
+        col: ColumnDTO,
+        cell: Cell,
+        x: Int,
+        y: Int,
+        cellLayoutParams: ConstraintLayout.LayoutParams,
+        columnLayout: LinearLayout
+    ) {
+        val cellView = CellView(
+            context = this,
+            value = cell.value,
+            unit = cell.type,
+            pos_x = x,
+            pos_y = y,
+            dividerRight = (x < 0),
+            dividerLeft = false,
+            dividerTop = false,
+            dividerBottom = false,
+            listener = object : OnClickListener {
+                override fun onLongItemClick(posX: Int?, posY: Int?): Boolean {
+                    changeCellDialog(cell)
+                    return true
+                }
+
+            }
+        )
+        cellView.layoutParams = cellLayoutParams
+        columnLayout.addView(cellView)
+    }
+
+    private fun loadIntentExtras() {
+        if (!intent.hasExtra(INTENTCONSTS.itemId)) {
+            Toast.makeText(this, "Couldnt Retriev TableID", Toast.LENGTH_LONG)
+            return
+        }
+
+        val tableId = intent.getLongExtra(INTENTCONSTS.itemId, -1)
+        if (tableId < 0) {
+            Toast.makeText(this, "Couldnt Retriev TableID", Toast.LENGTH_LONG)
+            return
+        }
+
+        loadColumns(tableId)
+    }
+
+    private fun loadColumns(tableId: Long) {
+        launch {
+            val db = TablesDatabase(applicationContext).tableDao()
+
+            val tableId: String = tableId.toString()
+            val table = db.getTableById(tableId)
+            val columns = db.getColumnsByTableId(tableId)
+
+
+            val colDTOs = columns.map {
+                ColumnDTO(
+                    it,
+                    db.getCellsByTableIdandColumnId(tableId, it.id.toString()),
+                    true
+                )
+            }.toList()
+
+            callBack(table, columns, colDTOs)
+        }
+    }
+
+    private fun callBack(
+        table: Table?,
+        columns: List<Column>,
+        colDTOs: List<ColumnDTO>
+    ) {
+        this.table = table
+        this.columns = columns
+        this.colDTOs = colDTOs
+
+        launch(Dispatchers.Main) {
+            drawTable()
+        }
+
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        menu.findItem(R.id.action_search_with_query).isVisible = false
+        var searchView = menu.findItem(R.id.action_search)
+            .setOnMenuItemClickListener { filterTable() }
+        searchView.isVisible = true
+
+        menu.findItem(R.id.action_add)
+            .setOnMenuItemClickListener { addDataSet() }
+        return true
+    }
+
+    private fun filterTable(): Boolean {
+        val myItems = this.colDTOs.map { it.col.name }.toList()
+
+        MaterialDialog(this).show {
+            listItemsMultiChoice(items = myItems)
+            negativeButton(R.string.cancel)
+            positiveButton(R.string.submit) {
+                for (i in colDTOs.indices) {
+                    colDTOs[i].visible = isItemChecked(i)
+                }
+                drawTable()
+            }
+        }
+        return true
+    }
+
+    private fun addDataSet(): Boolean {
+        val tableID = table?.id
+        if (tableID == null) {
+            Toast.makeText(this, "Table ID NPE", Toast.LENGTH_LONG)
+            return true
+        } else {
+            val intent = Intent(this@TableShowActivity, TableAddDataSet::class.java)
+            intent.putExtra(INTENTCONSTS.itemId, tableID)
+            startActivity(intent)
+        }
+        return true
+    }
+
+
+}
+
+data class ColumnDTO(
+    val col: Column,
+    val cells: List<Cell>,
+    var visible: Boolean
+)

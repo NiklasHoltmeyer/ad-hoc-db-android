@@ -1,4 +1,4 @@
-package de.hsos.ma.adhocdb.ui.createtable
+package de.hsos.ma.adhocdb.ui.table.create
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,10 +10,10 @@ import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
 import com.google.android.material.textfield.TextInputEditText
 import de.hsos.ma.adhocdb.R
-import de.hsos.ma.adhocdb.ui.BaseCoroutine
-import de.hsos.ma.adhocdb.ui.CONSTS
+import de.hsos.ma.adhocdb.ui.BaseCoroutineAppCompactActivity
+import de.hsos.ma.adhocdb.ui.INTENTCONSTS
 
-class CreateTableActivity : BaseCoroutine(R.layout.activity_create_table, "Create Table", true) {
+class CreateTableActivity : BaseCoroutineAppCompactActivity(R.layout.activity_create_table, "Create Table", true) {
     private var columnCount = -1
     private var tableName = ""
     private var tableDescription = ""
@@ -72,11 +72,11 @@ class CreateTableActivity : BaseCoroutine(R.layout.activity_create_table, "Creat
 
     private fun onSuccessCallback(){
         val intent = Intent(this, CreateTableColumnNamesActivity::class.java)
-        intent.putExtra(CONSTS.columnCount, columnCount)
+        intent.putExtra(INTENTCONSTS.columnCount, columnCount)
 
-        intent.putExtra(CONSTS.tableName, tableName)
-        intent.putExtra(CONSTS.tableDescription, tableDescription)
-        intent.putExtra(CONSTS.imageURL, imageURL)
+        intent.putExtra(INTENTCONSTS.tableName, tableName)
+        intent.putExtra(INTENTCONSTS.tableDescription, tableDescription)
+        intent.putExtra(INTENTCONSTS.imageURL, imageURL)
         startActivity(intent)
     }
 

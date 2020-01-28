@@ -1,0 +1,5 @@
+<resources>
+    <declare-styleable name="UnitChooserView">
+        <attr name="array" format="reference" />
+    </declare-styleable>
+</resources>

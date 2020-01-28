@@ -1,4 +1,4 @@
-package de.hsos.ma.adhocdb.ui.homescreen
+package de.hsos.ma.adhocdb.ui.table.home
 
 import android.content.Intent
 import android.os.Bundle
@@ -17,18 +17,19 @@ import de.hsos.ma.adhocdb.R
 import de.hsos.ma.adhocdb.entities.Table
 import de.hsos.ma.adhocdb.framework.persistence.database.TablesDatabase
 import de.hsos.ma.adhocdb.framework.persistence.tables.DataSource
-import de.hsos.ma.adhocdb.ui.BaseCoroutine
-import de.hsos.ma.adhocdb.ui.CONSTS
-import de.hsos.ma.adhocdb.ui.TableShow.TableShowActivity
-import de.hsos.ma.adhocdb.ui.createtable.CreateTableActivity
-import de.hsos.ma.adhocdb.ui.tablelist.OnTableClickListener
-import de.hsos.ma.adhocdb.ui.tablelist.TableRecyclerAdapter
-import de.hsos.ma.adhocdb.ui.tablelist.TopSpacingItemDecoration
+import de.hsos.ma.adhocdb.ui.BaseCoroutineAppCompactActivity
+import de.hsos.ma.adhocdb.ui.INTENTCONSTS
+import de.hsos.ma.adhocdb.ui.table.show.TableShowActivity
+import de.hsos.ma.adhocdb.ui.table.create.CreateTableActivity
+import de.hsos.ma.adhocdb.ui.table.view.recycler.OnTableClickListener
+import de.hsos.ma.adhocdb.ui.table.view.recycler.TableRecyclerAdapter
+import de.hsos.ma.adhocdb.ui.table.view.recycler.TopSpacingItemDecoration
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class MainActivity : BaseCoroutine(R.layout.activity_main, "Table Overview"), OnTableClickListener {
+class TableHomeActivity : BaseCoroutineAppCompactActivity(R.layout.activity_main, "Table Overview"),
+    OnTableClickListener {
     private lateinit var tableAdapter: TableRecyclerAdapter
     var tablesFilterable: MutableList<Table> = ArrayList()
     var tablesFullList: MutableList<Table> = ArrayList()
@@ -45,11 +46,17 @@ class MainActivity : BaseCoroutine(R.layout.activity_main, "Table Overview"), On
 
             launch(Dispatchers.Main) {
                 recycler_view.apply {
-                    layoutManager = LinearLayoutManager(this@MainActivity)
+                    layoutManager = LinearLayoutManager(this@TableHomeActivity)
                     val topSpacingDecorator =
-                        TopSpacingItemDecoration(30)
+                        TopSpacingItemDecoration(
+                            30
+                        )
                     addItemDecoration(topSpacingDecorator)
-                    tableAdapter = TableRecyclerAdapter(this@MainActivity, tablesFilterable)
+                    tableAdapter =
+                        TableRecyclerAdapter(
+                            this@TableHomeActivity,
+                            tablesFilterable
+                        )
                     adapter = tableAdapter
                 }
             }
@@ -64,13 +71,13 @@ class MainActivity : BaseCoroutine(R.layout.activity_main, "Table Overview"), On
         }
         val intent = Intent(this, TableShowActivity::class.java)
         val item = tablesFilterable[pos]
-        intent.putExtra(CONSTS.itemId, item.id)
+        intent.putExtra(INTENTCONSTS.itemId, item.id)
         startActivity(intent)
     }
 
     override fun onItemLongClick(item: Table, pos: Int): Boolean {
-        val dialog = MaterialDialog(this@MainActivity)
-            .customView(R.layout.view_edit_table, scrollable = true)
+        val dialog = MaterialDialog(this@TableHomeActivity)
+            .customView(R.layout.view_dialog_edit_table, scrollable = true)
         dialog.cornerRadius(res = R.dimen.my_corner_radius)
 
         val dialogView = dialog.getCustomView()

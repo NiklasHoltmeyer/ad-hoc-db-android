@@ -1,4 +1,4 @@
-package de.hsos.ma.adhocdb.ui.createtable
+package de.hsos.ma.adhocdb.ui.table.create
 
 import android.content.Context
 import android.content.Intent
@@ -14,14 +14,13 @@ import de.hsos.ma.adhocdb.R
 import de.hsos.ma.adhocdb.entities.Column
 import de.hsos.ma.adhocdb.entities.Table
 import de.hsos.ma.adhocdb.framework.persistence.database.TablesDatabase
-import de.hsos.ma.adhocdb.ui.BaseCoroutine
-import de.hsos.ma.adhocdb.ui.CONSTS
-import de.hsos.ma.adhocdb.ui.TableShow.TableShowActivity
-import de.hsos.ma.adhocdb.ui.homescreen.MainActivity
+import de.hsos.ma.adhocdb.ui.BaseCoroutineAppCompactActivity
+import de.hsos.ma.adhocdb.ui.INTENTCONSTS
+import de.hsos.ma.adhocdb.ui.table.show.TableShowActivity
 import kotlinx.coroutines.launch
 
 class CreateTableColumnNamesActivity :
-    BaseCoroutine(R.layout.activity_create_table, "Set Column Names", true) {
+    BaseCoroutineAppCompactActivity(R.layout.activity_create_table, "Set Column Names", true) {
     private var columnCount: Int = -1//-1
     private var tableName = ""
     private var tableDescription = ""
@@ -76,20 +75,20 @@ class CreateTableColumnNamesActivity :
 
     private fun loadIntents() {
         Log.e("ERROR", "LOAD")
-        if (intent.hasExtra(CONSTS.tableName)) {
-            tableName = intent.getStringExtra(CONSTS.tableName)
+        if (intent.hasExtra(INTENTCONSTS.tableName)) {
+            tableName = intent.getStringExtra(INTENTCONSTS.tableName)
         }
 
-        if (intent.hasExtra(CONSTS.tableDescription)) {
-            tableDescription = intent.getStringExtra(CONSTS.tableDescription)
+        if (intent.hasExtra(INTENTCONSTS.tableDescription)) {
+            tableDescription = intent.getStringExtra(INTENTCONSTS.tableDescription)
         }
 
-        if (intent.hasExtra(CONSTS.imageURL)) {
-            imageURL = intent.getStringExtra(CONSTS.imageURL)
+        if (intent.hasExtra(INTENTCONSTS.imageURL)) {
+            imageURL = intent.getStringExtra(INTENTCONSTS.imageURL)
         }
 
-        if (intent.hasExtra(CONSTS.columnCount)) {
-            columnCount = intent.getIntExtra(CONSTS.columnCount, -1)
+        if (intent.hasExtra(INTENTCONSTS.columnCount)) {
+            columnCount = intent.getIntExtra(INTENTCONSTS.columnCount, -1)
             if (columnCount >= 0) {
                 Log.e("ERROR", "Count $columnCount")
             } else {
@@ -98,15 +97,9 @@ class CreateTableColumnNamesActivity :
         }
     }
 
-    private inline fun calcDps(dps: Float): Int {
-        //Quelle: https://stackoverflow.com/a/5255256/5026265
-        val scale = applicationContext.resources.displayMetrics.density
-        return (dps * scale + 0.5f).toInt()
-    }
-
     private fun onSuccessCallback(tableId: Long) {
         val intent = Intent(this, TableShowActivity::class.java)
-        intent.putExtra(CONSTS.itemId, tableId)
+        intent.putExtra(INTENTCONSTS.itemId, tableId)
         startActivity(intent)
     }
 

@@ -16,34 +16,25 @@
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory"
         tools:targetApi="p">
-        <activity android:name=".ui.TableShow.TableAddDataSet"></activity>
+        <activity android:name=".ui.table.home.TableAddDataSet"></activity>
         <activity
-            android:name=".ui.createtable.CreateTableColumnNamesActivity"
-            android:parentActivityName=".ui.homescreen.MainActivity"></activity>
+            android:name=".ui.table.create.CreateTableColumnNamesActivity"
+            android:parentActivityName=".ui.table.home.TableHomeActivity"></activity>
         <activity
-            android:name=".ui.createtable.CreateTableActivity"
-            android:parentActivityName=".ui.homescreen.MainActivity"></activity>
+            android:name=".ui.table.create.CreateTableActivity"
+            android:parentActivityName=".ui.table.home.TableHomeActivity"></activity>
+        <!--<activity
+            android:name=".ui.homescreen.delete"
+            android:parentActivityName=".ui.table.home.TableHomeActivity"/>-->
         <activity
-            android:name=".ui.homescreen.TestTableActivity"
-            android:parentActivityName=".ui.homescreen.MainActivity">
-
-            <!--
+            android:name=".ui.table.show.TableShowActivity"
+            android:parentActivityName=".ui.table.home.TableHomeActivity" />
+        <activity
+            android:name=".ui.table.view.recycler.LayoutTableListItem"
+            android:parentActivityName=".ui.table.home.TableHomeActivity" />
+        <activity android:name=".ui.table.home.TableHomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            -->
-        </activity>
-        <activity
-            android:name=".ui.TableShow.TableShowActivity"
-            android:parentActivityName=".ui.homescreen.MainActivity" />
-        <activity
-            android:name=".ui.tablelist.LayoutTableListItem"
-            android:parentActivityName=".ui.homescreen.MainActivity" />
-        <activity android:name=".ui.homescreen.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

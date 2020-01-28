@@ -1,4 +1,4 @@
-package de.hsos.ma.adhocdb.ui.custom.compound.table.row
+package de.hsos.ma.adhocdb.ui.table.view
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -21,6 +21,7 @@ class CellView : ConstraintLayout {
     private var dividerLeft: Boolean = false
     private var dividerTop: Boolean = false
     private var dividerBottom: Boolean = false
+    private var listener: de.hsos.ma.adhocdb.ui.table.view.OnClickListener? = null
 
     constructor(context: Context) : super(context) {
         init(context, null)
@@ -39,7 +40,8 @@ class CellView : ConstraintLayout {
         dividerRight: Boolean,
         dividerLeft: Boolean,
         dividerTop: Boolean,
-        dividerBottom: Boolean
+        dividerBottom: Boolean,
+        listener: de.hsos.ma.adhocdb.ui.table.view.OnClickListener
     ) : super(context) {
         this.value = value
         this.unit = unit
@@ -49,6 +51,7 @@ class CellView : ConstraintLayout {
         this.dividerLeft = dividerLeft
         this.dividerTop = dividerTop
         this.dividerBottom = dividerBottom
+        this.listener = listener
         init(context, null)
     }
 
@@ -122,8 +125,11 @@ class CellView : ConstraintLayout {
     }
 
     private fun onLongClickCallBack(posX: Int?, posY: Int?): Boolean {
-        Log.e("ERROR", "POS_X $posX")
-        Log.e("ERROR", "POS_Y $posY")
-        return true
+        Log.e("ERROR", "CELLVIEW x:$posX y:$posY")
+        return this.listener?.onLongItemClick(posX, posY)?: true
     }
+}
+
+interface OnClickListener{
+    fun onLongItemClick(posX: Int?, posY: Int?): Boolean
 }
