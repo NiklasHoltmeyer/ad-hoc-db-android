@@ -34,6 +34,7 @@
         <item name="md_color_content">@color/colorPrimaryDark</item>
         <item name="md_color_button_text">@color/colorAccent</item>
         <item name="md_background_color">@color/colorBackground</item>
+        <!--<item name="colorSurface">@color/colorOnSurface</item>-->
 
 
 

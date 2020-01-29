@@ -7,8 +7,10 @@
     <color name="colorAccent">#4ecca3</color>
     <color name="colorWhite">#eeeeee</color>
     <color name="colorWhiteSecondary">#D0D0D0</color>
+    <color name="colorWhiteTernary">#B2B2B2</color>
+
     <color name="colorBlack">#111111</color>
-    <color name="colorOnSurface">@color/colorBlack</color>
+    <color name="colorOnSurface">@color/colorWhiteTernary</color>
     <color name="colorBackground">@color/colorWhite</color>
     <color name="colorError">#F44336</color>
 

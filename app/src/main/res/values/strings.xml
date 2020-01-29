@@ -32,10 +32,10 @@
     <string name="editTableName">Change Table Name</string>
     <string name="editTable_Description">Change Table Description</string>
     <string name="editTableDelete">Delete Table</string>
-    <string name="editTableDeleteWarning">Are you Sure you want to delete this Table?</string>
+    <string name="editTableDeleteWarning">Are you sure you want to delete this Table?</string>
     <string name="unit">Unit</string>
     <string name="create_table_clear_title">Clear Inputs</string>
-    <string name="create_table_clear_input_dialog_body">Are you Sure you want to Clear your Inputs?</string>
+    <string name="create_table_clear_input_dialog_body">Are you sure you want to Clear your Inputs?</string>
     <string name="edit_cell_value">Change Cell</string>
     <string name="change_cell_value">Change Value</string>
     <string name="change_cell_type">Change Type</string>
@@ -44,11 +44,11 @@
     <string name="change_column_name">Change Column Name</string>
     <string name="delete_column">Delete Column</string>
     <string name="delte_title">Delte Column</string>
-    <string name="delete_column_dialog_body">Column Delete Bla SUre? //TODO</string>
+    <string name="delete_column_dialog_body">Are you sure you want to delte this Column?</string>
     <string name="editCellValue">Change Cell Value</string>
     <string name="editCellType">Change Cell Type</string>
     <string name="editRowDelete">Delete Table</string>
-    <string name="editRowDeleteWarning">Delete Row?</string>
+    <string name="editRowDeleteWarning">Are you sure you want to delte this Row?</string>
     <string name="editColumnName">Change Column Name</string>
     <string name="change_table_column_add">Add additional Column</string>
     <string name="addColumn">Add Column</string>
