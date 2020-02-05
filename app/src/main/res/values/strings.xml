@@ -17,8 +17,8 @@
     <string name="create_table_dialog_header">CREATE TABLE HEADER DIALOG</string>
     <string name="create_table_dialog_body">BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY </string>
 
-    <string name="dialog_aggree">Aggree</string>
-    <string name="dialog_disaggree">Disaggree</string>
+    <string name="dialog_agree">Agree</string>
+    <string name="dialog_disagree">Disagree</string>
 
     <string name="table_cell_text_placeholder">--PLACEHOLDER--</string>
     <string name="table_list_image_description">Table Image</string>
@@ -43,12 +43,11 @@
     <string name="edit_column_value">Change Column</string>
     <string name="change_column_name">Change Column Name</string>
     <string name="delete_column">Delete Column</string>
-    <string name="delte_title">Delte Column</string>
-    <string name="delete_column_dialog_body">Are you sure you want to delte this Column?</string>
+    <string name="delete_column_dialog_body">Are you sure you want to delete this Column?</string>
     <string name="editCellValue">Change Cell Value</string>
     <string name="editCellType">Change Cell Type</string>
     <string name="editRowDelete">Delete Table</string>
-    <string name="editRowDeleteWarning">Are you sure you want to delte this Row?</string>
+    <string name="editRowDeleteWarning">Are you sure you want to delete this Row?</string>
     <string name="editColumnName">Change Column Name</string>
     <string name="change_table_column_add">Add additional Column</string>
     <string name="addColumn">Add Column</string>
@@ -58,6 +57,6 @@
     <string name="add">Add</string>
     <string name="function">Functions</string>
     <string name="func_sum">Sum</string>
-    <string name="func_avg">Avg</string>
+    <string name="func_avg">Average</string>
     <string name="aggregationTitle">Aggregation</string>
 </resources>
