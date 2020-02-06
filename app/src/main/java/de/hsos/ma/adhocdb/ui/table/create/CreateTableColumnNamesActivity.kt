@@ -9,9 +9,9 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
 import de.hsos.ma.adhocdb.R
-import de.hsos.ma.adhocdb.ui.table.view.column.TableAddColumn
-import de.hsos.ma.adhocdb.entities.Column
-import de.hsos.ma.adhocdb.entities.Table
+import de.hsos.ma.adhocdb.ui.table.view.table.column.TableAddColumn
+import de.hsos.ma.adhocdb.entities.table.Column
+import de.hsos.ma.adhocdb.entities.table.Table
 import de.hsos.ma.adhocdb.framework.persistence.database.TablesDatabase
 import de.hsos.ma.adhocdb.ui.BaseCoroutineBaseMenuAppCompactActivity
 import de.hsos.ma.adhocdb.ui.INTENTCONSTS
@@ -81,7 +81,11 @@ class CreateTableColumnNamesActivity :
             return null
         }
 
-        return Table(tableName, tableDescription, imageURL)
+        return Table(
+            tableName,
+            tableDescription,
+            imageURL
+        )
     }
 
     private fun loadIntents() {
@@ -140,7 +144,8 @@ class CreateTableColumnNamesActivity :
 
             for (textView in columnViews) {
                 val colName = textView.getTextInput()
-                val column = Column(tableId, colName)
+                val column =
+                    Column(tableId, colName)
                 db.insert(column)
             }
 

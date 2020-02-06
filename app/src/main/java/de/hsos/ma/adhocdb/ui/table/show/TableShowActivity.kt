@@ -17,19 +17,19 @@ import com.afollestad.materialdialogs.list.listItemsMultiChoice
 import com.google.android.material.button.MaterialButton
 import de.hsos.ma.adhocdb.AggregationDialogView
 import de.hsos.ma.adhocdb.R
-import de.hsos.ma.adhocdb.ui.table.view.unit.UnitChooserView
-import de.hsos.ma.adhocdb.entities.Cell
-import de.hsos.ma.adhocdb.entities.Column
-import de.hsos.ma.adhocdb.entities.Table
+import de.hsos.ma.adhocdb.ui.table.view.table.unit.UnitChooserView
+import de.hsos.ma.adhocdb.entities.table.Cell
+import de.hsos.ma.adhocdb.entities.table.Column
+import de.hsos.ma.adhocdb.entities.table.Table
 import de.hsos.ma.adhocdb.framework.persistence.database.TablesDatabase
 import de.hsos.ma.adhocdb.ui.BaseCoroutineBaseMenuAppCompactActivity
 import de.hsos.ma.adhocdb.ui.INTENTCONSTS
 import de.hsos.ma.adhocdb.ui.UNITCONSTS
 import de.hsos.ma.adhocdb.ui.table.home.TableAddDataSet
-import de.hsos.ma.adhocdb.ui.table.view.Table_Show_Add_Dialog
-import de.hsos.ma.adhocdb.ui.table.view.cell.CellView
-import de.hsos.ma.adhocdb.ui.table.view.cell.OnClickListener
-import de.hsos.ma.adhocdb.ui.table.view.column.TableAddColumn
+import de.hsos.ma.adhocdb.ui.table.view.table.Table_Show_Add_Dialog
+import de.hsos.ma.adhocdb.ui.table.view.table.cell.CellView
+import de.hsos.ma.adhocdb.ui.table.view.table.cell.OnClickListener
+import de.hsos.ma.adhocdb.ui.table.view.table.column.TableAddColumn
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -118,10 +118,23 @@ class TableShowActivity :
     private fun addColumn(table: Table, colName: String, colSize: Int) {
         launch{
             val db = TablesDatabase(applicationContext).tableDao()
-            val colId = db.insert(Column(table.id, colName))
+            val colId = db.insert(
+                Column(
+                    table.id,
+                    colName
+                )
+            )
 
             for(i in 1 .. colSize){
-                db.insert(Cell(table.id, colId, "", "", (i-1).toLong()))
+                db.insert(
+                    Cell(
+                        table.id,
+                        colId,
+                        "",
+                        "",
+                        (i - 1).toLong()
+                    )
+                )
             }
 
             reloadView()
@@ -392,7 +405,7 @@ class TableShowActivity :
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         super.onCreateOptionsMenu(menu)
         if(menu==null) return false
-        menuInflater.inflate(R.menu.menu, menu)
+        menuInflater.inflate(R.menu.filter_query_menu, menu)
         menu.findItem(R.id.action_search_with_query).isVisible = false
         var searchView = menu.findItem(R.id.action_search)
             .setOnMenuItemClickListener { filterTable() }
@@ -410,14 +423,14 @@ class TableShowActivity :
     private fun addButtonCallBack(): Boolean {
         val view = Table_Show_Add_Dialog(
             this@TableShowActivity,
-            object : de.hsos.ma.adhocdb.ui.table.view.OnClickListener {
+            object : de.hsos.ma.adhocdb.ui.table.view.table.OnClickListener {
                 override fun onButtonClick(): Boolean {
                     addDataSet()
                     return true
                 }
 
             },
-            object : de.hsos.ma.adhocdb.ui.table.view.OnClickListener {
+            object : de.hsos.ma.adhocdb.ui.table.view.table.OnClickListener {
                 override fun onButtonClick(): Boolean {
                     addColumnDialog(table, this@TableShowActivity.colDTOs[0].cells.size)
                     return true

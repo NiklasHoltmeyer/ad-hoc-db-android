@@ -1,4 +1,4 @@
-package de.hsos.ma.adhocdb.ui.table.view.cell
+package de.hsos.ma.adhocdb.ui.table.view.table.cell
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -21,7 +21,7 @@ class CellView : ConstraintLayout {
     private var dividerLeft: Boolean = false
     private var dividerTop: Boolean = false
     private var dividerBottom: Boolean = false
-    private var listener: de.hsos.ma.adhocdb.ui.table.view.cell.OnClickListener? = null
+    private var listener: de.hsos.ma.adhocdb.ui.table.view.table.cell.OnClickListener? = null
 
     constructor(context: Context) : super(context) {
         init(context, null)
@@ -41,7 +41,7 @@ class CellView : ConstraintLayout {
         dividerLeft: Boolean,
         dividerTop: Boolean,
         dividerBottom: Boolean,
-        listener: de.hsos.ma.adhocdb.ui.table.view.cell.OnClickListener
+        listener: de.hsos.ma.adhocdb.ui.table.view.table.cell.OnClickListener
     ) : super(context) {
         this.value = value
         this.unit = unit

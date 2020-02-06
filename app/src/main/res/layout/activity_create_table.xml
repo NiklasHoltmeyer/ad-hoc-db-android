@@ -112,21 +112,6 @@
                 android:padding="20dp">
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/material_button132"
-                    style="@style/Widget.MaterialComponents.Button.Icon"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="6dp"
-                    android:layout_weight=".33"
-                    android:gravity="center"
-                    android:onClick="saveButtonOnClick"
-                    android:text="@string/create_table_button_save"
-                    android:textColor="@color/colorOnAccent"
-                    app:icon="@drawable/ic_add_circle_black_24dp"
-                    app:iconTint="@color/colorOnAccent" />
-
-
-                <com.google.android.material.button.MaterialButton
                     android:id="@+id/material_button12"
                     style="@style/Widget.MaterialComponents.Button.Icon"
                     android:layout_width="0dp"
@@ -141,6 +126,20 @@
                     app:backgroundTint="@color/colorButtonSecondary"
                     app:icon="@drawable/ic_remove_circle_black_24dp"
                     app:iconTint="@color/colorOnButtonSecondary" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/material_button132"
+                    style="@style/Widget.MaterialComponents.Button.Icon"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    android:layout_weight=".33"
+                    android:gravity="center"
+                    android:onClick="saveButtonOnClick"
+                    android:text="@string/create_table_button_save"
+                    android:textColor="@color/colorOnAccent"
+                    app:icon="@drawable/ic_add_circle_black_24dp"
+                    app:iconTint="@color/colorOnAccent" />
             </LinearLayout>
         </LinearLayout>
 
@@ -152,7 +151,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
-        app:menu="@menu/bottom_navigation" />
+        app:menu="@menu/bottom_navigation_menu" />
 </RelativeLayout>
 
 

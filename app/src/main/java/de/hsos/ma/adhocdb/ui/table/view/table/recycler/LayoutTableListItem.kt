@@ -1,4 +1,4 @@
-package de.hsos.ma.adhocdb.ui.table.view.recycler
+package de.hsos.ma.adhocdb.ui.table.view.table.recycler
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

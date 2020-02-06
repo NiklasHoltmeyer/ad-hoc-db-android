@@ -1,4 +1,4 @@
-package de.hsos.ma.adhocdb.ui.table.view.recycler
+package de.hsos.ma.adhocdb.ui.table.view.table.recycler
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
@@ -6,8 +6,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import de.hsos.ma.adhocdb.R
 import kotlinx.android.synthetic.main.view_table_list_item.view.*
-import de.hsos.ma.adhocdb.entities.Table
-import de.hsos.ma.adhocdb.ui.table.view.recycler.OnTableClickListener
+import de.hsos.ma.adhocdb.entities.table.Table
+import de.hsos.ma.adhocdb.ui.table.view.recycler.OnRecyclerItemClickListener
 
 class TableViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -15,7 +15,7 @@ class TableViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(item
     private val tableTitle = itemView.table_title
     private val tableDescription = itemView.table_description
 
-    fun bind(tableEntity: Table, onClick: OnTableClickListener) {
+    fun bind(tableEntity: Table, onClick: OnRecyclerItemClickListener<Table>) {
 
         val requestOptions = RequestOptions()
             .placeholder(R.drawable.ic_launcher_background)

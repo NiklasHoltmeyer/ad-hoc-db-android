@@ -2,9 +2,9 @@ package de.hsos.ma.adhocdb.controller.tables
 
 import androidx.room.*
 import androidx.sqlite.db.SupportSQLiteQuery
-import de.hsos.ma.adhocdb.entities.Cell
-import de.hsos.ma.adhocdb.entities.Column
-import de.hsos.ma.adhocdb.entities.Table
+import de.hsos.ma.adhocdb.entities.table.Cell
+import de.hsos.ma.adhocdb.entities.table.Column
+import de.hsos.ma.adhocdb.entities.table.Table
 import java.util.*
 
 @Dao

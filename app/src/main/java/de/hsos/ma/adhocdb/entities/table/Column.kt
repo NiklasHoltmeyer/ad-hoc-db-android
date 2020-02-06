@@ -1,4 +1,4 @@
-package de.hsos.ma.adhocdb.entities
+package de.hsos.ma.adhocdb.entities.table
 
 import androidx.room.Entity
 import androidx.room.ForeignKey

@@ -1,4 +1,4 @@
-package de.hsos.ma.adhocdb.ui.table.view.column
+package de.hsos.ma.adhocdb.ui.table.view.table.column
 
 import android.content.Context
 import android.util.AttributeSet
@@ -7,10 +7,9 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import de.hsos.ma.adhocdb.R
-
+//
 class TableAddColumn : ConstraintLayout {
     var placeHolder: String = ""
-
 
     constructor(context: Context, placeHolder: String) : super(context) {
         this.placeHolder = placeHolder

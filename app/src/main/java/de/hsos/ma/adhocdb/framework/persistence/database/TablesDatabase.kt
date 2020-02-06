@@ -5,9 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import de.hsos.ma.adhocdb.controller.tables.TableDao
-import de.hsos.ma.adhocdb.entities.Cell
-import de.hsos.ma.adhocdb.entities.Column
-import de.hsos.ma.adhocdb.entities.Table
+import de.hsos.ma.adhocdb.entities.table.Cell
+import de.hsos.ma.adhocdb.entities.table.Column
+import de.hsos.ma.adhocdb.entities.table.Table
 @Database(entities = [Table::class, Column::class, Cell::class], version = 1)
 abstract class TablesDatabase : RoomDatabase(){
     abstract fun tableDao(): TableDao

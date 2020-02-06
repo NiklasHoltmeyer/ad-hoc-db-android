@@ -1,4 +1,4 @@
-package de.hsos.ma.adhocdb.ui.table.view.recycler
+package de.hsos.ma.adhocdb.ui.table.view.table.recycler
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,9 +6,10 @@ import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import de.hsos.ma.adhocdb.R
-import de.hsos.ma.adhocdb.entities.Table
+import de.hsos.ma.adhocdb.entities.table.Table
+import de.hsos.ma.adhocdb.ui.table.view.recycler.OnRecyclerItemClickListener
 
-class TableRecyclerAdapter(var onClick: OnTableClickListener, var items: MutableList<Table>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(), Filterable {
+class TableRecyclerAdapter(var onClick: OnRecyclerItemClickListener<Table>, var items: MutableList<Table>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(), Filterable {
     var itemsAll : List<Table> = arrayListOf()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         itemsAll = items.toMutableList()

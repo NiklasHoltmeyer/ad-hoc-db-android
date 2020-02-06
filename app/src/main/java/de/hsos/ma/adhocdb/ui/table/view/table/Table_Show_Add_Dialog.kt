@@ -1,4 +1,4 @@
-package de.hsos.ma.adhocdb.ui.table.view
+package de.hsos.ma.adhocdb.ui.table.view.table
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,13 +7,13 @@ import com.google.android.material.button.MaterialButton
 import de.hsos.ma.adhocdb.R
 
 class Table_Show_Add_Dialog : ConstraintLayout {
-    val onAddRowClick: de.hsos.ma.adhocdb.ui.table.view.OnClickListener
-    val onAddColumnClick: de.hsos.ma.adhocdb.ui.table.view.OnClickListener
+    val onAddRowClick: de.hsos.ma.adhocdb.ui.table.view.table.OnClickListener
+    val onAddColumnClick: de.hsos.ma.adhocdb.ui.table.view.table.OnClickListener
 
     constructor(
         context: Context,
-        onAddRowClick: de.hsos.ma.adhocdb.ui.table.view.OnClickListener,
-        onAddColumnClick: de.hsos.ma.adhocdb.ui.table.view.OnClickListener
+        onAddRowClick: de.hsos.ma.adhocdb.ui.table.view.table.OnClickListener,
+        onAddColumnClick: de.hsos.ma.adhocdb.ui.table.view.table.OnClickListener
     ) : super(context) {
         this.onAddRowClick = onAddRowClick
         this.onAddColumnClick = onAddColumnClick

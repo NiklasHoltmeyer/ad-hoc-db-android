@@ -9,8 +9,8 @@ import android.widget.*
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import de.hsos.ma.adhocdb.R
-import de.hsos.ma.adhocdb.entities.Cell
-import de.hsos.ma.adhocdb.entities.Column
+import de.hsos.ma.adhocdb.entities.table.Cell
+import de.hsos.ma.adhocdb.entities.table.Column
 import de.hsos.ma.adhocdb.framework.persistence.database.TablesDatabase
 import de.hsos.ma.adhocdb.ui.BaseCoroutineBaseMenuAppCompactActivity
 import de.hsos.ma.adhocdb.ui.INTENTCONSTS
@@ -123,7 +123,13 @@ class TableAddDataSet : BaseCoroutineBaseMenuAppCompactActivity(R.layout.activit
             var value = inputFields[i].text.toString()
             var type = spinners[i].selectedItem.toString()
             type = UNITCONSTS.UNITS[type] ?: ""
-            val cell = Cell(tableId!!, col.id, value, type, row)
+            val cell = Cell(
+                tableId!!,
+                col.id,
+                value,
+                type,
+                row
+            )
             result.add(cell)
         }
 

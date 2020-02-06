@@ -15,11 +15,11 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="10dp"
-            android:text="@string/edit_table"
+            android:text="@string/edit_note"
             android:textColor="@color/colorText"
             android:textStyle="bold|italic" />
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/change_table_name"
+            android:id="@+id/change_note_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
@@ -37,7 +37,7 @@
             android:layout_marginRight="10dp"
             android:alpha="0.35"/>
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/change_table_description"
+            android:id="@+id/change_note_description"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
@@ -45,7 +45,7 @@
             android:layout_marginBottom="0px"
             android:layout_marginTop="0px"
             android:backgroundTint="@color/colorButtonSecondary"
-            android:text="@string/change_table_description"
+            android:text="@string/change_note_description"
             android:textColor="@color/colorOnButtonPrimary" />
         <View
             android:layout_width="match_parent"
@@ -55,7 +55,7 @@
             android:layout_marginRight="10dp"
             android:alpha="0.35"/>
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/change_table_delete"
+            android:id="@+id/change_note_delete"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
@@ -63,7 +63,7 @@
             android:layout_marginBottom="0px"
             android:layout_marginTop="0px"
             android:backgroundTint="@color/colorOnButtonDanger"
-            android:text="@string/delete_table"
+            android:text="@string/delete_note"
             android:textColor="@color/colorOnButtonPrimary" />
     </LinearLayout>
 </FrameLayout>

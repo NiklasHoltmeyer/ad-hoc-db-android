@@ -35,17 +35,6 @@
                 android:weightSum="2">
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/addButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/colorButtonPrimary"
-                    android:onClick="onSubmitButtonClick"
-                    android:text="@string/submit"
-                    android:textColor="@color/colorOnButtonPrimary" />
-
-                <com.google.android.material.button.MaterialButton
                     android:id="@+id/cancelButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -54,6 +43,17 @@
                     android:backgroundTint="@color/colorButtonSecondary"
                     android:onClick="onCancelButtonClick"
                     android:text="@string/cancel"
+                    android:textColor="@color/colorOnButtonPrimary" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/addButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/colorButtonPrimary"
+                    android:onClick="onSubmitButtonClick"
+                    android:text="@string/submit"
                     android:textColor="@color/colorOnButtonPrimary" />
             </LinearLayout>
         </LinearLayout>

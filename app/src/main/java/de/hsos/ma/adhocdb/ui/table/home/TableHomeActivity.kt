@@ -13,22 +13,22 @@ import com.afollestad.materialdialogs.customview.getCustomView
 import com.afollestad.materialdialogs.input.input
 import com.google.android.material.button.MaterialButton
 import de.hsos.ma.adhocdb.R
-import de.hsos.ma.adhocdb.entities.Table
+import de.hsos.ma.adhocdb.entities.table.Table
 import de.hsos.ma.adhocdb.framework.persistence.database.TablesDatabase
-import de.hsos.ma.adhocdb.framework.persistence.tables.DataSource
+import de.hsos.ma.adhocdb.framework.persistence.tables.TablesMockDataSource
 import de.hsos.ma.adhocdb.ui.BaseCoroutineBaseMenuAppCompactActivity
 import de.hsos.ma.adhocdb.ui.INTENTCONSTS
 import de.hsos.ma.adhocdb.ui.table.show.TableShowActivity
 import de.hsos.ma.adhocdb.ui.table.create.CreateTableActivity
-import de.hsos.ma.adhocdb.ui.table.view.recycler.OnTableClickListener
-import de.hsos.ma.adhocdb.ui.table.view.recycler.TableRecyclerAdapter
-import de.hsos.ma.adhocdb.ui.table.view.recycler.TopSpacingItemDecoration
+import de.hsos.ma.adhocdb.ui.table.view.recycler.OnRecyclerItemClickListener
+import de.hsos.ma.adhocdb.ui.table.view.table.recycler.TableRecyclerAdapter
+import de.hsos.ma.adhocdb.ui.table.view.recycler.RecyclerTopSpacingItemDecoration
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class TableHomeActivity : BaseCoroutineBaseMenuAppCompactActivity(R.layout.activity_main, R.string.table_overview, showBackButton = false, selectedMenuItem = R.id.nav_table),
-    OnTableClickListener {
+    OnRecyclerItemClickListener<Table> {
     private lateinit var tableAdapter: TableRecyclerAdapter
     var tablesFilterable: MutableList<Table> = ArrayList()
     var tablesFullList: MutableList<Table> = ArrayList()
@@ -40,14 +40,14 @@ class TableHomeActivity : BaseCoroutineBaseMenuAppCompactActivity(R.layout.activ
 
     private fun initRecyclerView() {
         launch {
-            tablesFilterable = DataSource.getDataSet(true, applicationContext).toMutableList()
+            tablesFilterable = TablesMockDataSource.getDataSet(true, applicationContext).toMutableList()
             tablesFullList = tablesFilterable.toCollection(mutableListOf())
 
             launch(Dispatchers.Main) {
                 recycler_view.apply {
                     layoutManager = LinearLayoutManager(this@TableHomeActivity)
                     val topSpacingDecorator =
-                        TopSpacingItemDecoration(
+                        RecyclerTopSpacingItemDecoration(
                             30
                         )
                     addItemDecoration(topSpacingDecorator)
@@ -84,7 +84,7 @@ class TableHomeActivity : BaseCoroutineBaseMenuAppCompactActivity(R.layout.activ
         val changeNameView = dialogView.findViewById<MaterialButton>(R.id.change_table_name)
         val changeDescriptionButton =
             dialogView.findViewById<MaterialButton>(R.id.change_table_description)
-        val deleteTableBUtton = dialogView.findViewById<MaterialButton>(R.id.change_table_delete)
+        val deleteTableButton = dialogView.findViewById<MaterialButton>(R.id.change_table_delete)
 
         changeNameView?.setOnClickListener {
             editTableName(item)
@@ -92,7 +92,7 @@ class TableHomeActivity : BaseCoroutineBaseMenuAppCompactActivity(R.layout.activ
         changeDescriptionButton?.setOnClickListener {
             editTableDescription(item)
         }
-        deleteTableBUtton?.setOnClickListener {
+        deleteTableButton?.setOnClickListener {
             editTableDelete(item)
         }
 
@@ -166,11 +166,10 @@ class TableHomeActivity : BaseCoroutineBaseMenuAppCompactActivity(R.layout.activ
         }
     }
 
-
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         super.onCreateOptionsMenu(menu)
         if(menu==null) return false
-        menuInflater.inflate(R.menu.menu, menu)
+        menuInflater.inflate(R.menu.filter_query_menu, menu)
         var searchView = menu.findItem(R.id.action_search_with_query)?.actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {

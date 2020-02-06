@@ -1,4 +1,4 @@
-package de.hsos.ma.adhocdb.ui.table.view.unit
+package de.hsos.ma.adhocdb.ui.table.view.table.unit
 
 import android.content.Context
 import android.util.AttributeSet
