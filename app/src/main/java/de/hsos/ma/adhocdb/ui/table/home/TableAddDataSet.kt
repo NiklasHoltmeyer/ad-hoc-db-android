@@ -3,7 +3,6 @@ package de.hsos.ma.adhocdb.ui.table.home
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
@@ -13,14 +12,14 @@ import de.hsos.ma.adhocdb.R
 import de.hsos.ma.adhocdb.entities.Cell
 import de.hsos.ma.adhocdb.entities.Column
 import de.hsos.ma.adhocdb.framework.persistence.database.TablesDatabase
-import de.hsos.ma.adhocdb.ui.BaseCoroutineAppCompactActivity
+import de.hsos.ma.adhocdb.ui.BaseCoroutineBaseMenuAppCompactActivity
 import de.hsos.ma.adhocdb.ui.INTENTCONSTS
 import de.hsos.ma.adhocdb.ui.UNITCONSTS
 import de.hsos.ma.adhocdb.ui.table.show.TableShowActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class TableAddDataSet : BaseCoroutineAppCompactActivity(R.layout.activity_table_add_data_set, "Add Dataset", false) {
+class TableAddDataSet : BaseCoroutineBaseMenuAppCompactActivity(R.layout.activity_table_add_data_set, R.string.add_dataset, false, selectedMenuItem = R.id.nav_table) {
     var tableId: Long? = null
     var inputFields: ArrayList<TextInputEditText> = ArrayList()
     var spinners: ArrayList<Spinner> = ArrayList()

@@ -5,15 +5,17 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
 import com.google.android.material.textfield.TextInputEditText
 import de.hsos.ma.adhocdb.R
-import de.hsos.ma.adhocdb.ui.BaseCoroutineAppCompactActivity
+import de.hsos.ma.adhocdb.ui.BaseCoroutineBaseMenuAppCompactActivity
 import de.hsos.ma.adhocdb.ui.INTENTCONSTS
+import de.hsos.ma.adhocdb.ui.table.show.TableShowActivity
 
-class CreateTableActivity : BaseCoroutineAppCompactActivity(R.layout.activity_create_table, "Create Table", true) {
+class CreateTableActivity : BaseCoroutineBaseMenuAppCompactActivity(R.layout.activity_create_table, R.string.create_table, true, selectedMenuItem = R.id.nav_table) {
     private var columnCount = -1
     private var tableName = ""
     private var tableDescription = ""
@@ -29,11 +31,11 @@ class CreateTableActivity : BaseCoroutineAppCompactActivity(R.layout.activity_cr
             cancelOnTouchOutside(false)
             title(R.string.create_table_clear_title)
             message(R.string.create_table_clear_input_dialog_body)
-            positiveButton(R.string.dialog_aggree){
+            positiveButton(R.string.dialog_agree){
                 clearInput()
             }
 
-            negativeButton(R.string.dialog_disaggree){
+            negativeButton(R.string.dialog_disagree){
                 //callBackFunction
             }
         }
@@ -84,12 +86,26 @@ class CreateTableActivity : BaseCoroutineAppCompactActivity(R.layout.activity_cr
         val textInputColumns = findViewById<TextInputEditText>(R.id.textInputColumns)
         textInputColumns!!.addTextChangedListener(object : TextWatcher{
             override fun afterTextChanged(p0: Editable?) {
-                Log.e("Error", "AFTER")
-            }
+                Log.e("Error", "AFTER") }
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         })
     }
+
+    fun openTableView(item: MenuItem) {
+        goToPage(TableShowActivity::class.java)
+    }
+
+    fun openImagesView(item: MenuItem) {
+    }
+    fun openNotesView(item: MenuItem) {
+    }
+
+    fun goToPage(targetActivity: Class<TableShowActivity>) {
+        val intent = Intent(this, targetActivity)
+        startActivity(intent)
+    }
+
 }

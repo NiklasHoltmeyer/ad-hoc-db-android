@@ -13,13 +13,13 @@ import de.hsos.ma.adhocdb.ui.table.view.column.TableAddColumn
 import de.hsos.ma.adhocdb.entities.Column
 import de.hsos.ma.adhocdb.entities.Table
 import de.hsos.ma.adhocdb.framework.persistence.database.TablesDatabase
-import de.hsos.ma.adhocdb.ui.BaseCoroutineAppCompactActivity
+import de.hsos.ma.adhocdb.ui.BaseCoroutineBaseMenuAppCompactActivity
 import de.hsos.ma.adhocdb.ui.INTENTCONSTS
 import de.hsos.ma.adhocdb.ui.table.show.TableShowActivity
 import kotlinx.coroutines.launch
 
 class CreateTableColumnNamesActivity :
-    BaseCoroutineAppCompactActivity(R.layout.activity_create_table, "Set Column Names", true) {
+    BaseCoroutineBaseMenuAppCompactActivity(R.layout.activity_create_table, R.string.set_column_names, true, selectedMenuItem = R.id.nav_table) {
     private var columnCount: Int = -1//-1
     private var tableName = ""
     private var tableDescription = ""

@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import android.view.Menu
-import android.view.MenuItem
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,7 +16,7 @@ import de.hsos.ma.adhocdb.R
 import de.hsos.ma.adhocdb.entities.Table
 import de.hsos.ma.adhocdb.framework.persistence.database.TablesDatabase
 import de.hsos.ma.adhocdb.framework.persistence.tables.DataSource
-import de.hsos.ma.adhocdb.ui.BaseCoroutineAppCompactActivity
+import de.hsos.ma.adhocdb.ui.BaseCoroutineBaseMenuAppCompactActivity
 import de.hsos.ma.adhocdb.ui.INTENTCONSTS
 import de.hsos.ma.adhocdb.ui.table.show.TableShowActivity
 import de.hsos.ma.adhocdb.ui.table.create.CreateTableActivity
@@ -28,7 +27,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class TableHomeActivity : BaseCoroutineAppCompactActivity(R.layout.activity_main, "Table Overview"),
+class TableHomeActivity : BaseCoroutineBaseMenuAppCompactActivity(R.layout.activity_main, R.string.table_overview, showBackButton = false, selectedMenuItem = R.id.nav_table),
     OnTableClickListener {
     private lateinit var tableAdapter: TableRecyclerAdapter
     var tablesFilterable: MutableList<Table> = ArrayList()
@@ -168,7 +167,9 @@ class TableHomeActivity : BaseCoroutineAppCompactActivity(R.layout.activity_main
     }
 
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        super.onCreateOptionsMenu(menu)
+        if(menu==null) return false
         menuInflater.inflate(R.menu.menu, menu)
         var searchView = menu.findItem(R.id.action_search_with_query)?.actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -183,12 +184,10 @@ class TableHomeActivity : BaseCoroutineAppCompactActivity(R.layout.activity_main
         })
 
         var addView = menu.findItem(R.id.action_add)
-            .setOnMenuItemClickListener(object : MenuItem.OnMenuItemClickListener {
-                override fun onMenuItemClick(item: MenuItem?): Boolean {
-                    loadAddTableView()
-                    return true
-                }
-            })
+            .setOnMenuItemClickListener {
+                loadAddTableView()
+                true
+            }
         return true
     }
 

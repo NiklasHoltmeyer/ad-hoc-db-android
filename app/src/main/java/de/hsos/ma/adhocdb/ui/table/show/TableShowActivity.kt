@@ -3,7 +3,6 @@ package de.hsos.ma.adhocdb.ui.table.show
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
-import android.util.Log
 import android.view.Menu
 import android.widget.LinearLayout
 import android.widget.Toast
@@ -23,7 +22,7 @@ import de.hsos.ma.adhocdb.entities.Cell
 import de.hsos.ma.adhocdb.entities.Column
 import de.hsos.ma.adhocdb.entities.Table
 import de.hsos.ma.adhocdb.framework.persistence.database.TablesDatabase
-import de.hsos.ma.adhocdb.ui.BaseCoroutineAppCompactActivity
+import de.hsos.ma.adhocdb.ui.BaseCoroutineBaseMenuAppCompactActivity
 import de.hsos.ma.adhocdb.ui.INTENTCONSTS
 import de.hsos.ma.adhocdb.ui.UNITCONSTS
 import de.hsos.ma.adhocdb.ui.table.home.TableAddDataSet
@@ -35,7 +34,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class TableShowActivity :
-    BaseCoroutineAppCompactActivity(R.layout.activity_table_show, "Table View", true){
+    BaseCoroutineBaseMenuAppCompactActivity(R.layout.activity_table_show, R.string.table_view, showBackButton = true, selectedMenuItem = R.id.nav_table){
     private var table: Table? = null
     private var columns: List<Column> = emptyList()
     private var colDTOs: List<ColumnDTO> = emptyList()
@@ -218,7 +217,7 @@ class TableShowActivity :
                 deleteColumn(col)
             }
             negativeButton(R.string.cancel)
-            title(R.string.delte_title)
+            title(R.string.delete_table)
             message(R.string.delete_column_dialog_body)
         }
     }
@@ -390,7 +389,9 @@ class TableShowActivity :
 
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        super.onCreateOptionsMenu(menu)
+        if(menu==null) return false
         menuInflater.inflate(R.menu.menu, menu)
         menu.findItem(R.id.action_search_with_query).isVisible = false
         var searchView = menu.findItem(R.id.action_search)

@@ -59,4 +59,15 @@
     <string name="func_sum">Sum</string>
     <string name="func_avg">Average</string>
     <string name="aggregationTitle">Aggregation</string>
+    <string name="table">Table</string>
+    <string name="images">Images</string>
+    <string name="notes">Notes</string>
+
+    <string name="create_table">Create Table</string>
+    <string name="set_column_names">Set Column Names</string>
+    <string name="add_dataset">Add Dataset</string>
+    <string name="table_overview">Table Overview</string>
+    <string name="table_view">Table View</string>
+    <string name="image_home">Image Home</string>
+    <string name="notes_home">Notes</string>
 </resources>

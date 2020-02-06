@@ -16,16 +16,20 @@
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory"
         tools:targetApi="p">
-        <activity android:name=".ui.table.home.TableAddDataSet"></activity>
+        <activity android:name=".ui.notes.home.NotesHomeActivity"></activity>
+        <activity android:name=".ui.images.home.ImagesHomeActivity" />
+        <activity android:name=".ui.table.home.TableAddDataSet" />
         <activity
             android:name=".ui.table.create.CreateTableColumnNamesActivity"
-            android:parentActivityName=".ui.table.home.TableHomeActivity"></activity>
+            android:parentActivityName=".ui.table.home.TableHomeActivity" />
         <activity
             android:name=".ui.table.create.CreateTableActivity"
-            android:parentActivityName=".ui.table.home.TableHomeActivity"></activity>
-        <!--<activity
+            android:parentActivityName=".ui.table.home.TableHomeActivity" />
+        <!--
+<activity
             android:name=".ui.homescreen.delete"
-            android:parentActivityName=".ui.table.home.TableHomeActivity"/>-->
+            android:parentActivityName=".ui.table.home.TableHomeActivity"/>
+        -->
         <activity
             android:name=".ui.table.show.TableShowActivity"
             android:parentActivityName=".ui.table.home.TableHomeActivity" />
@@ -35,6 +39,7 @@
         <activity android:name=".ui.table.home.TableHomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
