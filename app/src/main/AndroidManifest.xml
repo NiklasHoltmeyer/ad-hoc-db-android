@@ -16,7 +16,8 @@
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory"
         tools:targetApi="p">
-        <activity android:name=".ui.notes.show.NotesShowAcivity"></activity>
+        <activity android:name=".ui.notes.show.NotesShowAcivity"
+            android:parentActivityName=".ui.notes.home.NotesHomeActivity" />
         <activity android:name=".ui.notes.create.NoteCreateActivity" />
         <activity android:name=".ui.notes.home.NotesHomeActivity" />
         <activity android:name=".ui.images.home.ImagesHomeActivity" />

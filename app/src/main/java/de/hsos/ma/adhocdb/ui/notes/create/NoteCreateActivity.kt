@@ -16,12 +16,7 @@ import de.hsos.ma.adhocdb.ui.BaseCoroutineBaseMenuAppCompactActivity
 import de.hsos.ma.adhocdb.ui.notes.home.NotesHomeActivity
 import kotlinx.coroutines.launch
 
-class NoteCreateActivity : BaseCoroutineBaseMenuAppCompactActivity(R.layout.activity_note_create, R.string.notes_create, showBackButton = false,selectedMenuItem = R.id.nav_notes) {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
+class NoteCreateActivity : BaseCoroutineBaseMenuAppCompactActivity(R.layout.activity_note_create, R.string.notes_create, showBackButton = false, selectedMenuItem = R.id.nav_notes) {
     fun clearInputs(){
         val textInputName = findViewById<TextInputEditText>(R.id.textInputDescription)
         val textInputDescription = findViewById<TextInputEditText>(R.id.textInputDescription)

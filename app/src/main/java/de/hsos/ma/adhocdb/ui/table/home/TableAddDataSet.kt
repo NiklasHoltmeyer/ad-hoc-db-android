@@ -60,7 +60,7 @@ class TableAddDataSet : BaseCoroutineBaseMenuAppCompactActivity(R.layout.activit
         container: LinearLayout,
         placeholder: String
     ) {
-        val inputView = inflater.inflate(R.layout.view_input_add_dataset, LinearLayout(this))
+        val inputView = inflater.inflate(R.layout.view_table_input_add_dataset, LinearLayout(this))
 
         val label = inputView.findViewById<TextInputLayout>(R.id.textInputLayoutTableName)
         val inputField = inputView.findViewById<TextInputEditText>(R.id.textInputName)

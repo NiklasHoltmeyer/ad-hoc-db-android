@@ -2,12 +2,19 @@ package de.hsos.ma.adhocdb.ui.notes.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.InputType
 import android.view.Menu
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.customview.customView
+import com.afollestad.materialdialogs.customview.getCustomView
+import com.afollestad.materialdialogs.input.input
+import com.google.android.material.button.MaterialButton
 import de.hsos.ma.adhocdb.R
 import de.hsos.ma.adhocdb.entities.note.Note
+import de.hsos.ma.adhocdb.framework.persistence.database.NotesDatabase
 import de.hsos.ma.adhocdb.framework.persistence.notes.NotesMockDataSource
 import de.hsos.ma.adhocdb.ui.BaseCoroutineBaseMenuAppCompactActivity
 import de.hsos.ma.adhocdb.ui.INTENTCONSTS
@@ -16,15 +23,15 @@ import de.hsos.ma.adhocdb.ui.notes.show.NotesShowAcivity
 import de.hsos.ma.adhocdb.ui.table.view.note.recycler.NoteRecyclerAdapter
 import de.hsos.ma.adhocdb.ui.table.view.recycler.OnRecyclerItemClickListener
 import de.hsos.ma.adhocdb.ui.table.view.recycler.RecyclerTopSpacingItemDecoration
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_notes_home.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class NotesHomeActivity : BaseCoroutineBaseMenuAppCompactActivity(R.layout.activity_notes_home, R.string.notes_home, showBackButton = false,selectedMenuItem = R.id.nav_notes),
-    OnRecyclerItemClickListener<Note>{
+    OnRecyclerItemClickListener<Note> {
     private lateinit var noteAdapter: NoteRecyclerAdapter
-    var notesFilterable: MutableList<Note> = ArrayList()
-    var notesFullList: MutableList<Note> = ArrayList()
+    private var notesFilterable: MutableList<Note> = ArrayList()
+    private var notesFullList: MutableList<Note> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,12 +73,12 @@ class NotesHomeActivity : BaseCoroutineBaseMenuAppCompactActivity(R.layout.activ
             }
 
             override fun onQueryTextChange(queryFilter: String?): Boolean {
-                //tableAdapter.filter.filter(queryFilter)
+                noteAdapter.filter.filter(queryFilter)
                 return true
             }
         })
 
-        var addView = menu.findItem(R.id.action_add)
+        menu.findItem(R.id.action_add)
             .setOnMenuItemClickListener {
                 loadAddNoteView()
                 true
@@ -97,88 +104,48 @@ class NotesHomeActivity : BaseCoroutineBaseMenuAppCompactActivity(R.layout.activ
     }
 
     override fun onItemLongClick(item: Note, pos: Int): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-}
-/*
-class TableHomeActivity : {
-    override fun onItemClick(item: Table, pos: Int) {
-        if (notesFilterable.size <= pos) {
-            Toast.makeText(this, "Tables.Size < Pos", Toast.LENGTH_SHORT)
-                .show() //TODO richtige fehlermeldung
-            return
-        }
-        val intent = Intent(this, TableShowActivity::class.java)
-        val item = tablesFilterable[pos]
-        intent.putExtra(INTENTCONSTS.itemId, item.id)
-        startActivity(intent)
-    }
-
-    override fun onItemLongClick(item: Table, pos: Int): Boolean {
-        val dialog = MaterialDialog(this@TableHomeActivity)
-            .customView(R.layout.view_dialog_edit_table, scrollable = true)
+        val dialog = MaterialDialog(this@NotesHomeActivity)
+            .customView(R.layout.view_dialog_note_edit, scrollable = true)
         dialog.cornerRadius(res = R.dimen.my_corner_radius)
 
         val dialogView = dialog.getCustomView()
 
-        val changeNameView = dialogView.findViewById<MaterialButton>(R.id.change_table_name)
-        val changeDescriptionButton =
-            dialogView.findViewById<MaterialButton>(R.id.change_table_description)
-        val deleteTableButton = dialogView.findViewById<MaterialButton>(R.id.change_table_delete)
+        val changeNameView = dialogView.findViewById<MaterialButton>(R.id.change_note_name)
+        val deleteNoteButton = dialogView.findViewById<MaterialButton>(R.id.change_note_delete)
 
         changeNameView?.setOnClickListener {
-            editTableName(item)
+            editNoteName(item)
         }
-        changeDescriptionButton?.setOnClickListener {
-            editTableDescription(item)
-        }
-        deleteTableButton?.setOnClickListener {
-            editTableDelete(item)
+
+        deleteNoteButton?.setOnClickListener {
+            editNoteDelete(item)
         }
 
         dialog.show()
         return true
     }
 
-    private fun editTableDescription(table: Table) {
+    private fun editNoteName(note: Note) {
         val type = InputType.TYPE_CLASS_TEXT
         MaterialDialog(this)
-            .title(R.string.editTable_Description)
+            .title(R.string.editNoteName)
             .show {
                 positiveButton(R.string.submit)
                 negativeButton(R.string.cancel)
-                input(
-                    allowEmpty = false,
-                    inputType = type,
-                    prefill = table.description
-                ) { dialog, text ->
-                    table.description = text.toString()
-                    updateTable(table)
+                input(allowEmpty = false, inputType = type, prefill = note.name) { dialog, text ->
+                    note.name = text.toString()
+                    updateNote(note)
                 }
             }
     }
 
-    private fun editTableName(table: Table) {
-        val type = InputType.TYPE_CLASS_TEXT
+    private fun editNoteDelete(note: Note) {
         MaterialDialog(this)
-            .title(R.string.editTableName)
-            .show {
-                positiveButton(R.string.submit)
-                negativeButton(R.string.cancel)
-                input(allowEmpty = false, inputType = type, prefill = table.name) { dialog, text ->
-                    table.name = text.toString()
-                    updateTable(table)
-                }
-            }
-    }
-
-    private fun editTableDelete(table: Table) {
-        MaterialDialog(this)
-            .title(R.string.editTableDelete)
+            .title(R.string.editNoteDelete)
             .show{
-                message(R.string.editTableDeleteWarning)
+                message(R.string.editNoteDeleteWarning)
                 positiveButton(R.string.submit){
-                    deleteTable(table)
+                    deleteNote(note)
                 }
                 negativeButton(R.string.cancel)
             }
@@ -190,49 +157,20 @@ class TableHomeActivity : {
         }
     }
 
-    private fun updateTable(table: Table) {
+    private fun updateNote(note: Note) {
         launch {
-            val db = TablesDatabase(applicationContext).tableDao()
-            db.update(table)
+            val db = NotesDatabase(applicationContext).noteDao()
+            db.update(note)
             reloadView()
         }
     }
 
-    private fun deleteTable(table: Table) {
+    private fun deleteNote(note: Note) {
         launch {
-            val db = TablesDatabase(applicationContext).tableDao()
-            db.delete(table)
+            val db = NotesDatabase(applicationContext).noteDao()
+            db.delete(note)
             reloadView()
         }
     }
 
-    override fun onCreateOptionsMenu(filter_query_menu: Menu?): Boolean {
-        super.onCreateOptionsMenu(filter_query_menu)
-        if(filter_query_menu==null) return false
-        menuInflater.inflate(R.filter_query_menu.filter_query_menu, filter_query_menu)
-        var searchView = filter_query_menu.findItem(R.id.action_search_with_query)?.actionView as SearchView
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return true
-            }
-
-            override fun onQueryTextChange(queryFilter: String?): Boolean {
-                tableAdapter.filter.filter(queryFilter)
-                return true
-            }
-        })
-
-        var addView = filter_query_menu.findItem(R.id.action_add)
-            .setOnMenuItemClickListener {
-                loadAddTableView()
-                true
-            }
-        return true
-    }
-
-    private fun loadAddTableView() {
-        val intent = Intent(this, CreateTableActivity::class.java)
-        startActivity(intent)
-    }
 }
-*/

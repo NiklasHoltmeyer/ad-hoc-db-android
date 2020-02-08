@@ -24,7 +24,7 @@ class Table_Show_Add_Dialog : ConstraintLayout {
     private fun init(attrs: Context) {
         val inflater = context
             .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val container = inflater.inflate(R.layout.view_dialog_edit_add, this)
+        val container = inflater.inflate(R.layout.view_dialog_table_edit_add, this)
 
         container.findViewById<MaterialButton>(R.id.change_table_add_data_set).setOnClickListener {
             this.onAddRowClick.onButtonClick()

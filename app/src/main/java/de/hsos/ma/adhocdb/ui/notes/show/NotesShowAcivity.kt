@@ -26,7 +26,7 @@ import kotlinx.coroutines.launch
 class NotesShowAcivity : BaseCoroutineBaseMenuAppCompactActivity(
     R.layout.activity_notes_show_acivity,
     R.string.notes_show,
-    showBackButton = false,
+    showBackButton = true,
     selectedMenuItem = R.id.nav_notes
 ) {
     private var noteId = -1L
@@ -39,6 +39,11 @@ class NotesShowAcivity : BaseCoroutineBaseMenuAppCompactActivity(
         textInputDescription = findViewById(R.id.textInputDescription)
 
         loadIntentExtras()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        updateDescription()
     }
 
     private fun loadIntentExtras() {
@@ -108,15 +113,10 @@ class NotesShowAcivity : BaseCoroutineBaseMenuAppCompactActivity(
         val dialogView = dialog.getCustomView()
 
         val changeNameView = dialogView.findViewById<MaterialButton>(R.id.change_note_name)
-        val changeDescriptionButton =
-            dialogView.findViewById<MaterialButton>(R.id.change_note_description)
         val deleteNoteButton = dialogView.findViewById<MaterialButton>(R.id.change_note_delete)
 
         changeNameView?.setOnClickListener {
             editNoteName()
-        }
-        changeDescriptionButton?.setOnClickListener {
-            editNoteDescription()
         }
         deleteNoteButton?.setOnClickListener {
             editNoteDelete()
@@ -135,13 +135,6 @@ class NotesShowAcivity : BaseCoroutineBaseMenuAppCompactActivity(
                 }
                 negativeButton(R.string.cancel)
             }
-    }
-
-    private fun editNoteDescription() {
-        textInputDescription?.isEnabled = true
-        textInputDescription?.isFocusable = true
-        val btnGroup = findViewById<LinearLayout>(R.id.buttonGroup)
-        btnGroup?.layoutParams?.height = LinearLayout.LayoutParams.MATCH_PARENT
     }
 
     private fun editNoteName() {
@@ -176,7 +169,7 @@ class NotesShowAcivity : BaseCoroutineBaseMenuAppCompactActivity(
         }
     }
 
-    fun onSubmitButtonClick(view: View) {
+    fun updateDescription() {
         if (note == null) return
         val textInputDescription = findViewById<TextInputEditText>(R.id.textInputDescription)
         note!!.description = textInputDescription.text.toString()

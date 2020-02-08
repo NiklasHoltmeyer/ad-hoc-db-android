@@ -189,7 +189,7 @@ class TableShowActivity :
 
     private fun editColumnDialog(col: ColumnDTO) {
         val dialog = MaterialDialog(this@TableShowActivity)
-            .customView(R.layout.view_dialog_edit_column, scrollable = true)
+            .customView(R.layout.view_dialog_table_edit_column, scrollable = true)
         val customView = dialog.getCustomView()
 
         customView.findViewById<MaterialButton>(R.id.change_column_delete).setOnClickListener {
@@ -289,7 +289,7 @@ class TableShowActivity :
 
     private fun changeCellDialog(cell: Cell) {
         val dialog = MaterialDialog(this@TableShowActivity)
-            .customView(R.layout.view_dialog_edit_cell, scrollable = true)
+            .customView(R.layout.view_dialog_table_edit_cell, scrollable = true)
         val customView = dialog.getCustomView()
 
         customView.findViewById<MaterialButton>(R.id.change_cell_value).setOnClickListener {

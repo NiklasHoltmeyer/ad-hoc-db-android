@@ -23,11 +23,11 @@ import de.hsos.ma.adhocdb.ui.table.create.CreateTableActivity
 import de.hsos.ma.adhocdb.ui.table.view.recycler.OnRecyclerItemClickListener
 import de.hsos.ma.adhocdb.ui.table.view.table.recycler.TableRecyclerAdapter
 import de.hsos.ma.adhocdb.ui.table.view.recycler.RecyclerTopSpacingItemDecoration
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_table_home.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class TableHomeActivity : BaseCoroutineBaseMenuAppCompactActivity(R.layout.activity_main, R.string.table_overview, showBackButton = false, selectedMenuItem = R.id.nav_table),
+class TableHomeActivity : BaseCoroutineBaseMenuAppCompactActivity(R.layout.activity_table_home, R.string.table_overview, showBackButton = false, selectedMenuItem = R.id.nav_table),
     OnRecyclerItemClickListener<Table> {
     private lateinit var tableAdapter: TableRecyclerAdapter
     var tablesFilterable: MutableList<Table> = ArrayList()
@@ -76,7 +76,7 @@ class TableHomeActivity : BaseCoroutineBaseMenuAppCompactActivity(R.layout.activ
 
     override fun onItemLongClick(item: Table, pos: Int): Boolean {
         val dialog = MaterialDialog(this@TableHomeActivity)
-            .customView(R.layout.view_dialog_edit_table, scrollable = true)
+            .customView(R.layout.view_dialog_table_edit_table, scrollable = true)
         dialog.cornerRadius(res = R.dimen.my_corner_radius)
 
         val dialogView = dialog.getCustomView()

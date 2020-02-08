@@ -15,7 +15,7 @@ import de.hsos.ma.adhocdb.ui.BaseCoroutineBaseMenuAppCompactActivity
 import de.hsos.ma.adhocdb.ui.INTENTCONSTS
 import de.hsos.ma.adhocdb.ui.table.show.TableShowActivity
 
-class CreateTableActivity : BaseCoroutineBaseMenuAppCompactActivity(R.layout.activity_create_table, R.string.create_table, true, selectedMenuItem = R.id.nav_table) {
+class CreateTableActivity : BaseCoroutineBaseMenuAppCompactActivity(R.layout.activity_table_create_table, R.string.create_table, true, selectedMenuItem = R.id.nav_table) {
     private var columnCount = -1
     private var tableName = ""
     private var tableDescription = ""

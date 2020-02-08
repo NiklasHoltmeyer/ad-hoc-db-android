@@ -19,7 +19,7 @@ import de.hsos.ma.adhocdb.ui.table.show.TableShowActivity
 import kotlinx.coroutines.launch
 
 class CreateTableColumnNamesActivity :
-    BaseCoroutineBaseMenuAppCompactActivity(R.layout.activity_create_table, R.string.set_column_names, true, selectedMenuItem = R.id.nav_table) {
+    BaseCoroutineBaseMenuAppCompactActivity(R.layout.activity_table_create_table, R.string.set_column_names, true, selectedMenuItem = R.id.nav_table) {
     private var columnCount: Int = -1//-1
     private var tableName = ""
     private var tableDescription = ""
@@ -30,7 +30,7 @@ class CreateTableColumnNamesActivity :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_create_table_column_names)
+        setContentView(R.layout.activity_table_create_table_column_names)
 
         loadIntents()
         displayInputs()
