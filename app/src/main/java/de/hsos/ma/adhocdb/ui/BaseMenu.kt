@@ -16,8 +16,6 @@ abstract class BaseMenu(open val selectedMenuItem: Int) : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         super.onCreateOptionsMenu(menu)
 
-        Log.e("ERROR", "WUHU1312")
-
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_nav)
 
         bottomNav?.selectedItemId = selectedMenuItem

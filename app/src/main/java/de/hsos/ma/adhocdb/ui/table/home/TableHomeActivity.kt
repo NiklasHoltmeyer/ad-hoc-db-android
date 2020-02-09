@@ -147,12 +147,6 @@ class TableHomeActivity : BaseCoroutineBaseMenuAppCompactActivity(R.layout.activ
             }
     }
 
-    private fun reloadView(){
-        launch(Dispatchers.Main){
-            recreate()
-        }
-    }
-
     private fun updateTable(table: Table) {
         launch {
             val db = TablesDatabase(applicationContext).tableDao()

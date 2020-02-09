@@ -155,11 +155,6 @@ class NotesShowAcivity : BaseCoroutineBaseMenuAppCompactActivity(
                 }
             }
     }
-    private fun reloadView(){
-        launch(Dispatchers.Main){
-            recreate()
-        }
-    }
 
     private fun updateNote(note: Note) {
         launch {

@@ -6,6 +6,7 @@ import kotlinx.android.synthetic.main.activity_table_add_data_set.view.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
 abstract class BaseCoroutineBaseMenuAppCompactActivity (private val layoutRes: Int, private val pageTitle : Int = -1, private val showBackButton : Boolean = false, override val selectedMenuItem: Int) : CoroutineScope, BaseMenu(selectedMenuItem) {
@@ -45,5 +46,11 @@ abstract class BaseCoroutineBaseMenuAppCompactActivity (private val layoutRes: I
         //Quelle: https://stackoverflow.com/a/5255256/5026265
         val scale = applicationContext.resources.displayMetrics.density
         return (dps * scale + 0.5f).toInt()
+    }
+
+    protected fun reloadView(){
+        launch(Dispatchers.Main){
+            recreate()
+        }
     }
 }

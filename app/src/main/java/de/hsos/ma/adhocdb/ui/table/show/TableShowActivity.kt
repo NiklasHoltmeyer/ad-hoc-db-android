@@ -152,12 +152,6 @@ class TableShowActivity :
         }
     }
 
-    private fun reloadView(){
-        launch(Dispatchers.Main){
-            recreate()
-        }
-    }
-
     private fun updateColumn(col: Column) {
         launch {
             val db = TablesDatabase(applicationContext).tableDao()

@@ -131,11 +131,5 @@ class ImagesHomeActivity : BaseCoroutineBaseMenuAppCompactActivity(
             }
         return true
     }
-
-    private fun reloadView(){
-        launch(Dispatchers.Main){
-            recreate()
-        }
-    }
 }
 

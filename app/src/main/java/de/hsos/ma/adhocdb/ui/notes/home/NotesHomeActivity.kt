@@ -153,12 +153,6 @@ class NotesHomeActivity : BaseCoroutineBaseMenuAppCompactActivity(R.layout.activ
             }
     }
 
-    private fun reloadView(){
-        launch(Dispatchers.Main){
-            recreate()
-        }
-    }
-
     private fun updateNote(note: Note) {
         launch {
             val db = NotesDatabase(applicationContext).noteDao()
