@@ -88,12 +88,15 @@ class TableHomeActivity : BaseCoroutineBaseMenuAppCompactActivity(R.layout.activ
 
         changeNameView?.setOnClickListener {
             editTableName(item)
+            dialog.dismiss()
         }
         changeDescriptionButton?.setOnClickListener {
             editTableDescription(item)
+            dialog.dismiss()
         }
         deleteTableButton?.setOnClickListener {
             editTableDelete(item)
+            dialog.dismiss()
         }
 
         dialog.show()

@@ -33,7 +33,7 @@ abstract class BaseCoroutineBaseMenuAppCompactActivity (private val layoutRes: I
         actionbar.setDisplayHomeAsUpEnabled(showBackButton)
     }
 
-    public fun titleBarTitle(title: String){
+    fun titleBarTitle(title: String){
         supportActionBar?.title = title
     }
 

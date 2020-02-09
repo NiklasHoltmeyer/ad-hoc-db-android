@@ -69,7 +69,7 @@ class UnitChooserView : FrameLayout {
         }
     }
 
-    public fun getSpinnerValue(): String {
+    fun getSpinnerValue(): String {
         return container?.findViewById<Spinner>(R.id.spinner)?.selectedItem.toString()
     }
 }

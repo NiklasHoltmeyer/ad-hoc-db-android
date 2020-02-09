@@ -115,10 +115,12 @@ class NotesHomeActivity : BaseCoroutineBaseMenuAppCompactActivity(R.layout.activ
 
         changeNameView?.setOnClickListener {
             editNoteName(item)
+            dialog.dismiss()
         }
 
         deleteNoteButton?.setOnClickListener {
             editNoteDelete(item)
+            dialog.dismiss()
         }
 
         dialog.show()

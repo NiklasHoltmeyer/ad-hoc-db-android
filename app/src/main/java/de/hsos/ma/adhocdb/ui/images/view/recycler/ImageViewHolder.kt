@@ -1,7 +1,5 @@
 package de.hsos.ma.adhocdb.ui.images.view.recycler
 
-import android.net.Uri
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide

@@ -194,14 +194,17 @@ class TableShowActivity :
 
         customView.findViewById<MaterialButton>(R.id.change_column_delete).setOnClickListener {
             deleteColumnWarningDialog(col)
+            dialog.dismiss()
         }
 
         customView.findViewById<MaterialButton>(R.id.change_column_add).setOnClickListener {
             addColumnDialog(table, col.cells.size)
+            dialog.dismiss()
         }
 
         customView.findViewById<MaterialButton>(R.id.change_column_name).setOnClickListener{
             changeColNameDialog(col.col)
+            dialog.dismiss()
         }
 
 
@@ -217,7 +220,7 @@ class TableShowActivity :
                 negativeButton(R.string.cancel)
                 positiveButton(R.string.submit){
                     if(table != null){
-                        addColumn(table!!, view.getTextInput(), colSize)
+                        addColumn(table, view.getTextInput(), colSize)
                     }
 
                 }
@@ -294,14 +297,17 @@ class TableShowActivity :
 
         customView.findViewById<MaterialButton>(R.id.change_cell_value).setOnClickListener {
             changeCellValue(cell)
+            dialog.dismiss()
         }
 
         customView.findViewById<MaterialButton>(R.id.change_cell_type).setOnClickListener {
             changeCellType(cell)
+            dialog.dismiss()
         }
 
         customView.findViewById<MaterialButton>(R.id.chang_row_delete).setOnClickListener {
             changeRowDelete(cell)
+            dialog.dismiss()
         }
 
         dialog.show()

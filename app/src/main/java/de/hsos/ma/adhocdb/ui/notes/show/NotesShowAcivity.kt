@@ -117,9 +117,11 @@ class NotesShowAcivity : BaseCoroutineBaseMenuAppCompactActivity(
 
         changeNameView?.setOnClickListener {
             editNoteName()
+            dialog.dismiss()
         }
         deleteNoteButton?.setOnClickListener {
             editNoteDelete()
+            dialog.dismiss()
         }
 
         dialog.show()

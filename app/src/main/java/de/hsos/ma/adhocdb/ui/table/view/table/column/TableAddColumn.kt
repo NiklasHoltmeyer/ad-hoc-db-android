@@ -26,7 +26,7 @@ class TableAddColumn : ConstraintLayout {
         textLabelView.hint = placeHolder
     }
 
-    public fun getTextInput() : String{
+    fun getTextInput() : String{
         return findViewById<TextInputEditText>(R.id.textInputName)?.text.toString()
     }
 }

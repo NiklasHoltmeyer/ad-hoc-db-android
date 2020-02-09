@@ -5,7 +5,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlin.coroutines.CoroutineContext
 
-abstract class BaseCoroutine() : CoroutineScope {
+abstract class BaseCoroutine : CoroutineScope {
     private var job : Job = Job()
 
     override val coroutineContext: CoroutineContext

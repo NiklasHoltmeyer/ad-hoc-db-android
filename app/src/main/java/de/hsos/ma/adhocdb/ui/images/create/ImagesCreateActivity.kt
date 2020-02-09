@@ -27,7 +27,7 @@ class ImagesCreateActivity : BaseCoroutineBaseMenuAppCompactActivity(
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        cameraKitView = findViewById(R.id.camera);
+        cameraKitView = findViewById(R.id.camera)
     }
 
     override fun onStart() {

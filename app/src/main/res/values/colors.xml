@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- //TODO res umennen colorX _> xColor -->
     <!-- https://colorhunt.co/palette/117601 -->
     <color name="colorPrimary">#232931</color>
     <color name="colorPrimaryDark">#393e46</color>
