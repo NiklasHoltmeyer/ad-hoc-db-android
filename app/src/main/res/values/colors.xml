@@ -33,10 +33,11 @@
 
 
     <color name="colorTest">#E91E63</color>
-    <color name="colorTest2">#4CAF50</color>
+    <color name="colorTest2">#020250</color>
     <color name="colorTest3">#8BC34A</color>
     <color name="colorTest4">#9C27B0</color>
     <color name="colorTest5">#FFEB3B</color>
+    <color name="colorTest6">#F88B3B</color>
     <color name="colorCellText">@color/colorWhite</color>
 
 

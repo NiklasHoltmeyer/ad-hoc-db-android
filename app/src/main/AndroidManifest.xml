@@ -4,6 +4,10 @@
     package="de.hsos.ma.adhocdb">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
 
     <application
         android:allowBackup="true"
@@ -16,11 +20,20 @@
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory"
         tools:targetApi="p">
-        <activity android:name=".ui.notes.show.NotesShowAcivity"
+        <activity
+            android:name=".ui.images.create.ImagesCreateActivity"
+            android:parentActivityName=".ui.images.home.ImagesHomeActivity"></activity>
+        <activity
+            android:name=".ui.notes.show.NotesShowAcivity"
             android:parentActivityName=".ui.notes.home.NotesHomeActivity" />
         <activity android:name=".ui.notes.create.NoteCreateActivity" />
         <activity android:name=".ui.notes.home.NotesHomeActivity" />
-        <activity android:name=".ui.images.home.ImagesHomeActivity" />
+        <activity android:name=".ui.images.home.ImagesHomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".ui.table.home.TableAddDataSet" />
         <activity
             android:name=".ui.table.create.CreateTableColumnNamesActivity"
@@ -28,11 +41,6 @@
         <activity
             android:name=".ui.table.create.CreateTableActivity"
             android:parentActivityName=".ui.table.home.TableHomeActivity" />
-        <!--
-<activity
-            android:name=".ui.homescreen.delete"
-            android:parentActivityName=".ui.table.home.TableHomeActivity"/>
-        -->
         <activity
             android:name=".ui.table.show.TableShowActivity"
             android:parentActivityName=".ui.table.home.TableHomeActivity" />
@@ -40,11 +48,7 @@
             android:name=".ui.table.view.table.recycler.LayoutTableListItem"
             android:parentActivityName=".ui.table.home.TableHomeActivity" />
         <activity android:name=".ui.table.home.TableHomeActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

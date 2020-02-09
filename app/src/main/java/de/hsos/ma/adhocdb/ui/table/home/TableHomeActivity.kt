@@ -44,7 +44,7 @@ class TableHomeActivity : BaseCoroutineBaseMenuAppCompactActivity(R.layout.activ
             tablesFullList = tablesFilterable.toCollection(mutableListOf())
 
             launch(Dispatchers.Main) {
-                recycler_view.apply {
+                recyclerView.apply {
                     layoutManager = LinearLayoutManager(this@TableHomeActivity)
                     val topSpacingDecorator =
                         RecyclerTopSpacingItemDecoration(

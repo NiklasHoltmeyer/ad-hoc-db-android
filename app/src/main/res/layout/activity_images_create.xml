@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.images.create.ImagesCreateActivity">
+    <com.camerakit.CameraKitView
+        android:id="@+id/camera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:keepScreenOn="true"
+        app:camera_facing="back"
+        app:camera_flash="auto"
+        app:camera_focus="continuous"
+        app:camera_permissions="camera" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:backgroundTint="@color/colorAccent"
+        android:foregroundTint="@color/colorWhite"
+        app:rippleColor="@color/colorTest5"
+        android:outlineAmbientShadowColor="@color/colorError"
+        android:outlineSpotShadowColor="@color/colorWhite"
+        android:tint="@color/colorTest6"
+        app:backgroundTint="@color/colorTest4"
+        android:src="@android:drawable/ic_menu_camera"
+        android:layout_margin="48dp"
+        app:elevation="6dp"
+        app:fabCustomSize="64dp"
+        android:onClick="takePicture"
+        />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

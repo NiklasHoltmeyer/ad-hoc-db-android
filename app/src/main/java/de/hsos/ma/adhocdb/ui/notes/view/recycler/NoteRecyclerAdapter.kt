@@ -1,4 +1,4 @@
-package de.hsos.ma.adhocdb.ui.table.view.note.recycler
+package de.hsos.ma.adhocdb.ui.notes.view.recycler
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

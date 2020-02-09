@@ -20,7 +20,7 @@ import de.hsos.ma.adhocdb.ui.BaseCoroutineBaseMenuAppCompactActivity
 import de.hsos.ma.adhocdb.ui.INTENTCONSTS
 import de.hsos.ma.adhocdb.ui.notes.create.NoteCreateActivity
 import de.hsos.ma.adhocdb.ui.notes.show.NotesShowAcivity
-import de.hsos.ma.adhocdb.ui.table.view.note.recycler.NoteRecyclerAdapter
+import de.hsos.ma.adhocdb.ui.notes.view.recycler.NoteRecyclerAdapter
 import de.hsos.ma.adhocdb.ui.table.view.recycler.OnRecyclerItemClickListener
 import de.hsos.ma.adhocdb.ui.table.view.recycler.RecyclerTopSpacingItemDecoration
 import kotlinx.android.synthetic.main.activity_notes_home.*
@@ -44,7 +44,7 @@ class NotesHomeActivity : BaseCoroutineBaseMenuAppCompactActivity(R.layout.activ
             notesFullList = notesFilterable.toCollection(mutableListOf())
 
             launch(Dispatchers.Main) {
-                recycler_view.apply {
+                recyclerView.apply {
                     layoutManager = LinearLayoutManager(this@NotesHomeActivity)
                     val topSpacingDecorator =
                         RecyclerTopSpacingItemDecoration(
