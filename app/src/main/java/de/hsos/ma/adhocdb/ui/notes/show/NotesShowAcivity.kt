@@ -36,14 +36,14 @@ class NotesShowAcivity : BaseCoroutineBaseMenuAppCompactActivity(
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        textInputDescription = findViewById(R.id.textInputDescription)
+        textInputDescription = findViewById<TextInputEditText>(R.id.textInputDescription)
 
         loadIntentExtras()
     }
 
     override fun onStop() {
-        super.onStop()
         updateDescription()
+        super.onStop()
     }
 
     private fun loadIntentExtras() {
