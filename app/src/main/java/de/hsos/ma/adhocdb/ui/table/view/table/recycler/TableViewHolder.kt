@@ -21,10 +21,15 @@ class TableViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(item
             .placeholder(R.drawable.ic_launcher_background)
             .error(R.drawable.ic_launcher_background)
 
+        val imageToLoad =
+            if (tableEntity.image.contains("media")) tableEntity.image else tableEntity.image.toInt()
+        //.contains("/") => real pic (storage/emulated/0/Android/media/de.hsos.ma.adhocdb/1581269245757.jpg) || else => ressource dummy picture => R.id. ... = Int
+
         Glide.with(itemView.context)
             .applyDefaultRequestOptions(requestOptions)
-            .load(tableEntity.image)
+            .load(imageToLoad)
             .into(tableImage)
+
         tableTitle.text = tableEntity.name
         tableDescription.text = tableEntity.description
 

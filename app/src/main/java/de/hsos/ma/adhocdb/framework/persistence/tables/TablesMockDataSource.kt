@@ -1,6 +1,7 @@
 package de.hsos.ma.adhocdb.framework.persistence.tables
 
 import android.content.Context
+import de.hsos.ma.adhocdb.R
 import de.hsos.ma.adhocdb.entities.table.Cell
 import de.hsos.ma.adhocdb.entities.table.Column
 import de.hsos.ma.adhocdb.entities.table.Table
@@ -55,7 +56,7 @@ class TablesMockDataSource {
                     Table(
                         "Gewichtstagebuch",
                         "Tagebuch zur Gewichtsanalyse",
-                        "https://image.flaticon.com/icons/png/512/86/86122.png"
+                        R.drawable.scale.toString()
                     ),
                     arrayListOf(
                         MockCol("KW",
@@ -648,7 +649,7 @@ class TablesMockDataSource {
                     Table(
                         "Beteiligungen am Eurovision Songcontest",
                         "Stefan Raabs Beteiligungen am Eurovision Songcontest",
-                        "https://www.aua-sicherheit.de/wp-content/uploads/2016/08/AuA-Personenschutz-stefan-raab.png"
+                        R.drawable.raab.toString()
                     ),
                     arrayListOf(
                         MockCol("Jahr",
@@ -848,7 +849,7 @@ class TablesMockDataSource {
                     Table(
                         "Beste Torschützen 2014",
                         "Beste Torschützen der Fußball-WM 2014",
-                        "https://upload.wikimedia.org/wikipedia/de/thumb/1/18/WM-2014-Brasilien.svg/200px-WM-2014-Brasilien.svg.png"
+                        R.drawable.wm14.toString()
                     ),
                     arrayListOf(
                         MockCol("Rang",
@@ -1235,7 +1236,7 @@ class TablesMockDataSource {
                     Table(
                         "Bundesländer",
                         "(Hauptstadt, Fläche, Einwohner pro quadradt km)",
-                        "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Flag_of_Germany.svg/800px-Flag_of_Germany.svg.png"
+                        R.drawable.germany.toString()
                     ),
                     arrayListOf(
                         MockCol("Land",
@@ -1598,7 +1599,7 @@ class TablesMockDataSource {
                     Table(
                         "Kassenbuch",
                         "(Bareinzahlungen, Barauszahlungen, Einlagen und Entnahmen)",
-                        "https://img.icons8.com/ios/50/000000/notepad.png"
+                        R.drawable.notes.toString()
                     ),
                     arrayListOf(
                         MockCol("Einnahme & Ausgaben",
@@ -1662,7 +1663,7 @@ class TablesMockDataSource {
                     Table(
                         "Long Island Ice Tea - Rezept",
                         "Rezeptur für Long Island Ice Tea",
-                        "https://i.imgur.com/ld4GOrf.png"
+                        R.drawable.icetea.toString()
                     ),
                     arrayListOf(
                         MockCol("Einheit",
@@ -1798,7 +1799,7 @@ class TablesMockDataSource {
                     Table(
                         "Blue Lagoon - Rezept",
                         "Rezeptur für Blue Lagoon",
-                        "https://i.imgur.com/8oC9zvP.png"
+                        R.drawable.bluelagoon.toString()
                     ),
                     arrayListOf(
                         MockCol("Einheit",
