@@ -19,7 +19,9 @@
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory"
         tools:targetApi="p">
-        <activity android:name=".ui.images.show.ImageShowActivity"></activity>
+        <activity android:name=".ui.images.show.ImageShowActivity"
+            android:parentActivityName=".ui.images.home.ImagesHomeActivity" />
+
         <activity
             android:name=".ui.images.create.ImagesCreateActivity"
             android:parentActivityName=".ui.images.home.ImagesHomeActivity" />
