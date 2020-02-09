@@ -73,6 +73,7 @@
     <string name="table_overview">Table Overview</string>
     <string name="table_view">Table View</string>
     <string name="image_home">Image Home</string>
+    <string name="image_show">Image</string>
     <string name="notes_home">Notes</string>
     <string name="notes_create">Create Note</string>
     <string name="create_note_name_placeholder">Note Name</string>

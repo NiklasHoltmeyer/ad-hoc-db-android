@@ -9,7 +9,9 @@ import de.hsos.ma.adhocdb.R
 import de.hsos.ma.adhocdb.entities.image.Image
 import de.hsos.ma.adhocdb.framework.persistence.database.ImagesDatabase
 import de.hsos.ma.adhocdb.ui.BaseCoroutineBaseMenuAppCompactActivity
+import de.hsos.ma.adhocdb.ui.INTENTCONSTS
 import de.hsos.ma.adhocdb.ui.images.home.ImagesHomeActivity
+import de.hsos.ma.adhocdb.ui.images.show.ImageShowActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
@@ -79,16 +81,17 @@ class ImagesCreateActivity : BaseCoroutineBaseMenuAppCompactActivity(
     private fun savePicture(image: Image){
         launch {
             val db = ImagesDatabase(applicationContext).imageDao()
-            db.insert(image)
+            val id = db.insert(image)
             launch(Dispatchers.Main) {
                 Log.e("1312", image.absolutePath)
-                onSuccessCallback()
+                onSuccessCallback(id)
             }
         }
     }
 
-    private fun onSuccessCallback() {
-        val intent = Intent(this, ImagesHomeActivity::class.java)
+    private fun onSuccessCallback(id: Long) {
+        val intent = Intent(this, ImageShowActivity::class.java)
+        intent.putExtra(INTENTCONSTS.itemId, id)
         startActivity(intent)
     }
 }

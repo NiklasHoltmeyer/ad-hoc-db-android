@@ -8,7 +8,6 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
 
-
     <application
         android:allowBackup="true"
         android:appComponentFactory="@string/app_name"
@@ -20,9 +19,10 @@
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory"
         tools:targetApi="p">
+        <activity android:name=".ui.images.show.ImageShowActivity"></activity>
         <activity
             android:name=".ui.images.create.ImagesCreateActivity"
-            android:parentActivityName=".ui.images.home.ImagesHomeActivity"></activity>
+            android:parentActivityName=".ui.images.home.ImagesHomeActivity" />
         <activity
             android:name=".ui.notes.show.NotesShowAcivity"
             android:parentActivityName=".ui.notes.home.NotesHomeActivity" />
@@ -31,6 +31,7 @@
         <activity android:name=".ui.images.home.ImagesHomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -47,9 +48,7 @@
         <activity
             android:name=".ui.table.view.table.recycler.LayoutTableListItem"
             android:parentActivityName=".ui.table.home.TableHomeActivity" />
-        <activity android:name=".ui.table.home.TableHomeActivity">
-
-        </activity>
+        <activity android:name=".ui.table.home.TableHomeActivity"></activity>
     </application>
 
 </manifest>

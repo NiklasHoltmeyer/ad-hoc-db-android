@@ -18,7 +18,9 @@ import de.hsos.ma.adhocdb.framework.persistence.database.ImagesDatabase
 import de.hsos.ma.adhocdb.framework.persistence.database.NotesDatabase
 import de.hsos.ma.adhocdb.framework.persistence.images.ImagesMockDataSource
 import de.hsos.ma.adhocdb.ui.BaseCoroutineBaseMenuAppCompactActivity
+import de.hsos.ma.adhocdb.ui.INTENTCONSTS
 import de.hsos.ma.adhocdb.ui.images.create.ImagesCreateActivity
+import de.hsos.ma.adhocdb.ui.images.show.ImageShowActivity
 import de.hsos.ma.adhocdb.ui.images.view.recycler.ImageRecyclerAdapter
 import de.hsos.ma.adhocdb.ui.table.view.recycler.OnRecyclerItemClickListener
 import de.hsos.ma.adhocdb.ui.table.view.recycler.RecyclerTopSpacingItemDecoration
@@ -69,7 +71,9 @@ class ImagesHomeActivity : BaseCoroutineBaseMenuAppCompactActivity(
     }
 
     override fun onItemClick(item: Image, pos: Int) {
-        Toast.makeText(this, item.absolutePath, Toast.LENGTH_LONG)
+        val intent = Intent(this, ImageShowActivity::class.java)
+        intent.putExtra(INTENTCONSTS.itemId, item.id)
+        startActivity(intent)
     }
 
     override fun onItemLongClick(item: Image, pos: Int): Boolean {
