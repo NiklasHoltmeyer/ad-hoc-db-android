@@ -48,8 +48,8 @@ class ImagesHomeActivity : BaseCoroutineBaseMenuAppCompactActivity(
     private fun initRecyclerView() {
         launch {
             imagesFilterable =
-                ImagesMockDataSource.getDataSet(true, applicationContext).toMutableList()
-            imagesFullList = imagesFilterable.toCollection(mutableListOf())
+                ImagesMockDataSource.getDataSet(true, applicationContext).toMutableList().asReversed()
+            imagesFullList = imagesFilterable.toCollection(mutableListOf()).asReversed()
 
             launch(Dispatchers.Main) {
                 recyclerView.apply {
