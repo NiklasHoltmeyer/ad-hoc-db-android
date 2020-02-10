@@ -14,7 +14,7 @@
     <string name="create_table_column_names">Column Names</string>
 
 
-    <string name="create_table_dialog_header">CREATE TABLE HEADER DIALOG</string>
+    <string name="create_table_dialog_header">Create Table</string>
     <string name="create_table_dialog_body" translatable="false">BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY </string>
 
     <string name="dialog_agree">Agree</string>
@@ -69,12 +69,12 @@
 
     <string name="create_table">Create Table</string>
     <string name="set_column_names">Set Column Names</string>
-    <string name="add_dataset">Zeile hinzufügen</string>
+    <string name="add_dataset">Add Row</string>
     <string name="table_overview">Table Overview</string>
     <string name="table_view">Table View</string>
-    <string name="image_home">Image Home</string>
+    <string name="image_home">Image Overview</string>
     <string name="image_show">Image</string>
-    <string name="notes_home">Notes</string>
+    <string name="notes_home">Notes Overview</string>
     <string name="notes_create">Create Note</string>
     <string name="create_note_name_placeholder">Note Name</string>
     <string name="note_description">Note</string>
@@ -87,5 +87,8 @@
     <string name="delete_note">Delete Note</string>
     <string name="edit_image">Edit Image</string>
     <string name="delete_image">Delete Image</string>
+
+    <string name="unit_string">Text</string>
+    <string name="unit_euro">Euro</string>
 </resources>
 

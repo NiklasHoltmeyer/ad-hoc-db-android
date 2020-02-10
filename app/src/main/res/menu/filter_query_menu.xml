@@ -25,7 +25,7 @@
         android:visible="false"
         />
     <item android:id="@+id/action_func"
-        android:icon="@drawable/ic_functions_black_24dp"
+        android:icon="@drawable/ic_exposure_black_24dp"
         android:title="@string/menu_search"
         app:showAsAction="ifRoom|collapseActionView"
         android:iconTint="@color/colorOnAccent"

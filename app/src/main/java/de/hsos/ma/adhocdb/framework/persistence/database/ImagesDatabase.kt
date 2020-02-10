@@ -22,6 +22,6 @@ abstract class ImagesDatabase : RoomDatabase(){
         }
 
 
-        private fun buildDataBase(context: Context) =  Room.databaseBuilder(context.applicationContext, ImagesDatabase::class.java, "imagesv011.db").build()
+        private fun buildDataBase(context: Context) =  Room.databaseBuilder(context.applicationContext, ImagesDatabase::class.java, "imagesv0111.db").build()
     }
 }

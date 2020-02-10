@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="units_array">
-        <item>Euro</item>
-        <item>String</item>
+        <item>@string/unit_euro</item>
+        <item>@string/unit_string</item>
     </string-array>
 </resources>

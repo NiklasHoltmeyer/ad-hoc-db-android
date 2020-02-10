@@ -1614,7 +1614,7 @@ class TablesMockDataSource {
                                 Cell(
                                     4,
                                     0,
-                                    "+1.23",
+                                    "123.45",
                                     "€",
                                     1
                                 ),
