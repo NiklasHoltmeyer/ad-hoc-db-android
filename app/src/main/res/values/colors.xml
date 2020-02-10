@@ -3,6 +3,8 @@
     <!-- https://colorhunt.co/palette/117601 -->
     <color name="colorPrimary">#232931</color>
     <color name="colorPrimaryDark">#393e46</color>
+    <color name="colorPrimaryDark2">#4F535B</color>
+    <color name="colorPrimaryDark3">#656870</color>
     <color name="colorAccent">#4ecca3</color>
     <color name="colorWhite">#eeeeee</color>
     <color name="colorWhiteSecondary">#D0D0D0</color>
@@ -27,6 +29,8 @@
 
     <color name="colorButtonPrimary">@color/colorAccent</color>
     <color name="colorButtonSecondary">@color/colorPrimaryDark</color>
+    <color name="colorButtonTernary">@color/colorPrimaryDark2</color>
+    <color name="colorButtonQuad">@color/colorPrimaryDark3</color>
 
 
 

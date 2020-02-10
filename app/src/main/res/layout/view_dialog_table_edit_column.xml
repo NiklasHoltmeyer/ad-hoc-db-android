@@ -60,6 +60,46 @@
             android:background="@color/colorPrimaryDark" />
 
         <com.google.android.material.button.MaterialButton
+        android:id="@+id/change_column_aggregation_sum"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="0px"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="0px"
+        android:backgroundTint="@color/colorButtonTernary"
+        android:text="@string/func_calculate_sum"
+        android:textColor="@color/colorOnButtonPrimary" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:alpha="0.35"
+            android:background="@color/colorPrimaryDark" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/change_column_aggregation_avg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="0px"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="0px"
+            android:backgroundTint="@color/colorButtonQuad"
+            android:text="@string/func_calculate_avg"
+            android:textColor="@color/colorOnButtonPrimary" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:alpha="0.35"
+            android:background="@color/colorPrimaryDark" />
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/change_column_delete"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

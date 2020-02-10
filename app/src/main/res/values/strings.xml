@@ -90,5 +90,7 @@
 
     <string name="unit_string">Text</string>
     <string name="unit_euro">Euro</string>
+    <string name="func_calculate_sum">Calculate Sum</string>
+    <string name="func_calculate_avg">Calculate Average</string>
 </resources>
 

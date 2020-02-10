@@ -186,6 +186,15 @@ class TableShowActivity :
             .customView(R.layout.view_dialog_table_edit_column, scrollable = true)
         val customView = dialog.getCustomView()
 
+
+        customView.findViewById<MaterialButton>(R.id.change_column_aggregation_sum).setOnClickListener {
+            showAggregation(col, sumAggregationHelper())
+        }
+
+        customView.findViewById<MaterialButton>(R.id.change_column_aggregation_avg).setOnClickListener {
+            showAggregation(col, averageAggregationHelper())
+        }
+
         customView.findViewById<MaterialButton>(R.id.change_column_delete).setOnClickListener {
             deleteColumnWarningDialog(col)
             dialog.dismiss()
@@ -489,39 +498,57 @@ class TableShowActivity :
         }
     }
 
+    fun showAggregation(col: ColumnDTO, aggregationHelper: AggregationHelper){
+        val cells = col.cells
+        val result = aggregationHelper.aggregate(cells)
+        MaterialDialog(this@TableShowActivity).show {
+            title(R.string.aggregationTitle)
+            message(text = "Result: $result")
+        }
+    }
+
+
+
     fun onSumClick(){
         //showAggregation(null)
-        val sumAggregationHelper = object: AggregationHelper {
+        val sumAggregationHelper = sumAggregationHelper()
+        showAggregation(sumAggregationHelper)
+    }
+
+    private fun sumAggregationHelper(): AggregationHelper {
+        return object : AggregationHelper {
             override fun aggregate(cells: List<Cell>): String {
                 var f = 0f
-                for(cell in cells){
+                for (cell in cells) {
                     try {
                         f += cell.value.toFloat()
+                    } catch (e: Exception) {
                     }
-                    catch (e: Exception) {}
                 }
                 return (f).toString()
             }
         }
-
-        showAggregation(sumAggregationHelper)
     }
 
-    fun onAvgClick(){
-        val avgAggregationHelper = object: AggregationHelper {
+    private fun averageAggregationHelper(): AggregationHelper {
+        return object : AggregationHelper {
             override fun aggregate(cells: List<Cell>): String {
                 var f = 0f
                 var c = 0
-                for(cell in cells){
+                for (cell in cells) {
                     try {
                         f += cell.value.toFloat()
                         ++c
+                    } catch (e: Exception) {
                     }
-                    catch (e: Exception) {}
                 }
-                return (f/c).toString()
+                return (f / c).toString()
             }
         }
+    }
+
+    fun onAvgClick(){
+        val avgAggregationHelper = averageAggregationHelper()
 
         showAggregation(avgAggregationHelper)
     }
