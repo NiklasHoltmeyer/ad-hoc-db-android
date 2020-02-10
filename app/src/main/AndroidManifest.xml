@@ -10,7 +10,7 @@
 
     <application
         android:allowBackup="true"
-        android:appComponentFactory="@string/app_name_x"
+        android:appComponentFactory="@string/app_name"
         android:fullBackupContent="@xml/backup_descriptor"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

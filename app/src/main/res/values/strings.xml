@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">ad hoc Database</string>
-    <string name="app_name_x">ad hoc Database</string>
+    <string name="app_name" translatable="false">ad hoc Database</string>
     <string name="create_table_name">Table Name</string>
     <string name="create_table_table_name_placeholder">Table Name</string>
     <string name="create_table_description_hint">Table Description</string>

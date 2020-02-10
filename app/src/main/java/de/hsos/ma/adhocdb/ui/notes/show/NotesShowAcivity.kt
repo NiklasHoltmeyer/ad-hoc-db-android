@@ -102,6 +102,11 @@ class NotesShowAcivity : BaseCoroutineBaseMenuAppCompactActivity(
                 loadEditDialog()
                 true
             }
+
+        menu.findItem(R.id.action_save).setOnMenuItemClickListener {
+            updateDescription()
+            true
+        }
         return true
     }
 

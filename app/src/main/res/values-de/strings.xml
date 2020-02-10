@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ad hoc Database</string>
     <string name="Columns">Spalten</string>
     <string name="add">Hinzufügen</string>
     <string name="addColumn">Spalte hinzufügen</string>
@@ -82,5 +81,4 @@
     <string name="unit_string">Text</string>
     <string name="func_calculate_avg">Durchschnitt berechnen</string>
     <string name="func_calculate_sum">Summe berechnen</string>
-    <string name="app_name_x">ad hoc Database</string>
 </resources>

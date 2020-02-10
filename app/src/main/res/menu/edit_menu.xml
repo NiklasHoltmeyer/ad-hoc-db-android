@@ -8,4 +8,11 @@
         app:showAsAction="ifRoom|collapseActionView"
         android:iconTint="@color/colorOnAccent"
         />
+
+    <item android:id="@+id/action_save"
+        android:icon="@drawable/ic_save_black_24dp"
+        android:title="@string/menu_edit"
+        app:showAsAction="ifRoom|collapseActionView"
+        android:iconTint="@color/colorOnAccent"
+        />
 </menu>
