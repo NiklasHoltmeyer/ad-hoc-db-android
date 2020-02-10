@@ -22,6 +22,6 @@ abstract class NotesDatabase : RoomDatabase(){
         }
 
 
-        private fun buildDataBase(context: Context) =  Room.databaseBuilder(context.applicationContext, NotesDatabase::class.java, "notesv110.db").build()
+        private fun buildDataBase(context: Context) =  Room.databaseBuilder(context.applicationContext, NotesDatabase::class.java, "notes.db").build()
     }
 }

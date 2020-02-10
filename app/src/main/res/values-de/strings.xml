@@ -80,4 +80,6 @@
     <string name="update">Aktualisieren</string>
     <string name="unit_euro">Euro</string>
     <string name="unit_string">Text</string>
+    <string name="func_calculate_avg">Durchschnitt berechnen</string>
+    <string name="func_calculate_sum">Summe berechnen</string>
 </resources>
