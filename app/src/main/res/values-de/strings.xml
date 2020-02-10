@@ -82,4 +82,5 @@
     <string name="unit_string">Text</string>
     <string name="func_calculate_avg">Durchschnitt berechnen</string>
     <string name="func_calculate_sum">Summe berechnen</string>
+    <string name="app_name_x">ad hoc Database</string>
 </resources>
