@@ -1,12 +1,14 @@
 package de.hsos.ma.adhocdb.ui.notes.show
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.InputType
 import android.view.Menu
 import android.view.View
-import android.widget.LinearLayout
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
@@ -22,6 +24,7 @@ import de.hsos.ma.adhocdb.ui.INTENTCONSTS
 import de.hsos.ma.adhocdb.ui.notes.home.NotesHomeActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+
 
 class NotesShowAcivity : BaseCoroutineBaseMenuAppCompactActivity(
     R.layout.activity_notes_show_acivity,
@@ -105,6 +108,9 @@ class NotesShowAcivity : BaseCoroutineBaseMenuAppCompactActivity(
 
         menu.findItem(R.id.action_save).setOnMenuItemClickListener {
             updateDescription()
+            hideKeyboard()
+            val current = currentFocus
+            current?.clearFocus()
             true
         }
         return true
@@ -195,5 +201,20 @@ class NotesShowAcivity : BaseCoroutineBaseMenuAppCompactActivity(
             negativeButton(R.string.dialog_disagree) {
             }
         }
+    }
+
+    fun View.hideKeyboard() {
+        //Quelle: https://stackoverflow.com/a/44500926
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(windowToken, 0)
+    }
+
+    fun Activity.hideKeyboard() {
+        hideKeyboard(currentFocus ?: View(this))
+    }
+
+    fun Context.hideKeyboard(view: View) {
+        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }

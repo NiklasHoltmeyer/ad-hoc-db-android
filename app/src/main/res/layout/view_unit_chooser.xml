@@ -13,14 +13,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight="70"
+            android:layout_weight="85"
             android:gravity="left" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="30"
+            android:layout_weight="15"
             android:gravity="left"
             android:text="@string/unit"
             android:textColor="@color/colorText" />

@@ -215,7 +215,7 @@ class TableShowActivity :
     }
 
     private fun addColumnDialog(table: Table?, colSize: Int) {
-        val view: TableAddColumn = TableAddColumn(this, "Ad Column")
+        val view: TableAddColumn = TableAddColumn(this, getString(R.string.addColumn))
         MaterialDialog(this)
             .title(R.string.addColumn)
             .show {
@@ -236,7 +236,7 @@ class TableShowActivity :
                 deleteColumn(col)
             }
             negativeButton(R.string.cancel)
-            title(R.string.delete_table)
+            title(R.string.delete_column)
             message(R.string.delete_column_dialog_body)
         }
     }
